@@ -1,0 +1,84 @@
+/* ==============================================
+   MoO Design System - CSS Variables
+   Extracted from Figma: Mutual of Omaha Member Experience
+   ============================================== */
+
+:root {
+  /* === Foundation / Primary === */
+  --foundation-primary-blue-dark: #003a70;
+  --foundation-primary-blue: #105fa8;
+  --foundation-primary-teal: #03746e;
+  --foundation-primary-white: #ffffff;
+
+  /* === Foundation / Grays === */
+  --foundation-grays-darkest: #222222;
+  --foundation-grays-darker: #444444;
+  --foundation-grays-dark: #5d5d5d;
+  --foundation-grays-gray: #838383;
+  --foundation-grays-light: #bababa;
+  --foundation-grays-lighter: #f0f0f0;
+
+  /* === Semantics === */
+  --semantics-success: #1c9e3b;
+  --semantics-pending: #fcbc0b;
+  --semantics-warning: #df6903;
+  --semantics-info: #067ac1;
+
+  /* === Text === */
+  --text-default: #222222;
+  --text-link: #105fa8;
+
+  /* === Supporting === */
+  --supporting-black-transparent-16: rgba(34, 34, 34, 0.16);
+  --supporting-content-bg: #dfe8f0;
+  --supporting-alert-warning-bg: #fef8eb;
+  --supporting-alert-info-bg: #f2f8fe;
+
+  /* === Gradients === */
+  --gradient-dk-blue-and-blue: linear-gradient(to right, #003a70, #105fa8);
+  --gradient-blue-and-teal: linear-gradient(to right, #105fa8, #03746e);
+
+  /* === Font Family === */
+  --font-family-title: 'Source Sans Pro', sans-serif;
+  --font-family-body: 'Source Sans Pro', sans-serif;
+
+  /* === Font Weight === */
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+
+  /* === Font Size === */
+  --font-size-2xl: 40px;
+  --font-size-xl: 24px;
+  --font-size-lg: 20px;
+  --font-size-md: 18px;
+  --font-size-sm: 16px;
+  --font-size-xs: 14px;
+  --font-size-2xs: 12px;
+
+  /* === Line Height === */
+  --line-height-lg: 32px;
+  --line-height-md: 28px;
+  --line-height-sm: 24px;
+  --line-height-xs: 20px;
+
+  /* === Spacing === */
+  --spacing-2xs: 2px;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 20px;
+  --spacing-2xl: 24px;
+  --spacing-3xl: 32px;
+  --spacing-4xl: 48px;
+  --spacing-5xl: 60px;
+
+  /* === Border Radius === */
+  --radius-sm: 4px;
+  --radius-pill: 56px;
+  --radius-circle: 9999px;
+
+  /* === Shadows === */
+  --shadow-card: 0px 4px 4px rgba(0, 0, 0, 0.04);
+  --shadow-card-sm: 0px 1px 4px rgba(0, 0, 0, 0.04);
+}

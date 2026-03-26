@@ -1,0 +1,280 @@
+{
+  "foundation": {
+    "primary": {
+      "blue-dark": {
+        "$value": "#003a70",
+        "$type": "color",
+        "$description": "Primary dark blue"
+      },
+      "blue": {
+        "$value": "#105fa8",
+        "$type": "color",
+        "$description": "Primary blue"
+      },
+      "teal": {
+        "$value": "#03746e",
+        "$type": "color",
+        "$description": "Primary teal"
+      },
+      "white": {
+        "$value": "#ffffff",
+        "$type": "color",
+        "$description": "Primary white"
+      }
+    },
+    "grays": {
+      "darkest": {
+        "$value": "#222222",
+        "$type": "color",
+        "$description": "Gray darkest - primary text"
+      },
+      "darker": {
+        "$value": "#444444",
+        "$type": "color",
+        "$description": "Gray darker - secondary text"
+      },
+      "dark": {
+        "$value": "#5d5d5d",
+        "$type": "color",
+        "$description": "Gray dark - muted text"
+      },
+      "gray": {
+        "$value": "#838383",
+        "$type": "color",
+        "$description": "Gray - placeholder text, dates"
+      },
+      "light": {
+        "$value": "#bababa",
+        "$type": "color",
+        "$description": "Gray light - disabled states"
+      },
+      "lighter": {
+        "$value": "#f0f0f0",
+        "$type": "color",
+        "$description": "Gray lighter - borders, backgrounds"
+      }
+    }
+  },
+  "semantics": {
+    "success": {
+      "$value": "#1c9e3b",
+      "$type": "color",
+      "$description": "Success state"
+    },
+    "pending": {
+      "$value": "#fcbc0b",
+      "$type": "color",
+      "$description": "Pending/warning state"
+    },
+    "warning": {
+      "$value": "#df6903",
+      "$type": "color",
+      "$description": "Warning alert"
+    },
+    "info": {
+      "$value": "#067ac1",
+      "$type": "color",
+      "$description": "Information alert"
+    }
+  },
+  "text": {
+    "default": {
+      "$value": "#222222",
+      "$type": "color",
+      "$description": "Default text color"
+    },
+    "link": {
+      "$value": "#105fa8",
+      "$type": "color",
+      "$description": "Link text color"
+    }
+  },
+  "supporting": {
+    "black-transparent-16": {
+      "$value": "rgba(34, 34, 34, 0.16)",
+      "$type": "color",
+      "$description": "Black 16% opacity - progress bar background"
+    },
+    "content-bg": {
+      "$value": "#dfe8f0",
+      "$type": "color",
+      "$description": "Content area background"
+    },
+    "alert-warning-bg": {
+      "$value": "#fef8eb",
+      "$type": "color",
+      "$description": "Warning alert background"
+    },
+    "alert-info-bg": {
+      "$value": "#f2f8fe",
+      "$type": "color",
+      "$description": "Info alert background"
+    }
+  },
+  "font": {
+    "family": {
+      "title": {
+        "$value": "Source Sans Pro",
+        "$type": "fontFamily",
+        "$description": "Title/heading font family"
+      },
+      "body": {
+        "$value": "Source Sans Pro",
+        "$type": "fontFamily",
+        "$description": "Body text font family"
+      }
+    },
+    "weight": {
+      "regular": {
+        "$value": "400",
+        "$type": "fontWeight",
+        "$description": "Regular weight"
+      },
+      "semibold": {
+        "$value": "600",
+        "$type": "fontWeight",
+        "$description": "SemiBold weight"
+      }
+    },
+    "size": {
+      "2xl": {
+        "$value": "40px",
+        "$type": "dimension",
+        "$description": "Heading 1 size"
+      },
+      "xl": {
+        "$value": "24px",
+        "$type": "dimension",
+        "$description": "H3 heading size"
+      },
+      "lg": {
+        "$value": "20px",
+        "$type": "dimension",
+        "$description": "H4 heading size"
+      },
+      "md": {
+        "$value": "18px",
+        "$type": "dimension",
+        "$description": "Brand name size"
+      },
+      "sm": {
+        "$value": "16px",
+        "$type": "dimension",
+        "$description": "H5 / body text size"
+      },
+      "xs": {
+        "$value": "14px",
+        "$type": "dimension",
+        "$description": "Small body text size"
+      },
+      "2xs": {
+        "$value": "12px",
+        "$type": "dimension",
+        "$description": "Label / uppercase text size"
+      }
+    },
+    "line-height": {
+      "lg": {
+        "$value": "32px",
+        "$type": "dimension",
+        "$description": "Large line height (H3)"
+      },
+      "md": {
+        "$value": "28px",
+        "$type": "dimension",
+        "$description": "Medium line height (brand)"
+      },
+      "sm": {
+        "$value": "24px",
+        "$type": "dimension",
+        "$description": "Small line height (H4, H5, body)"
+      },
+      "xs": {
+        "$value": "20px",
+        "$type": "dimension",
+        "$description": "Extra small line height (small text)"
+      }
+    }
+  },
+  "spacing": {
+    "2xs": {
+      "$value": "2px",
+      "$type": "dimension",
+      "$description": "Icon padding"
+    },
+    "xs": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Tab gap, small spacing"
+    },
+    "sm": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$description": "Button padding-y, icon gap"
+    },
+    "md": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$description": "Button padding-x, profile gap"
+    },
+    "lg": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "Alert padding, row gap"
+    },
+    "xl": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$description": "Card padding"
+    },
+    "2xl": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$description": "Nav padding-x, section gap"
+    },
+    "3xl": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$description": "Nav brand gap"
+    },
+    "4xl": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$description": "Hero padding-y"
+    },
+    "5xl": {
+      "$value": "60px",
+      "$type": "dimension",
+      "$description": "Content area padding"
+    }
+  },
+  "border-radius": {
+    "sm": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$description": "Buttons, cards, inputs, tabs"
+    },
+    "pill": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$description": "Badge/pill shape"
+    },
+    "circle": {
+      "$value": "9999px",
+      "$type": "dimension",
+      "$description": "Avatars, round icons"
+    }
+  },
+  "shadow": {
+    "card": {
+      "$value": "0px 4px 4px rgba(0, 0, 0, 0.04)",
+      "$type": "boxShadow",
+      "$description": "Default card shadow"
+    },
+    "card-sm": {
+      "$value": "0px 1px 4px rgba(0, 0, 0, 0.04)",
+      "$type": "boxShadow",
+      "$description": "Small card / quick action shadow"
+    }
+  }
+}
