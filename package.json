@@ -1,0 +1,20 @@
+{
+  "name": "moo-ds",
+  "version": "0.1.0",
+  "description": "Mutual of Omaha Design System",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint src/"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.55",
+    "@types/react-dom": "^18.2.19",
+    "typescript": "^5.2.2",
+    "tailwindcss": "^3.4.1"
+  }
+}

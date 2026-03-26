@@ -1,0 +1,93 @@
+{
+  "color": {
+    "primary": {
+      "main":     { "$value": "#0055A4", "$type": "color", "$description": "Primary brand blue" }
+    },
+    "background": {
+      "navy":     { "$value": "#0A1128", "$type": "color", "$description": "Main app shell" },
+      "slate":    { "$value": "#101820", "$type": "color", "$description": "Main content area" }
+    },
+    "text": {
+      "primary":  { "$value": "#F8FAFC", "$type": "color", "$description": "Headings and body" },
+      "secondary":{ "$value": "#64748B", "$type": "color", "$description": "Labels, captions, hints" }
+    },
+    "status": {
+      "success":  { "$value": "#108981", "$type": "color", "$description": "Active, approved" },
+      "warning":  { "$value": "#F59E0B", "$type": "color", "$description": "Pending, required" },
+      "error":    { "$value": "#EF4444", "$type": "color", "$description": "Denied, errors" },
+      "inactive": { "$value": "#64748B", "$type": "color", "$description": "Inactive items" }
+    },
+    "border": {
+      "default":  { "$value": "#FFFFFF14", "$type": "color", "$description": "Card border (8% white)" },
+      "focus":    { "$value": "#0055A480", "$type": "color", "$description": "Focus border (50% primary)" }
+    },
+    "surface": {
+      "card":     { "$value": "#FFFFFF0D", "$type": "color", "$description": "Card surface (5% white)" },
+      "hover":    { "$value": "#FFFFFF1A", "$type": "color", "$description": "Hover surface (10% white)" },
+      "nav":      { "$value": "#0A1128CC", "$type": "color", "$description": "Nav sidebar (80% navy)" }
+    }
+  },
+  "typography": {
+    "fontFamily": {
+      "primary":  { "$value": "Inter", "$type": "string", "$description": "Primary sans-serif" }
+    },
+    "fontWeight": {
+      "regular":  { "$value": 400, "$type": "number", "$description": "Body text" },
+      "medium":   { "$value": 500, "$type": "number", "$description": "Labels, buttons" },
+      "semibold": { "$value": 600, "$type": "number", "$description": "Headings, card titles" },
+      "bold":     { "$value": 700, "$type": "number", "$description": "Page titles, key values" }
+    },
+    "fontSize": {
+      "4xl":  { "$value": 36, "$type": "number", "$description": "H1 / Page title" },
+      "2xl":  { "$value": 24, "$type": "number", "$description": "H2 / Section heading" },
+      "lg":   { "$value": 18, "$type": "number", "$description": "H3 / Card title" },
+      "base": { "$value": 16, "$type": "number", "$description": "Body text" },
+      "sm":   { "$value": 14, "$type": "number", "$description": "Labels" },
+      "xs":   { "$value": 12, "$type": "number", "$description": "Captions" },
+      "2xs":  { "$value": 11, "$type": "number", "$description": "Badges, tags" }
+    },
+    "lineHeight": {
+      "tight":   { "$value": 40, "$type": "number", "$description": "H1" },
+      "snug":    { "$value": 32, "$type": "number", "$description": "H2" },
+      "normal":  { "$value": 28, "$type": "number", "$description": "H3" },
+      "relaxed": { "$value": 24, "$type": "number", "$description": "Body" },
+      "loose":   { "$value": 20, "$type": "number", "$description": "Small" }
+    }
+  },
+  "spacing": {
+    "1":  { "$value": 4,  "$type": "number", "$description": "4px — extra tight" },
+    "2":  { "$value": 8,  "$type": "number", "$description": "8px — tight" },
+    "3":  { "$value": 12, "$type": "number", "$description": "12px — compact" },
+    "4":  { "$value": 16, "$type": "number", "$description": "16px — base" },
+    "6":  { "$value": 24, "$type": "number", "$description": "24px — comfortable" },
+    "8":  { "$value": 32, "$type": "number", "$description": "32px — spacious" },
+    "12": { "$value": 48, "$type": "number", "$description": "48px — section gap" }
+  },
+  "borderRadius": {
+    "sm":   { "$value": 4,    "$type": "number", "$description": "Badges, tags" },
+    "md":   { "$value": 8,    "$type": "number", "$description": "Buttons, inputs" },
+    "lg":   { "$value": 12,   "$type": "number", "$description": "Cards" },
+    "xl":   { "$value": 16,   "$type": "number", "$description": "Modals, drawers" },
+    "full": { "$value": 9999, "$type": "number", "$description": "Pills, avatars" }
+  },
+  "component": {
+    "button": {
+      "height-sm": { "$value": 32, "$type": "number" },
+      "height-md": { "$value": 40, "$type": "number" },
+      "height-lg": { "$value": 48, "$type": "number" },
+      "padding-sm":{ "$value": 12, "$type": "number" },
+      "padding-md":{ "$value": 16, "$type": "number" },
+      "padding-lg":{ "$value": 24, "$type": "number" },
+      "radius":    { "$value": 8,  "$type": "number" }
+    },
+    "input": {
+      "height":    { "$value": 40, "$type": "number" },
+      "padding":   { "$value": 12, "$type": "number" },
+      "radius":    { "$value": 8,  "$type": "number" }
+    },
+    "card": {
+      "padding":   { "$value": 24, "$type": "number" },
+      "radius":    { "$value": 12, "$type": "number" }
+    }
+  }
+}
