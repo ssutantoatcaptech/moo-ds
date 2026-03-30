@@ -1,0 +1,12 @@
+{
+  "codeConnect": {
+    "parser": "react",
+    "include": ["src/components/**/*.figma.tsx"],
+    "paths": {
+      "src/components/*": "https://github.com/ssutantoatcaptech/moo-ds/blob/main/src/components/*"
+    },
+    "documentUrlSubstitutions": {
+      "https://www.figma.com/design/IE52Pd1nEcinhqOlSy4efj": "https://www.figma.com/design/IE52Pd1nEcinhqOlSy4efj"
+    }
+  }
+}

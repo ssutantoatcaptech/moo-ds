@@ -73,8 +73,13 @@
   --spacing-4xl: 48px;
   --spacing-5xl: 60px;
 
+  /* === Text === */
+  --text-white: #ffffff;
+
   /* === Border Radius === */
   --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
   --radius-pill: 56px;
   --radius-circle: 9999px;
 
