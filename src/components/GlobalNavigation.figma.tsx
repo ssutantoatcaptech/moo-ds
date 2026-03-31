@@ -1,24 +1,25 @@
 import figma from "@figma/code-connect"
 import GlobalNavigation from "./GlobalNavigation"
 
-// Figma: Member Experience Design System — GlobalNavigation
-// https://www.figma.com/design/IE52Pd1nEcinhqOlSy4efj?node-id=PLACEHOLDER
+// Figma: Member Experience Design System — Global Navigation
+// https://www.figma.com/design/IE52Pd1nEcinhqOlSy4efj?node-id=8012-9508
 figma.connect(
-  "https://www.figma.com/design/IE52Pd1nEcinhqOlSy4efj/Member-Experience-Design-System?node-id=PLACEHOLDER",
+  "https://www.figma.com/design/IE52Pd1nEcinhqOlSy4efj/Member-Experience-Design-System?node-id=8012-9508",
   {
     props: {
-      activeTab: figma.enum("Active Tab", {
-        Dashboard: "dashboard",
-        "My Coverages": "coverages",
+      variant: figma.enum("Property 1", {
+        Default: "default",
         Claims: "claims",
-        Leave: "leave",
         Support: "support",
+        Coverages: "coverages",
+        "Coverages Hover": "coveragesHover",
+        Dental: "dental",
+        Leave: "leave",
       }),
     },
     example: (props) => (
       <GlobalNavigation
-        activeTab={props.activeTab}
-        onTabChange={(tab) => console.log(tab)}
+        variant={props.variant}
         userName="Sarah Johnson"
       />
     ),
