@@ -1,0 +1,8 @@
+export { default as BookmarkIcon } from './BookmarkIcon'
+export { default as BookmarkOutlineIcon } from './BookmarkOutlineIcon'
+export { default as NewspaperIcon } from './NewspaperIcon'
+export { default as NewspaperOutlineIcon } from './NewspaperOutlineIcon'
+export { default as ParagraphIcon } from './ParagraphIcon'
+export { default as QuoteLeftIcon } from './QuoteLeftIcon'
+export { default as QuoteRightIcon } from './QuoteRightIcon'
+export { default as CommentPenIcon } from './CommentPenIcon'

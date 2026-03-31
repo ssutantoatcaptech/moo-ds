@@ -1,0 +1,16 @@
+import type { SVGProps } from 'react'
+
+export default function MobileIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 48 48"
+      fill="none"
+      width="1em"
+      height="1em"
+      {...props}
+    >
+      <path d="M33.625 2C35.8594 2 37.75 3.89062 37.75 6.125V41.875C37.75 44.1953 35.8594 46 33.625 46H14.375C12.0547 46 10.25 44.1953 10.25 41.875V6.125C10.25 3.89062 12.0547 2 14.375 2H33.625ZM24 43.25C25.4609 43.25 26.75 42.0469 26.75 40.5C26.75 39.0391 25.4609 37.75 24 37.75C22.4531 37.75 21.25 39.0391 21.25 40.5C21.25 42.0469 22.4531 43.25 24 43.25Z" fill="currentColor"/>
+    </svg>
+  )
+}

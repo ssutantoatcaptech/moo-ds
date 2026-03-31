@@ -1,9 +1,10 @@
 {
   "codeConnect": {
     "parser": "react",
-    "include": ["src/components/**/*.figma.tsx"],
+    "include": ["src/components/**/*.figma.tsx", "src/icons/**/*.figma.tsx"],
     "paths": {
-      "src/components/*": "https://github.com/ssutantoatcaptech/moo-ds/blob/main/src/components/*"
+      "src/components/*": "https://github.com/ssutantoatcaptech/moo-ds/blob/main/src/components/*",
+      "src/icons/*": "https://github.com/ssutantoatcaptech/moo-ds/blob/main/src/icons/*"
     },
     "documentUrlSubstitutions": {
       "https://www.figma.com/design/IE52Pd1nEcinhqOlSy4efj": "https://www.figma.com/design/IE52Pd1nEcinhqOlSy4efj"
