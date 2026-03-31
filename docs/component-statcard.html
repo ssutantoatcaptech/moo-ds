@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StatCard - MoO Design System</title>
+  <link rel="stylesheet" href="shared.css">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="ds-nav">
+    <div class="ds-nav-left">
+      <div class="ds-brand">MoO Design System</div>
+      <div class="ds-tabs">
+        <a class="ds-tab" href="index.html">Overview</a>
+        <a class="ds-tab" href="tokens.html">Design Tokens</a>
+        <a class="ds-tab active" href="components.html">Components</a>
+        <a class="ds-tab" href="dashboard.html">Dashboard Preview</a>
+        <a class="ds-tab" href="login-registration.html">Login &amp; Registration</a>
+      </div>
+    </div>
+  </nav>
+
+  <div style="max-width: 960px; margin: 0 auto; padding: 40px 60px;">
+    <a href="components.html" style="font-size: 14px; color: #105fa8; text-decoration: none; display: flex; align-items: center; gap: 6px; margin-bottom: 24px;">&larr; Back to Components</a>
+
+    <h1 style="font-size: 32px; color: #003a70; margin-bottom: 4px;">StatCard</h1>
+    <div style="font-size: 13px; color: #105fa8; font-family: 'SF Mono', 'Courier New', monospace; margin-bottom: 8px;">StatCard.tsx</div>
+    <p style="font-size: 16px; color: #5d5d5d; margin-bottom: 32px;">A compact card displaying a key metric with a title, value, and optional subtitle. Supports accent colors to convey semantic meaning.</p>
+    <a href="https://github.com/ssutantoatcaptech/moo-ds/blob/main/src/components/StatCard.tsx" style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: #105fa8; text-decoration: none; font-weight: 600; margin-bottom: 32px;">View on GitHub &rarr;</a>
+
+    <h2 style="font-size: 20px; color: #003a70; margin-bottom: 16px;">Accent Colors</h2>
+    <div style="background: #f9fafb; border: 1px solid #f0f0f0; border-radius: 8px; padding: 32px; margin-bottom: 32px;">
+      <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+        <!-- Blue -->
+        <div style="background: white; border-radius: 8px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); min-width: 200px; flex: 1;">
+          <div style="font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #838383; margin-bottom: 4px;">Active Claims</div>
+          <div style="font-size: 32px; font-weight: 700; line-height: 1.2; margin-bottom: 4px; color: #105fa8;">3</div>
+          <div style="font-size: 14px; color: #838383; font-style: italic;">2 pending review</div>
+        </div>
+        <!-- Green -->
+        <div style="background: white; border-radius: 8px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); min-width: 200px; flex: 1;">
+          <div style="font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #838383; margin-bottom: 4px;">Days on Leave</div>
+          <div style="font-size: 32px; font-weight: 700; line-height: 1.2; margin-bottom: 4px; color: #1c9e3b;">12</div>
+          <div style="font-size: 14px; color: #838383; font-style: italic;">of 14 approved</div>
+        </div>
+        <!-- Purple -->
+        <div style="background: white; border-radius: 8px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); min-width: 200px; flex: 1;">
+          <div style="font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #838383; margin-bottom: 4px;">Messages</div>
+          <div style="font-size: 32px; font-weight: 700; line-height: 1.2; margin-bottom: 4px; color: #6b3fa0;">5</div>
+          <div style="font-size: 14px; color: #838383; font-style: italic;">2 unread</div>
+        </div>
+        <!-- Orange -->
+        <div style="background: white; border-radius: 8px; padding: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); min-width: 200px; flex: 1;">
+          <div style="font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #838383; margin-bottom: 4px;">Pending Actions</div>
+          <div style="font-size: 32px; font-weight: 700; line-height: 1.2; margin-bottom: 4px; color: #df6903;">2</div>
+          <div style="font-size: 14px; color: #838383; font-style: italic;">requires attention</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

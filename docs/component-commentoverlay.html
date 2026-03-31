@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CommentOverlay - MoO Design System</title>
+  <link rel="stylesheet" href="shared.css">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="ds-nav">
+    <div class="ds-nav-left">
+      <div class="ds-brand">MoO Design System</div>
+      <div class="ds-tabs">
+        <a class="ds-tab" href="index.html">Overview</a>
+        <a class="ds-tab" href="tokens.html">Design Tokens</a>
+        <a class="ds-tab active" href="components.html">Components</a>
+        <a class="ds-tab" href="dashboard.html">Dashboard Preview</a>
+        <a class="ds-tab" href="login-registration.html">Login &amp; Registration</a>
+      </div>
+    </div>
+  </nav>
+
+  <div style="max-width: 960px; margin: 0 auto; padding: 40px 60px;">
+    <a href="components.html" style="font-size: 14px; color: #105fa8; text-decoration: none; display: flex; align-items: center; gap: 6px; margin-bottom: 24px;">&larr; Back to Components</a>
+
+    <h1 style="font-size: 32px; color: #003a70; margin-bottom: 4px;">CommentOverlay</h1>
+    <div style="font-size: 13px; color: #105fa8; font-family: 'SF Mono', 'Courier New', monospace; margin-bottom: 8px;">CommentOverlay.tsx</div>
+    <p style="font-size: 16px; color: #5d5d5d; margin-bottom: 32px;">An overlay system for placing comment pins on screen previews. Supports threaded comments, resolution states, and author attribution.</p>
+    <a href="https://github.com/ssutantoatcaptech/moo-ds/blob/main/src/components/CommentOverlay.tsx" style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: #105fa8; text-decoration: none; font-weight: 600; margin-bottom: 32px;">View on GitHub &rarr;</a>
+
+    <h2 style="font-size: 20px; color: #003a70; margin-bottom: 16px;">Default</h2>
+    <div style="background: #f9fafb; border: 1px solid #f0f0f0; border-radius: 8px; padding: 32px; margin-bottom: 32px;">
+      <div style="position: relative; height: 400px; background: #e8edf2; border-radius: 8px; overflow: hidden;">
+        <!-- Placeholder text -->
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 20px; color: rgba(0,0,0,0.15); font-weight: 600;">Screen Preview</div>
+
+        <!-- Pin 1 -->
+        <div style="position: absolute; top: 60px; left: 80px; width: 28px; height: 28px; background: #105fa8; border-radius: 50%; color: white; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(0,0,0,0.2); cursor: pointer; z-index: 2;">1</div>
+
+        <!-- Pin 2 -->
+        <div style="position: absolute; top: 150px; left: 300px; width: 28px; height: 28px; background: #03746e; border-radius: 50%; color: white; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(0,0,0,0.2); cursor: pointer; z-index: 2;">2</div>
+
+        <!-- Pin 3 (resolved) -->
+        <div style="position: absolute; top: 100px; right: 120px; width: 28px; height: 28px; background: #838383; border-radius: 50%; color: white; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(0,0,0,0.2); cursor: pointer; z-index: 2;">&#10003;</div>
+
+        <!-- Popover for Pin 1 -->
+        <div style="position: absolute; top: 40px; left: 112px; background: white; border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.15); padding: 16px; width: 280px; z-index: 3;">
+          <!-- Author row -->
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+            <div style="width: 28px; height: 28px; background: #105fa8; border-radius: 50%; color: white; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">SJ</div>
+            <div style="font-size: 14px; font-weight: 600; color: #222;">Sarah Johnson</div>
+            <div style="font-size: 12px; color: #838383; margin-left: auto;">2h ago</div>
+          </div>
+          <!-- Comment text -->
+          <div style="font-size: 14px; color: #222; line-height: 20px; margin-bottom: 12px;">The hero banner gradient needs to match the updated brand colors.</div>
+          <!-- Action buttons -->
+          <div style="display: flex; gap: 16px;">
+            <button style="font-size: 13px; color: #1c9e3b; background: transparent; border: none; font-weight: 600; cursor: pointer; padding: 0; font-family: 'Source Sans Pro', sans-serif;">Resolve</button>
+            <button style="font-size: 13px; color: #c12506; background: transparent; border: none; font-weight: 600; cursor: pointer; padding: 0; font-family: 'Source Sans Pro', sans-serif;">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

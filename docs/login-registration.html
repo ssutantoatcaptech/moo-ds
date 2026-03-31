@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login &amp; Registration - MoO Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+  <script src="figma-toolbar.js" defer></script>
+  <style>
+    /* ===== MoO DESIGN TOKENS ===== */
+    :root {
+      --primary-blue-dark: #003a70;
+      --primary-blue: #105fa8;
+      --primary-teal: #03746e;
+      --white: #ffffff;
+      --gray-darkest: #222222;
+      --gray-darker: #444444;
+      --gray-dark: #5d5d5d;
+      --gray: #838383;
+      --gray-light: #bababa;
+      --gray-lighter: #f0f0f0;
+      --success: #1c9e3b;
+      --success-bg: #e6f8eb;
+      --pending: #fcbc0b;
+      --warning: #df6903;
+      --info: #067ac1;
+      --info-bg: #f2f8fe;
+      --error: #c81e1e;
+      --error-bg: #fef2f2;
+      --content-bg: #dfe8f0;
+      --font-2xl: 40px;
+      --font-xl: 24px;
+      --font-lg: 20px;
+      --font-md: 18px;
+      --font-sm: 16px;
+      --font-xs: 14px;
+      --font-2xs: 12px;
+      --spacing-2xs: 2px;
+      --spacing-xs: 4px;
+      --spacing-sm: 8px;
+      --spacing-md: 12px;
+      --spacing-lg: 16px;
+      --spacing-xl: 20px;
+      --spacing-2xl: 24px;
+      --spacing-3xl: 32px;
+      --spacing-4xl: 48px;
+      --spacing-5xl: 60px;
+      --radius-sm: 4px;
+      --radius-pill: 56px;
+    }
+
+    /* ===== MOBILE PHONE FRAME ===== */
+    .phone-wrapper {
+      display: flex;
+      justify-content: center;
+      padding: 40px 0;
+    }
+    .phone-frame {
+      width: 375px;
+      height: 812px;
+      border: 3px solid #222;
+      border-radius: 40px;
+      overflow: hidden;
+      position: relative;
+      background: var(--white);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.15);
+    }
+    .phone-frame .notch {
+      width: 150px; height: 28px;
+      background: #222; border-radius: 0 0 18px 18px;
+      position: absolute; top: 0; left: 50%;
+      transform: translateX(-50%); z-index: 10;
+    }
+
+    /* ===== SCREEN CONTAINER ===== */
+    .screen {
+      width: 100%; height: 100%;
+      display: none; flex-direction: column;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+    }
+    .screen.active { display: flex; }
+    .screen-scroll { flex: 1; overflow-y: auto; }
+
+    /* ===== HEADER ===== */
+    .app-header {
+      display: flex; align-items: center;
+      padding: 0 var(--spacing-lg);
+      height: 56px; min-height: 56px;
+      background: var(--primary-blue-dark);
+      color: var(--white);
+      font-size: var(--font-sm);
+      font-weight: 600;
+      gap: var(--spacing-md);
+    }
+    .app-header .back-btn {
+      background: none; border: none; color: var(--white);
+      font-size: 20px; cursor: pointer; padding: 4px;
+      display: flex; align-items: center;
+    }
+    .app-header .back-btn:hover { opacity: 0.8; }
+
+    /* ===== STEP INDICATOR ===== */
+    .step-bar {
+      display: flex; padding: var(--spacing-lg);
+      gap: 0;
+    }
+    .step {
+      flex: 1; display: flex; flex-direction: column;
+      align-items: center; gap: var(--spacing-xs);
+      position: relative;
+    }
+    .step::after {
+      content: '';
+      position: absolute; top: 16px; left: 55%; right: -45%;
+      height: 2px; background: var(--gray-lighter);
+    }
+    .step:last-child::after { display: none; }
+    .step.complete::after { background: var(--success); }
+    .step.active::after { background: var(--gray-lighter); }
+    .step-circle {
+      width: 32px; height: 32px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: var(--font-xs); font-weight: 700;
+      background: var(--gray-lighter); color: var(--gray);
+      position: relative; z-index: 1;
+      transition: all 0.3s ease;
+    }
+    .step.active .step-circle { background: var(--primary-blue); color: var(--white); }
+    .step.complete .step-circle { background: var(--success); color: var(--white); }
+    .step-label {
+      font-size: var(--font-2xs); color: var(--gray);
+      transition: all 0.3s ease;
+    }
+    .step.active .step-label { color: var(--primary-blue); font-weight: 600; }
+    .step.complete .step-label { color: var(--success); font-weight: 600; }
+
+    /* ===== CONTENT AREA ===== */
+    .content {
+      padding: var(--spacing-lg);
+      display: flex; flex-direction: column;
+      gap: var(--spacing-xl);
+    }
+    .content h1 {
+      font-size: 28px; font-weight: 700;
+      color: var(--gray-darkest); line-height: 1.2;
+    }
+    .content .subtitle {
+      font-size: var(--font-sm); color: var(--gray-darker);
+      line-height: 1.5;
+    }
+
+    /* ===== FORM ELEMENTS ===== */
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-label {
+      font-size: var(--font-xs); font-weight: 600;
+      color: var(--gray-darker);
+    }
+    .form-input {
+      height: 48px; border: 1px solid var(--gray-light);
+      border-radius: var(--radius-sm); padding: 0 var(--spacing-lg);
+      font-size: var(--font-sm); font-family: inherit;
+      color: var(--gray-darkest);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none; width: 100%;
+    }
+    .form-input::placeholder { color: var(--gray); }
+    .form-input:focus {
+      border-color: var(--primary-blue);
+      box-shadow: 0 0 0 3px rgba(16,95,168,0.12);
+    }
+    .form-input.error {
+      border-color: var(--error);
+      box-shadow: 0 0 0 3px rgba(200,30,30,0.1);
+    }
+    .form-input.valid {
+      border-color: var(--success);
+    }
+    .error-msg {
+      font-size: var(--font-2xs); color: var(--error);
+      display: none;
+    }
+    .form-group.has-error .error-msg { display: block; }
+    .form-group.has-error .form-input { border-color: var(--error); }
+    .form-helper {
+      font-size: var(--font-2xs); color: var(--gray-dark);
+    }
+
+    /* ===== CHECKBOX / RADIO ===== */
+    .checkbox-row, .radio-row {
+      display: flex; align-items: flex-start;
+      gap: var(--spacing-sm); cursor: pointer;
+    }
+    .checkbox-box, .radio-circle {
+      width: 20px; height: 20px; min-width: 20px;
+      border: 2px solid var(--gray-light);
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s; margin-top: 1px;
+      cursor: pointer; background: var(--white);
+    }
+    .radio-circle { border-radius: 50%; }
+    .checkbox-box.checked, .radio-circle.checked {
+      background: var(--primary-blue);
+      border-color: var(--primary-blue);
+    }
+    .checkbox-box.checked::after { content: '✓'; color: var(--white); font-size: 12px; font-weight: 700; }
+    .radio-circle.checked::after { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--white); }
+    .checkbox-label, .radio-label {
+      font-size: var(--font-xs); color: var(--gray-darker);
+      line-height: 1.4;
+    }
+
+    /* ===== RADIO OPTION CARD ===== */
+    .radio-card {
+      display: flex; align-items: center; gap: var(--spacing-md);
+      padding: var(--spacing-lg);
+      border: 1px solid var(--gray-light);
+      border-radius: var(--radius-sm); cursor: pointer;
+      transition: all 0.2s;
+    }
+    .radio-card:hover { border-color: var(--primary-blue); background: var(--info-bg); }
+    .radio-card.selected {
+      border-color: var(--primary-blue); border-width: 2px;
+      background: var(--info-bg);
+    }
+    .radio-card-text { display: flex; flex-direction: column; gap: 2px; }
+    .radio-card-title { font-size: var(--font-sm); font-weight: 600; color: var(--gray-darkest); }
+    .radio-card-desc { font-size: var(--font-2xs); color: var(--gray-dark); }
+
+    /* ===== TOGGLE SWITCH ===== */
+    .toggle-row {
+      display: flex; align-items: center; gap: var(--spacing-md);
+    }
+    .toggle {
+      width: 44px; height: 24px; border-radius: 12px;
+      background: var(--gray-light); cursor: pointer;
+      position: relative; transition: background 0.2s;
+    }
+    .toggle.on { background: var(--primary-blue); }
+    .toggle-knob {
+      width: 20px; height: 20px; border-radius: 50%;
+      background: var(--white); position: absolute;
+      top: 2px; left: 2px; transition: left 0.2s;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+    .toggle.on .toggle-knob { left: 22px; }
+    .toggle-text { display: flex; flex-direction: column; gap: 2px; }
+    .toggle-title { font-size: var(--font-xs); font-weight: 600; color: var(--gray-darkest); }
+    .toggle-desc { font-size: var(--font-2xs); color: var(--gray-dark); }
+
+    /* ===== BUTTONS ===== */
+    .btn {
+      height: 48px; border-radius: var(--radius-sm);
+      font-size: var(--font-sm); font-weight: 600;
+      font-family: inherit; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s; border: none; width: 100%;
+    }
+    .btn:active { transform: scale(0.98); }
+    .btn-primary {
+      background: var(--primary-blue-dark); color: var(--white);
+    }
+    .btn-primary:hover { background: #002d59; }
+    .btn-primary:disabled {
+      background: var(--gray-light); color: var(--white);
+      cursor: not-allowed; transform: none;
+    }
+    .btn-secondary {
+      background: var(--white); color: var(--primary-blue-dark);
+      border: 2px solid var(--primary-blue-dark);
+    }
+    .btn-secondary:hover { background: #f5f8fb; }
+    .btn-link {
+      background: none; border: none; color: var(--primary-blue);
+      font-size: var(--font-xs); cursor: pointer;
+      text-decoration: underline; font-family: inherit;
+      padding: var(--spacing-sm) 0;
+    }
+    .btn-link:hover { color: var(--primary-blue-dark); }
+
+    /* ===== INFO BOX ===== */
+    .info-box {
+      padding: var(--spacing-md) var(--spacing-lg);
+      border-radius: var(--radius-sm);
+      font-size: var(--font-xs); line-height: 1.5;
+    }
+    .info-box.blue {
+      background: var(--info-bg);
+      border: 1px solid var(--primary-blue);
+      color: var(--primary-blue-dark);
+    }
+    .info-box.green {
+      background: var(--success-bg);
+      border: 1px solid var(--success);
+      color: #166b2b;
+    }
+
+    /* ===== PASSWORD REQUIREMENTS ===== */
+    .pw-requirements {
+      background: var(--gray-lighter); border-radius: var(--radius-sm);
+      padding: var(--spacing-md) var(--spacing-lg);
+      display: flex; flex-direction: column; gap: var(--spacing-xs);
+    }
+    .pw-requirements .pw-title {
+      font-size: var(--font-xs); font-weight: 600;
+      color: var(--gray-darker);
+    }
+    .pw-req {
+      font-size: var(--font-2xs); color: var(--gray-dark);
+      display: flex; align-items: center; gap: var(--spacing-sm);
+      transition: color 0.2s;
+    }
+    .pw-req .pw-icon { width: 16px; text-align: center; }
+    .pw-req.met { color: var(--success); }
+    .pw-req.met .pw-icon::after { content: '✓'; }
+    .pw-req:not(.met) .pw-icon::after { content: '○'; }
+
+    /* ===== CODE INPUT ===== */
+    .code-row {
+      display: flex; gap: var(--spacing-sm);
+      justify-content: center;
+    }
+    .code-input {
+      width: 48px; height: 56px;
+      border: 2px solid var(--gray-light);
+      border-radius: var(--radius-sm);
+      text-align: center; font-size: var(--font-xl);
+      font-weight: 700; font-family: inherit;
+      outline: none; transition: border-color 0.2s;
+    }
+    .code-input:focus { border-color: var(--primary-blue); }
+    .code-input.filled { border-color: var(--primary-blue); }
+
+    /* ===== REVIEW CARD ===== */
+    .review-card {
+      border: 1px solid var(--gray-lighter);
+      border-radius: var(--spacing-sm);
+      overflow: hidden;
+    }
+    .review-card-header {
+      background: var(--gray-lighter);
+      padding: var(--spacing-md) var(--spacing-lg);
+      display: flex; justify-content: space-between;
+      align-items: center;
+    }
+    .review-card-header h3 {
+      font-size: var(--font-sm); font-weight: 600;
+      color: var(--gray-darkest);
+    }
+    .review-card-header .edit-btn {
+      font-size: var(--font-xs); color: var(--primary-blue);
+      cursor: pointer; font-weight: 600;
+      background: none; border: none; font-family: inherit;
+    }
+    .review-card-header .edit-btn:hover { text-decoration: underline; }
+    .review-row {
+      display: flex; padding: var(--spacing-sm) var(--spacing-lg);
+      border-bottom: 1px solid var(--gray-lighter);
+    }
+    .review-row:last-child { border-bottom: none; }
+    .review-label {
+      width: 120px; font-size: var(--font-xs);
+      color: var(--gray-dark); flex-shrink: 0;
+    }
+    .review-value {
+      font-size: var(--font-xs); font-weight: 600;
+      color: var(--gray-darkest);
+    }
+
+    /* ===== SUCCESS SCREEN ===== */
+    .success-center {
+      display: flex; flex-direction: column;
+      align-items: center; text-align: center;
+      gap: var(--spacing-2xl); padding-top: var(--spacing-5xl);
+    }
+    .success-icon {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: var(--success); display: flex;
+      align-items: center; justify-content: center;
+      font-size: 40px; color: var(--white);
+      animation: popIn 0.4s ease-out;
+    }
+    @keyframes popIn {
+      0% { transform: scale(0); opacity: 0; }
+      70% { transform: scale(1.1); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .success-center h1 { font-size: var(--font-xl); }
+    .detail-card {
+      background: var(--gray-lighter); border-radius: var(--spacing-sm);
+      padding: var(--spacing-xl);
+      width: 100%; text-align: left;
+      display: flex; flex-direction: column; gap: var(--spacing-md);
+    }
+    .detail-card h3 {
+      font-size: var(--font-sm); font-weight: 600;
+      color: var(--gray-darkest);
+    }
+    .detail-row {
+      display: flex; justify-content: space-between;
+      font-size: var(--font-xs);
+    }
+    .detail-row .dl { color: var(--gray-dark); }
+    .detail-row .dv { font-weight: 600; color: var(--gray-darkest); }
+
+    /* ===== FOOTER ===== */
+    .app-footer {
+      background: var(--gray-lighter);
+      padding: var(--spacing-md) var(--spacing-lg);
+      text-align: center; flex-shrink: 0;
+    }
+    .app-footer .footer-links {
+      font-size: var(--font-2xs); color: var(--primary-blue);
+      margin-bottom: var(--spacing-xs);
+    }
+    .app-footer .footer-links a {
+      color: var(--primary-blue); text-decoration: none;
+    }
+    .app-footer .footer-links a:hover { text-decoration: underline; }
+    .app-footer .copyright {
+      font-size: var(--font-2xs); color: var(--gray);
+    }
+
+    /* ===== PHONE INPUT ROW ===== */
+    .phone-row { display: flex; gap: var(--spacing-sm); }
+    .phone-row .country-code {
+      width: 70px; height: 48px;
+      border: 1px solid var(--gray-light);
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center;
+      justify-content: center;
+      font-size: var(--font-sm); color: var(--gray-darkest);
+      background: var(--white);
+    }
+    .phone-row .form-input { flex: 1; }
+
+    /* ===== SCREEN TRANSITION ===== */
+    .screen { animation: slideIn 0.3s ease-out; }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    /* ===== PAGE-LEVEL LAYOUT ===== */
+    .flow-description {
+      background: var(--white); border-radius: 8px;
+      padding: 24px; margin-bottom: 24px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    .flow-description h2 {
+      font-size: 20px; color: var(--primary-blue-dark);
+      margin-bottom: 8px;
+    }
+    .flow-description p {
+      font-size: 14px; color: var(--gray-dark); line-height: 1.6;
+    }
+    .flow-description ul {
+      margin-top: 8px; padding-left: 20px;
+    }
+    .flow-description li {
+      font-size: 14px; color: var(--gray-darker);
+      margin-bottom: 4px;
+    }
+    .flow-description li strong { color: var(--primary-blue-dark); }
+  </style>
+</head>
+<body>
+  <nav class="ds-nav">
+    <div class="ds-nav-left">
+      <span class="ds-brand">MoO Design System</span>
+      <div class="ds-tabs">
+        <a href="index.html" class="ds-tab">Overview</a>
+        <a href="tokens.html" class="ds-tab">Design Tokens</a>
+        <a href="iconography.html" class="ds-tab">Iconography</a>
+        <a href="components.html" class="ds-tab">Components</a>
+        <a href="dashboard.html" class="ds-tab">Dashboard Preview</a>
+        <a href="mobile-dashboard.html" class="ds-tab">Mobile Dashboard</a>
+        <a href="login-registration.html" class="ds-tab active">Login &amp; Registration</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <h1>Login &amp; Registration Flow</h1>
+    <p>Interactive prototype of the Member Benefits Portal registration experience.</p>
+  </section>
+
+  <div class="page-content">
+    <div class="phone-wrapper">
+      <div class="phone-frame">
+        <div class="notch"></div>
+
+        <!-- ===== SCREEN 1: VERIFY IDENTITY ===== -->
+        <div class="screen active" id="screen-1">
+          <div class="app-header">
+            <span>Member Benefits Portal</span>
+          </div>
+          <div class="screen-scroll">
+            <div class="step-bar">
+              <div class="step active"><div class="step-circle">1</div><span class="step-label">Verify</span></div>
+              <div class="step"><div class="step-circle">2</div><span class="step-label">Account</span></div>
+              <div class="step"><div class="step-circle">3</div><span class="step-label">Security</span></div>
+              <div class="step"><div class="step-circle">4</div><span class="step-label">Review</span></div>
+            </div>
+            <div class="content">
+              <h1>Verify Your Identity</h1>
+              <p class="subtitle">To verify your identity, please enter your personal information as it appears on your benefits card or enrollment documents.</p>
+
+              <div class="form-group">
+                <label class="form-label">First Name *</label>
+                <input class="form-input" id="firstName" type="text" placeholder="Enter your first name" required>
+                <span class="error-msg">First name is required</span>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Last Name *</label>
+                <input class="form-input" id="lastName" type="text" placeholder="Enter your last name" required>
+                <span class="error-msg">Last name is required</span>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Date of Birth *</label>
+                <input class="form-input" id="dob" type="text" placeholder="MM/DD/YYYY" maxlength="10">
+                <span class="error-msg">Please enter a valid date</span>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Member ID *</label>
+                <input class="form-input" id="memberId" type="text" placeholder="e.g. MEM-2025-XXXX">
+                <span class="error-msg">Member ID is required</span>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email Address *</label>
+                <input class="form-input" id="email" type="email" placeholder="your.email@example.com">
+                <span class="error-msg">Please enter a valid email</span>
+              </div>
+
+              <div class="checkbox-row" onclick="toggleCheckbox(this)">
+                <div class="checkbox-box" id="confirmCheck"></div>
+                <span class="checkbox-label">I confirm that the information I provide is accurate and matches my enrollment records.</span>
+              </div>
+
+              <button class="btn btn-primary" onclick="validateScreen1()">Continue</button>
+            </div>
+          </div>
+          <div class="app-footer">
+            <div class="footer-links"><a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#">Accessibility</a> · <a href="#">Contact</a></div>
+            <div class="copyright">© 2025 Mutual of Omaha</div>
+          </div>
+        </div>
+
+        <!-- ===== SCREEN 2: CREATE YOUR LOGIN ===== -->
+        <div class="screen" id="screen-2">
+          <div class="app-header">
+            <button class="back-btn" onclick="goToScreen(1)">←</button>
+            <span>Member Benefits Portal</span>
+          </div>
+          <div class="screen-scroll">
+            <div class="step-bar">
+              <div class="step complete"><div class="step-circle">✓</div><span class="step-label">Verify</span></div>
+              <div class="step active"><div class="step-circle">2</div><span class="step-label">Account</span></div>
+              <div class="step"><div class="step-circle">3</div><span class="step-label">Security</span></div>
+              <div class="step"><div class="step-circle">4</div><span class="step-label">Review</span></div>
+            </div>
+            <div class="content">
+              <h1>Create Your Login</h1>
+              <p class="subtitle">Set up your email and password to access your member portal.</p>
+
+              <div class="info-box blue">✉ <span id="emailDisplay">your.email@example.com</span></div>
+
+              <div class="form-group">
+                <label class="form-label">Email Address *</label>
+                <input class="form-input" id="loginEmail" type="email" placeholder="sarah.johnson@gmail.com">
+                <span class="error-msg">Please enter a valid email</span>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Set Your Password *</label>
+                <input class="form-input" id="password" type="password" placeholder="Create a strong password" oninput="checkPasswordStrength()">
+                <span class="error-msg">Password does not meet requirements</span>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Confirm Password *</label>
+                <input class="form-input" id="confirmPassword" type="password" placeholder="Re-enter your password">
+                <span class="error-msg">Passwords do not match</span>
+              </div>
+
+              <div class="pw-requirements">
+                <span class="pw-title">Password Requirements:</span>
+                <div class="pw-req" id="pw-len"><span class="pw-icon"></span>At least 8 characters</div>
+                <div class="pw-req" id="pw-upper"><span class="pw-icon"></span>One uppercase letter</div>
+                <div class="pw-req" id="pw-lower"><span class="pw-icon"></span>One lowercase letter</div>
+                <div class="pw-req" id="pw-num"><span class="pw-icon"></span>One number</div>
+                <div class="pw-req" id="pw-special"><span class="pw-icon"></span>One special character (!@#$%^&*)</div>
+              </div>
+
+              <button class="btn btn-primary" onclick="validateScreen2()">Complete Profile →</button>
+              <button class="btn btn-secondary" onclick="goToScreen(1)">Back</button>
+            </div>
+          </div>
+          <div class="app-footer">
+            <div class="footer-links"><a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#">Accessibility</a> · <a href="#">Contact</a></div>
+            <div class="copyright">© 2025 Mutual of Omaha</div>
+          </div>
+        </div>
+
+        <!-- ===== SCREEN 3: SECURE YOUR ACCOUNT ===== -->
+        <div class="screen" id="screen-3">
+          <div class="app-header">
+            <button class="back-btn" onclick="goToScreen(2)">←</button>
+            <span>Member Benefits Portal</span>
+          </div>
+          <div class="screen-scroll">
+            <div class="step-bar">
+              <div class="step complete"><div class="step-circle">✓</div><span class="step-label">Verify</span></div>
+              <div class="step complete"><div class="step-circle">✓</div><span class="step-label">Account</span></div>
+              <div class="step active"><div class="step-circle">3</div><span class="step-label">Security</span></div>
+              <div class="step"><div class="step-circle">4</div><span class="step-label">Review</span></div>
+            </div>
+            <div class="content">
+              <h1>Secure Your Account</h1>
+              <p class="subtitle">Add extra protection with multi-factor authentication.</p>
+
+              <div class="info-box blue">
+                <strong>Recommended: Enable Multi-Factor Authentication</strong><br>
+                Add a second verification step to keep your account secure, even if someone gets your password.
+              </div>
+
+              <div class="toggle-row">
+                <div class="toggle on" id="mfaToggle" onclick="toggleMfa()">
+                  <div class="toggle-knob"></div>
+                </div>
+                <div class="toggle-text">
+                  <span class="toggle-title">Enable Multi-Factor Authentication</span>
+                  <span class="toggle-desc">Get a verification code each time you sign in</span>
+                </div>
+              </div>
+
+              <div id="mfaOptions">
+                <div style="display:flex;flex-direction:column;gap:var(--spacing-sm);">
+                  <label class="form-label">How would you like to receive codes? *</label>
+                  <div class="radio-card selected" id="radioSms" onclick="selectMfaMethod('sms')">
+                    <div class="radio-circle checked"></div>
+                    <div class="radio-card-text">
+                      <span class="radio-card-title">📱 Text Message (SMS)</span>
+                      <span class="radio-card-desc">Get a code sent to your phone</span>
+                    </div>
+                  </div>
+                  <div class="radio-card" id="radioEmail" onclick="selectMfaMethod('email')">
+                    <div class="radio-circle"></div>
+                    <div class="radio-card-text">
+                      <span class="radio-card-title">✉️ Email</span>
+                      <span class="radio-card-desc">Get a code sent to your email address</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group" style="margin-top:var(--spacing-lg);">
+                  <label class="form-label">Mobile Phone Number *</label>
+                  <div class="phone-row">
+                    <div class="country-code">+1</div>
+                    <input class="form-input" id="phone" type="tel" placeholder="(555) 789-1234">
+                  </div>
+                  <span class="form-helper">We'll text a verification code to this number</span>
+                </div>
+
+                <div class="checkbox-row" onclick="toggleCheckbox(this)" style="margin-top:var(--spacing-md);">
+                  <div class="checkbox-box checked"></div>
+                  <span class="checkbox-label">Remember this device for 30 days</span>
+                </div>
+              </div>
+
+              <button class="btn btn-primary" onclick="validateScreen3()">Continue</button>
+              <button class="btn btn-secondary" onclick="goToScreen(2)">Back</button>
+              <button class="btn-link" onclick="goToScreen(5)" style="text-align:center;">Skip this step (not recommended)</button>
+            </div>
+          </div>
+          <div class="app-footer">
+            <div class="footer-links"><a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#">Accessibility</a> · <a href="#">Contact</a></div>
+            <div class="copyright">© 2025 Mutual of Omaha</div>
+          </div>
+        </div>
+
+        <!-- ===== SCREEN 4: VERIFY CODE ===== -->
+        <div class="screen" id="screen-4">
+          <div class="app-header">
+            <button class="back-btn" onclick="goToScreen(3)">←</button>
+            <span>Member Benefits Portal</span>
+          </div>
+          <div class="screen-scroll">
+            <div class="content" style="align-items:center;padding-top:40px;">
+              <div style="width:64px;height:64px;border-radius:50%;background:var(--primary-blue-dark);display:flex;align-items:center;justify-content:center;">
+                <span style="font-size:28px;color:var(--white);">🔒</span>
+              </div>
+              <h1 style="text-align:center;">Check your Text</h1>
+              <p class="subtitle" style="text-align:center;">We sent a 6-digit verification code to your phone number ending in <strong id="phoneLast4">**1234</strong>.</p>
+
+              <div class="code-row">
+                <input class="code-input" maxlength="1" oninput="codeAdvance(this)" onkeydown="codeBackspace(event, this)" autofocus>
+                <input class="code-input" maxlength="1" oninput="codeAdvance(this)" onkeydown="codeBackspace(event, this)">
+                <input class="code-input" maxlength="1" oninput="codeAdvance(this)" onkeydown="codeBackspace(event, this)">
+                <input class="code-input" maxlength="1" oninput="codeAdvance(this)" onkeydown="codeBackspace(event, this)">
+                <input class="code-input" maxlength="1" oninput="codeAdvance(this)" onkeydown="codeBackspace(event, this)">
+                <input class="code-input" maxlength="1" oninput="codeAdvance(this)" onkeydown="codeBackspace(event, this)">
+              </div>
+
+              <button class="btn btn-primary" id="verifyBtn" onclick="goToScreen(5)">Verify and continue</button>
+              <button class="btn-link" onclick="resendCode()" id="resendBtn">Resend verification code</button>
+
+              <div class="info-box blue" style="width:100%;">
+                💡 Didn't receive a code? Check your spam folder or verify your phone number.
+              </div>
+
+              <button class="btn-link" onclick="goToScreen(3)">← Back to security setup</button>
+            </div>
+          </div>
+          <div class="app-footer">
+            <div class="footer-links"><a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#">Accessibility</a> · <a href="#">Contact</a></div>
+            <div class="copyright">© 2025 Mutual of Omaha</div>
+          </div>
+        </div>
+
+        <!-- ===== SCREEN 5: REVIEW & COMPLETE ===== -->
+        <div class="screen" id="screen-5">
+          <div class="app-header">
+            <button class="back-btn" onclick="goToScreen(4)">←</button>
+            <span>Member Benefits Portal</span>
+          </div>
+          <div class="screen-scroll">
+            <div class="step-bar">
+              <div class="step complete"><div class="step-circle">✓</div><span class="step-label">Verify</span></div>
+              <div class="step complete"><div class="step-circle">✓</div><span class="step-label">Account</span></div>
+              <div class="step complete"><div class="step-circle">✓</div><span class="step-label">Security</span></div>
+              <div class="step active"><div class="step-circle">4</div><span class="step-label">Review</span></div>
+            </div>
+            <div class="content">
+              <h1>Review &amp; Complete</h1>
+              <p class="subtitle">Please review your information and accept the required agreements.</p>
+
+              <div class="review-card">
+                <div class="review-card-header">
+                  <h3>Personal Info</h3>
+                  <button class="edit-btn" onclick="goToScreen(1)">Edit</button>
+                </div>
+                <div class="review-row"><span class="review-label">First Name</span><span class="review-value" id="rev-first">Sarah</span></div>
+                <div class="review-row"><span class="review-label">Last Name</span><span class="review-value" id="rev-last">Johnson</span></div>
+                <div class="review-row"><span class="review-label">Date of Birth</span><span class="review-value" id="rev-dob">May 15, 1985</span></div>
+                <div class="review-row"><span class="review-label">Member ID</span><span class="review-value" id="rev-member">MEM-2025-8745</span></div>
+                <div class="review-row"><span class="review-label">Email</span><span class="review-value" id="rev-email">sarah.johnson@gmail.com</span></div>
+              </div>
+
+              <div class="review-card">
+                <div class="review-card-header">
+                  <h3>Security</h3>
+                  <button class="edit-btn" onclick="goToScreen(3)">Edit</button>
+                </div>
+                <div class="review-row"><span class="review-label">MFA Status</span><span class="review-value" id="rev-mfa">Enabled</span></div>
+                <div class="review-row"><span class="review-label">Method</span><span class="review-value" id="rev-method">Text Message (SMS)</span></div>
+                <div class="review-row"><span class="review-label">Phone</span><span class="review-value" id="rev-phone">···· ···· 1234</span></div>
+              </div>
+
+              <div style="display:flex;flex-direction:column;gap:var(--spacing-md);">
+                <span class="form-label" style="font-size:var(--font-md);">Required Agreements</span>
+                <div class="checkbox-row" onclick="toggleCheckbox(this)">
+                  <div class="checkbox-box" id="termsCheck"></div>
+                  <span class="checkbox-label">I agree to the Terms of Service *</span>
+                </div>
+                <div class="checkbox-row" onclick="toggleCheckbox(this)">
+                  <div class="checkbox-box" id="privacyCheck"></div>
+                  <span class="checkbox-label">I agree to the Privacy Policy *</span>
+                </div>
+              </div>
+
+              <button class="btn btn-primary" onclick="validateScreen5()">Complete Registration →</button>
+              <button class="btn btn-secondary" onclick="goToScreen(4)">Back</button>
+            </div>
+          </div>
+          <div class="app-footer">
+            <div class="footer-links"><a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#">Accessibility</a> · <a href="#">Contact</a></div>
+            <div class="copyright">© 2025 Mutual of Omaha</div>
+          </div>
+        </div>
+
+        <!-- ===== SCREEN 6: ACCOUNT CREATED ===== -->
+        <div class="screen" id="screen-6">
+          <div class="app-header">
+            <span>Member Benefits Portal</span>
+          </div>
+          <div class="screen-scroll">
+            <div class="content success-center">
+              <div class="success-icon">✓</div>
+              <h1>Account Created<br>Successfully!</h1>
+              <p class="subtitle">Welcome to Mutual of Omaha Member Portal. Your account is now set up and ready to use.</p>
+
+              <div class="detail-card">
+                <h3>Your Account Details</h3>
+                <div class="detail-row"><span class="dl">Name</span><span class="dv" id="final-name">Sarah Johnson</span></div>
+                <div class="detail-row"><span class="dl">Email</span><span class="dv" id="final-email">sarah.johnson@gmail.com</span></div>
+                <div class="detail-row"><span class="dl">Member ID</span><span class="dv" id="final-member">MEM-2025-8745</span></div>
+                <div class="detail-row"><span class="dl">MFA</span><span class="dv" id="final-mfa">Enabled (SMS)</span></div>
+              </div>
+
+              <button class="btn btn-primary" onclick="resetFlow()">Continue to Member Portal →</button>
+              <button class="btn-link">Getting Started Guide</button>
+            </div>
+          </div>
+          <div class="app-footer">
+            <div class="footer-links"><a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#">Accessibility</a> · <a href="#">Contact</a></div>
+            <div class="copyright">© 2025 Mutual of Omaha</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ===== STATE =====
+    const state = {
+      firstName: '', lastName: '', dob: '', memberId: '', email: '',
+      password: '', mfaEnabled: true, mfaMethod: 'sms', phone: ''
+    };
+
+    // ===== NAVIGATION =====
+    function goToScreen(num) {
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      document.getElementById('screen-' + num).classList.add('active');
+      document.getElementById('screen-' + num).querySelector('.screen-scroll')?.scrollTo(0, 0);
+    }
+
+    // ===== TOGGLES =====
+    function toggleCheckbox(row) {
+      const box = row.querySelector('.checkbox-box');
+      box.classList.toggle('checked');
+    }
+
+    function toggleMfa() {
+      const toggle = document.getElementById('mfaToggle');
+      const options = document.getElementById('mfaOptions');
+      toggle.classList.toggle('on');
+      state.mfaEnabled = toggle.classList.contains('on');
+      options.style.display = state.mfaEnabled ? 'block' : 'none';
+    }
+
+    function selectMfaMethod(method) {
+      state.mfaMethod = method;
+      const sms = document.getElementById('radioSms');
+      const email = document.getElementById('radioEmail');
+      sms.classList.toggle('selected', method === 'sms');
+      sms.querySelector('.radio-circle').classList.toggle('checked', method === 'sms');
+      email.classList.toggle('selected', method === 'email');
+      email.querySelector('.radio-circle').classList.toggle('checked', method === 'email');
+    }
+
+    // ===== PASSWORD STRENGTH =====
+    function checkPasswordStrength() {
+      const pw = document.getElementById('password').value;
+      const checks = {
+        'pw-len': pw.length >= 8,
+        'pw-upper': /[A-Z]/.test(pw),
+        'pw-lower': /[a-z]/.test(pw),
+        'pw-num': /[0-9]/.test(pw),
+        'pw-special': /[!@#$%^&*]/.test(pw)
+      };
+      for (const [id, met] of Object.entries(checks)) {
+        document.getElementById(id).classList.toggle('met', met);
+      }
+    }
+
+    // ===== CODE INPUT =====
+    function codeAdvance(input) {
+      if (input.value.length === 1) {
+        input.classList.add('filled');
+        const next = input.nextElementSibling;
+        if (next && next.classList.contains('code-input')) {
+          next.focus();
+        } else {
+          // All filled — auto-verify after brief delay
+          const allFilled = [...document.querySelectorAll('.code-input')].every(i => i.value.length === 1);
+          if (allFilled) {
+            const btn = document.getElementById('verifyBtn');
+            btn.textContent = 'Verifying...';
+            setTimeout(() => { btn.textContent = 'Verify and continue'; goToScreen(5); }, 800);
+          }
+        }
+      }
+    }
+    function codeBackspace(e, input) {
+      if (e.key === 'Backspace' && input.value === '') {
+        const prev = input.previousElementSibling;
+        if (prev && prev.classList.contains('code-input')) {
+          prev.focus();
+          prev.value = '';
+          prev.classList.remove('filled');
+        }
+      }
+    }
+
+    function resendCode() {
+      const btn = document.getElementById('resendBtn');
+      btn.textContent = 'Code sent! Check your phone.';
+      btn.style.color = 'var(--success)';
+      setTimeout(() => {
+        btn.textContent = 'Resend verification code';
+        btn.style.color = '';
+      }, 3000);
+    }
+
+    // ===== VALIDATION =====
+    function showError(input) {
+      input.closest('.form-group')?.classList.add('has-error');
+      input.classList.add('error');
+    }
+    function clearError(input) {
+      input.closest('.form-group')?.classList.remove('has-error');
+      input.classList.remove('error');
+    }
+    function clearAllErrors(screenNum) {
+      document.querySelectorAll('#screen-' + screenNum + ' .form-group').forEach(g => g.classList.remove('has-error'));
+      document.querySelectorAll('#screen-' + screenNum + ' .form-input').forEach(i => i.classList.remove('error'));
+    }
+
+    function validateScreen1() {
+      clearAllErrors(1);
+      let valid = true;
+      const fields = [
+        { id: 'firstName', test: v => v.trim().length > 0 },
+        { id: 'lastName', test: v => v.trim().length > 0 },
+        { id: 'dob', test: v => /^\d{2}\/\d{2}\/\d{4}$/.test(v) },
+        { id: 'memberId', test: v => v.trim().length > 0 },
+        { id: 'email', test: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) }
+      ];
+      for (const f of fields) {
+        const input = document.getElementById(f.id);
+        if (!f.test(input.value)) { showError(input); valid = false; }
+        else { clearError(input); input.classList.add('valid'); }
+      }
+      if (!document.getElementById('confirmCheck').classList.contains('checked')) {
+        valid = false;
+        document.getElementById('confirmCheck').style.borderColor = 'var(--error)';
+        setTimeout(() => document.getElementById('confirmCheck').style.borderColor = '', 2000);
+      }
+      if (valid) {
+        state.firstName = document.getElementById('firstName').value;
+        state.lastName = document.getElementById('lastName').value;
+        state.dob = document.getElementById('dob').value;
+        state.memberId = document.getElementById('memberId').value;
+        state.email = document.getElementById('email').value;
+        document.getElementById('emailDisplay').textContent = state.email;
+        document.getElementById('loginEmail').value = state.email;
+        goToScreen(2);
+      }
+    }
+
+    function validateScreen2() {
+      clearAllErrors(2);
+      let valid = true;
+      const pw = document.getElementById('password').value;
+      const cpw = document.getElementById('confirmPassword').value;
+      const emailInput = document.getElementById('loginEmail');
+
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value)) { showError(emailInput); valid = false; }
+
+      const pwChecks = pw.length >= 8 && /[A-Z]/.test(pw) && /[a-z]/.test(pw) && /[0-9]/.test(pw) && /[!@#$%^&*]/.test(pw);
+      if (!pwChecks) { showError(document.getElementById('password')); valid = false; }
+      if (pw !== cpw || cpw === '') { showError(document.getElementById('confirmPassword')); valid = false; }
+
+      if (valid) {
+        state.password = pw;
+        state.email = emailInput.value;
+        goToScreen(3);
+      }
+    }
+
+    function validateScreen3() {
+      if (state.mfaEnabled) {
+        const phone = document.getElementById('phone').value;
+        if (phone.trim().length < 7) {
+          showError(document.getElementById('phone'));
+          return;
+        }
+        state.phone = phone;
+        const last4 = phone.replace(/\D/g, '').slice(-4);
+        document.getElementById('phoneLast4').textContent = '**' + last4;
+        // Clear code inputs
+        document.querySelectorAll('.code-input').forEach(i => { i.value = ''; i.classList.remove('filled'); });
+        goToScreen(4);
+      } else {
+        goToScreen(5);
+      }
+    }
+
+    function validateScreen5() {
+      const terms = document.getElementById('termsCheck').classList.contains('checked');
+      const privacy = document.getElementById('privacyCheck').classList.contains('checked');
+      if (!terms || !privacy) {
+        if (!terms) document.getElementById('termsCheck').style.borderColor = 'var(--error)';
+        if (!privacy) document.getElementById('privacyCheck').style.borderColor = 'var(--error)';
+        setTimeout(() => {
+          document.getElementById('termsCheck').style.borderColor = '';
+          document.getElementById('privacyCheck').style.borderColor = '';
+        }, 2000);
+        return;
+      }
+      // Populate review and success screens
+      document.getElementById('rev-first').textContent = state.firstName || 'Sarah';
+      document.getElementById('rev-last').textContent = state.lastName || 'Johnson';
+      document.getElementById('rev-dob').textContent = state.dob || 'May 15, 1985';
+      document.getElementById('rev-member').textContent = state.memberId || 'MEM-2025-8745';
+      document.getElementById('rev-email').textContent = state.email || 'sarah.johnson@gmail.com';
+      document.getElementById('rev-mfa').textContent = state.mfaEnabled ? 'Enabled' : 'Disabled';
+      document.getElementById('rev-method').textContent = state.mfaMethod === 'sms' ? 'Text Message (SMS)' : 'Email';
+
+      document.getElementById('final-name').textContent = (state.firstName || 'Sarah') + ' ' + (state.lastName || 'Johnson');
+      document.getElementById('final-email').textContent = state.email || 'sarah.johnson@gmail.com';
+      document.getElementById('final-member').textContent = state.memberId || 'MEM-2025-8745';
+      document.getElementById('final-mfa').textContent = state.mfaEnabled ? 'Enabled (' + (state.mfaMethod === 'sms' ? 'SMS' : 'Email') + ')' : 'Disabled';
+
+      goToScreen(6);
+    }
+
+    function resetFlow() {
+      // Reset all form fields
+      document.querySelectorAll('.form-input').forEach(i => { i.value = ''; i.classList.remove('valid', 'error'); });
+      document.querySelectorAll('.form-group').forEach(g => g.classList.remove('has-error'));
+      document.querySelectorAll('.checkbox-box').forEach(c => c.classList.remove('checked'));
+      document.querySelectorAll('.code-input').forEach(i => { i.value = ''; i.classList.remove('filled'); });
+      document.querySelectorAll('.pw-req').forEach(r => r.classList.remove('met'));
+      goToScreen(1);
+    }
+
+    // ===== URL PARAM: AUTO-SCREEN FOR CAPTURE =====
+    (function() {
+      const params = new URLSearchParams(window.location.search);
+      const screenNum = parseInt(params.get('screen'));
+      if (screenNum >= 1 && screenNum <= 6) {
+        // Pre-populate demo data for review/success screens
+        document.getElementById('rev-first').textContent = 'Sarah';
+        document.getElementById('rev-last').textContent = 'Johnson';
+        document.getElementById('rev-dob').textContent = 'May 15, 1985';
+        document.getElementById('rev-member').textContent = 'MEM-2025-8745';
+        document.getElementById('rev-email').textContent = 'sarah.johnson@gmail.com';
+        document.getElementById('rev-mfa').textContent = 'Enabled';
+        document.getElementById('rev-method').textContent = 'Text Message (SMS)';
+        document.getElementById('rev-phone').textContent = '···· ···· 1234';
+        document.getElementById('final-name').textContent = 'Sarah Johnson';
+        document.getElementById('final-email').textContent = 'sarah.johnson@gmail.com';
+        document.getElementById('final-member').textContent = 'MEM-2025-8745';
+        document.getElementById('final-mfa').textContent = 'Enabled (SMS)';
+        document.getElementById('phoneLast4').textContent = '**1234';
+        // Fill code inputs for screen 4
+        if (screenNum === 4) {
+          document.querySelectorAll('.code-input').forEach((inp, i) => {
+            inp.value = String(i + 1);
+            inp.classList.add('filled');
+          });
+        }
+        // Check agreement boxes for screen 5
+        if (screenNum === 5) {
+          document.getElementById('termsCheck')?.classList.add('checked');
+          document.getElementById('privacyCheck')?.classList.add('checked');
+        }
+        // Hide site chrome, show only mobile frame
+        if (params.get('mobile') === '1') {
+          document.querySelector('.ds-nav').style.display = 'none';
+          document.querySelector('.hero').style.display = 'none';
+          document.querySelector('.flow-description').style.display = 'none';
+          document.querySelector('.phone-wrapper').style.padding = '0';
+          document.querySelector('.phone-frame').style.border = 'none';
+          document.querySelector('.phone-frame').style.borderRadius = '0';
+          document.querySelector('.phone-frame').style.boxShadow = 'none';
+          document.querySelector('.notch').style.display = 'none';
+          document.querySelector('.page-content').style.padding = '0';
+          document.querySelector('.page-content').style.margin = '0';
+        }
+        goToScreen(screenNum);
+      }
+    })();
+
+    // ===== DOB AUTO-FORMAT =====
+    document.getElementById('dob')?.addEventListener('input', function(e) {
+      let v = this.value.replace(/\D/g, '');
+      if (v.length > 2) v = v.slice(0,2) + '/' + v.slice(2);
+      if (v.length > 5) v = v.slice(0,5) + '/' + v.slice(5,9);
+      this.value = v;
+    });
+
+    // ===== LIVE VALIDATION ON BLUR =====
+    document.querySelectorAll('.form-input').forEach(input => {
+      input.addEventListener('blur', function() {
+        if (this.value.trim() && !this.classList.contains('error')) {
+          this.classList.add('valid');
+        }
+      });
+      input.addEventListener('input', function() {
+        this.classList.remove('error');
+        this.closest('.form-group')?.classList.remove('has-error');
+      });
+    });
+  </script>
+</body>
+</html>

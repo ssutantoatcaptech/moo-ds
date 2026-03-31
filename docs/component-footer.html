@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Footer - MoO Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    .page-content { max-width: 960px; margin: 0 auto; padding: 40px 60px; }
+    .back-link { font-size: 14px; color: #105fa8; text-decoration: none; display: flex; align-items: center; gap: 6px; margin-bottom: 24px; }
+    .back-link:hover { text-decoration: underline; }
+    h1 { font-size: 32px; color: #003a70; margin-bottom: 4px; }
+    .file-name { font-size: 13px; color: #105fa8; font-family: 'SF Mono', 'Courier New', monospace; margin-bottom: 8px; }
+    .description { font-size: 16px; color: #5d5d5d; margin-bottom: 32px; }
+    .gh-link { display: block; margin-bottom: 32px; font-size: 13px; color: #105fa8; text-decoration: none; font-weight: 600; }
+    .gh-link:hover { text-decoration: underline; }
+    .section-title { font-size: 20px; color: #003a70; margin-bottom: 16px; }
+    .preview-box { background: #f9fafb; border: 1px solid #f0f0f0; border-radius: 8px; padding: 0; margin-bottom: 32px; overflow: hidden; }
+
+    /* Footer styles */
+    .footer {
+      width: 100%;
+      border-top: 4px solid #105fa8;
+      background: #fff;
+      padding: 40px 48px 32px;
+      font-family: 'Source Sans Pro', sans-serif;
+    }
+    .footer__top {
+      display: flex;
+      gap: 48px;
+      margin-bottom: 32px;
+    }
+    .footer__logo {
+      flex-shrink: 0;
+    }
+    .footer__logo-placeholder {
+      width: 120px; height: 40px;
+      background: #f0f0f0;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 600;
+      color: #838383;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .footer__columns {
+      display: flex;
+      gap: 48px;
+      flex: 1;
+    }
+    .footer__column { display: flex; flex-direction: column; gap: 8px; }
+    .footer__column-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #222;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+    .footer__column a {
+      font-size: 14px;
+      color: #105fa8;
+      text-decoration: none;
+      line-height: 22px;
+    }
+    .footer__column a:hover { text-decoration: underline; }
+    .footer__assistance {
+      border-top: 1px solid #f0f0f0;
+      padding-top: 20px;
+      margin-bottom: 20px;
+    }
+    .footer__assistance-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #222;
+      margin-bottom: 8px;
+    }
+    .footer__assistance-text {
+      font-size: 14px;
+      color: #5d5d5d;
+      line-height: 22px;
+    }
+    .footer__assistance-text a { color: #105fa8; text-decoration: none; }
+    .footer__assistance-text a:hover { text-decoration: underline; }
+    .footer__legal {
+      border-top: 1px solid #f0f0f0;
+      padding-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .footer__legal-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .footer__legal-links a {
+      font-size: 12px;
+      color: #838383;
+      text-decoration: none;
+    }
+    .footer__legal-links a:hover { text-decoration: underline; color: #105fa8; }
+    .footer__copyright {
+      font-size: 12px;
+      color: #838383;
+      line-height: 18px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="ds-nav">
+    <div class="ds-nav-left">
+      <span class="ds-brand">MoO Design System</span>
+      <div class="ds-tabs">
+        <a href="index.html" class="ds-tab">Overview</a>
+        <a href="tokens.html" class="ds-tab">Design Tokens</a>
+        <a href="iconography.html" class="ds-tab">Iconography</a>
+        <a href="components.html" class="ds-tab active">Components</a>
+        <a href="dashboard.html" class="ds-tab">Dashboard Preview</a>
+        <a href="mobile-dashboard.html" class="ds-tab">Mobile Dashboard</a>
+        <a href="login-registration.html" class="ds-tab">Login &amp; Registration</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-content">
+    <a href="components.html" class="back-link">&larr; All Components</a>
+    <h1>Footer</h1>
+    <div class="file-name">Footer.tsx</div>
+    <p class="description">Full-width desktop footer with a blue top border, company logo, three link columns for navigation, an assistance section with contact information, legal links, and copyright notice.</p>
+    <a href="https://github.com/ssutantoatcaptech/moo-ds/blob/main/src/components/Footer.tsx" class="gh-link" target="_blank">View on GitHub &rarr;</a>
+
+    <h2 class="section-title">Desktop Footer</h2>
+    <div class="preview-box">
+      <div class="footer">
+        <div class="footer__top">
+          <div class="footer__logo">
+            <div class="footer__logo-placeholder">MoO Logo</div>
+          </div>
+          <div class="footer__columns">
+            <div class="footer__column">
+              <div class="footer__column-title">Benefits</div>
+              <a href="#">My Benefits</a>
+              <a href="#">Claims</a>
+              <a href="#">Find a Provider</a>
+              <a href="#">Coverage Details</a>
+            </div>
+            <div class="footer__column">
+              <div class="footer__column-title">Account</div>
+              <a href="#">Profile Settings</a>
+              <a href="#">Notifications</a>
+              <a href="#">Documents</a>
+              <a href="#">Payment Methods</a>
+            </div>
+            <div class="footer__column">
+              <div class="footer__column-title">Resources</div>
+              <a href="#">Help Center</a>
+              <a href="#">FAQs</a>
+              <a href="#">Wellness Programs</a>
+              <a href="#">Forms &amp; Downloads</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer__assistance">
+          <div class="footer__assistance-title">Need Assistance?</div>
+          <div class="footer__assistance-text">
+            Call us at <a href="#">1-800-775-6000</a> Monday&ndash;Friday, 8am&ndash;5pm CT, or <a href="#">send us a message</a>.
+          </div>
+        </div>
+        <div class="footer__legal">
+          <div class="footer__legal-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Use</a>
+            <a href="#">Accessibility</a>
+            <a href="#">Do Not Sell My Info</a>
+            <a href="#">Fraud Prevention</a>
+          </div>
+          <div class="footer__copyright">
+            &copy; 2025 Mutual of Omaha Insurance Company. All rights reserved. Mutual of Omaha Plaza, Omaha, NE 68175.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title">Design Tokens Used</h2>
+    <div class="preview-box" style="padding: 32px; flex-direction: column; gap: 8px; align-items: flex-start;">
+      <div><strong>Top border:</strong> <code>--foundation-primary-blue</code> (#105fa8)</div>
+      <div><strong>Link color:</strong> <code>--text-link</code> (#105fa8)</div>
+      <div><strong>Column title color:</strong> <code>--text-default</code> (#222222)</div>
+      <div><strong>Body text color:</strong> <code>--foundation-grays-dark</code> (#5d5d5d)</div>
+      <div><strong>Legal text color:</strong> <code>--foundation-grays-gray</code> (#838383)</div>
+      <div><strong>Divider color:</strong> <code>--foundation-grays-lightest</code> (#f0f0f0)</div>
+      <div><strong>Background:</strong> <code>--foundation-primary-white</code> (#ffffff)</div>
+      <div><strong>Typography:</strong> <code>--font-family-title</code>, <code>--font-weight-bold</code></div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>InsuranceCard - MoO Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    .page-content { max-width: 960px; margin: 0 auto; padding: 40px 60px; }
+    .back-link { font-size: 14px; color: #105fa8; text-decoration: none; display: flex; align-items: center; gap: 6px; margin-bottom: 24px; }
+    .back-link:hover { text-decoration: underline; }
+    h1 { font-size: 32px; color: #003a70; margin-bottom: 4px; }
+    .file-name { font-size: 13px; color: #105fa8; font-family: 'SF Mono', 'Courier New', monospace; margin-bottom: 8px; }
+    .description { font-size: 16px; color: #5d5d5d; margin-bottom: 32px; }
+    .gh-link { display: block; margin-bottom: 32px; font-size: 13px; color: #105fa8; text-decoration: none; font-weight: 600; }
+    .gh-link:hover { text-decoration: underline; }
+    .section-title { font-size: 20px; color: #003a70; margin-bottom: 16px; }
+    .preview-box { background: #f9fafb; border: 1px solid #f0f0f0; border-radius: 8px; padding: 32px; margin-bottom: 32px; display: flex; gap: 40px; flex-wrap: wrap; justify-content: center; }
+
+    /* InsuranceCard styles */
+    .insurance-card {
+      width: 389px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+      background: #fff;
+      font-family: 'Source Sans Pro', sans-serif;
+    }
+    .card-header {
+      background: linear-gradient(to right, #003a70, #105fa8);
+      padding: 20px 24px;
+      color: #fff;
+    }
+    .card-header-logo {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .card-header-plan {
+      font-size: 13px;
+      opacity: 0.85;
+    }
+    .card-body {
+      padding: 20px 24px;
+    }
+    .card-field {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .card-field:last-child {
+      border-bottom: none;
+    }
+    .card-field-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #5d5d5d;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+    .card-field-value {
+      font-size: 14px;
+      color: #222;
+      font-weight: 600;
+    }
+    .card-back-section {
+      margin-bottom: 16px;
+    }
+    .card-back-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: #105fa8;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      margin-bottom: 8px;
+    }
+    .card-back-row {
+      font-size: 13px;
+      color: #444;
+      line-height: 20px;
+      margin-bottom: 4px;
+    }
+    .card-back-label {
+      font-weight: 600;
+      color: #5d5d5d;
+    }
+  </style>
+</head>
+<body>
+  <nav class="ds-nav">
+    <div class="ds-nav-left">
+      <span class="ds-brand">MoO Design System</span>
+      <div class="ds-tabs">
+        <a href="index.html" class="ds-tab">Overview</a>
+        <a href="tokens.html" class="ds-tab">Design Tokens</a>
+        <a href="iconography.html" class="ds-tab">Iconography</a>
+        <a href="components.html" class="ds-tab active">Components</a>
+        <a href="dashboard.html" class="ds-tab">Dashboard Preview</a>
+        <a href="mobile-dashboard.html" class="ds-tab">Mobile Dashboard</a>
+        <a href="login-registration.html" class="ds-tab">Login &amp; Registration</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-content">
+    <a href="components.html" class="back-link">&larr; All Components</a>
+    <h1>InsuranceCard</h1>
+    <div class="file-name">InsuranceCard.tsx</div>
+    <p class="description">Insurance ID card with front (gradient header + member info fields) and back (contact info, addresses) variants. Card width is 389px.</p>
+    <a href="https://github.com/ssutantoatcaptech/moo-ds/blob/main/src/components/InsuranceCard.tsx" class="gh-link" target="_blank">View on GitHub &rarr;</a>
+
+    <h2 class="section-title">Front Variant</h2>
+    <div class="preview-box">
+      <div class="insurance-card">
+        <div class="card-header">
+          <div class="card-header-logo">Mutual of Omaha</div>
+          <div class="card-header-plan">Group Health Plan</div>
+        </div>
+        <div class="card-body">
+          <div class="card-field">
+            <span class="card-field-label">Member Name</span>
+            <span class="card-field-value">Jane A. Doe</span>
+          </div>
+          <div class="card-field">
+            <span class="card-field-label">Member ID</span>
+            <span class="card-field-value">MOO-123456789</span>
+          </div>
+          <div class="card-field">
+            <span class="card-field-label">Group Number</span>
+            <span class="card-field-value">GRP-00112233</span>
+          </div>
+          <div class="card-field">
+            <span class="card-field-label">Effective Date</span>
+            <span class="card-field-value">01/01/2026</span>
+          </div>
+          <div class="card-field">
+            <span class="card-field-label">Copay / PCP</span>
+            <span class="card-field-value">$25</span>
+          </div>
+          <div class="card-field">
+            <span class="card-field-label">Copay / Specialist</span>
+            <span class="card-field-value">$50</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title">Back Variant</h2>
+    <div class="preview-box">
+      <div class="insurance-card">
+        <div class="card-body">
+          <div class="card-back-section">
+            <div class="card-back-title">Customer Service</div>
+            <div class="card-back-row"><span class="card-back-label">Phone:</span> 1-800-775-6000</div>
+            <div class="card-back-row"><span class="card-back-label">Website:</span> mutualofomaha.com</div>
+          </div>
+          <div class="card-back-section">
+            <div class="card-back-title">Claims Address</div>
+            <div class="card-back-row">Mutual of Omaha</div>
+            <div class="card-back-row">P.O. Box 2147</div>
+            <div class="card-back-row">Omaha, NE 68103-2147</div>
+          </div>
+          <div class="card-back-section">
+            <div class="card-back-title">Provider Services</div>
+            <div class="card-back-row"><span class="card-back-label">Phone:</span> 1-800-865-6655</div>
+            <div class="card-back-row"><span class="card-back-label">Prior Auth:</span> 1-800-693-1399</div>
+          </div>
+          <div class="card-back-section">
+            <div class="card-back-title">Emergency</div>
+            <div class="card-back-row">If you need emergency care, go to the nearest emergency room. You do not need prior authorization for emergency services.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title">Design Tokens Used</h2>
+    <div class="preview-box" style="flex-direction: column; gap: 8px; align-items: flex-start;">
+      <div><strong>Header gradient:</strong> <code>--gradient-dk-blue-and-blue</code> (linear-gradient #003a70 &rarr; #105fa8)</div>
+      <div><strong>Header text:</strong> <code>--text-white</code> (#ffffff)</div>
+      <div><strong>Section title color:</strong> <code>--foundation-primary-blue</code> (#105fa8)</div>
+      <div><strong>Label color:</strong> <code>--foundation-grays-dark</code> (#5d5d5d)</div>
+      <div><strong>Value color:</strong> <code>--text-default</code> (#222222)</div>
+      <div><strong>Field divider:</strong> <code>--foundation-grays-lightest</code> (#f0f0f0)</div>
+      <div><strong>Card radius:</strong> <code>--radius-lg</code> (12px)</div>
+      <div><strong>Card shadow:</strong> <code>--shadow-md</code></div>
+      <div><strong>Typography:</strong> <code>--font-family-title</code>, <code>--font-weight-semibold</code></div>
+    </div>
+  </div>
+</body>
+</html>

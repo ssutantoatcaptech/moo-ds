@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FieldLabel - MoO Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    .page-content { max-width: 960px; margin: 0 auto; padding: 40px 60px; }
+    .back-link { font-size: 14px; color: #105fa8; text-decoration: none; display: flex; align-items: center; gap: 6px; margin-bottom: 24px; }
+    .back-link:hover { text-decoration: underline; }
+    h1 { font-size: 32px; color: #003a70; margin-bottom: 4px; }
+    .file-name { font-size: 13px; color: #105fa8; font-family: 'SF Mono', 'Courier New', monospace; margin-bottom: 8px; }
+    .description { font-size: 16px; color: #5d5d5d; margin-bottom: 32px; }
+    .gh-link { display: block; margin-bottom: 32px; font-size: 13px; color: #105fa8; text-decoration: none; font-weight: 600; }
+    .gh-link:hover { text-decoration: underline; }
+    .section-title { font-size: 20px; color: #003a70; margin-bottom: 16px; }
+    .preview-box { background: #f9fafb; border: 1px solid #f0f0f0; border-radius: 8px; padding: 32px; margin-bottom: 32px; display: flex; gap: 40px; flex-wrap: wrap; justify-content: center; }
+
+    /* FieldLabel styles */
+    .field-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 12px;
+      line-height: 16px;
+      color: #222;
+    }
+    .field-label--bold { font-weight: 600; }
+    .field-label--regular { font-weight: 400; }
+    .field-label__required {
+      color: #c12506;
+      font-weight: 600;
+    }
+    .field-label__info {
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: #e8e8e8;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 10px;
+      font-weight: 700;
+      color: #5d5d5d;
+      line-height: 1;
+    }
+    .variant-label {
+      font-size: 13px;
+      color: #838383;
+      margin-bottom: 6px;
+      font-family: 'SF Mono', 'Courier New', monospace;
+    }
+    .variant-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 180px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="ds-nav">
+    <div class="ds-nav-left">
+      <span class="ds-brand">MoO Design System</span>
+      <div class="ds-tabs">
+        <a href="index.html" class="ds-tab">Overview</a>
+        <a href="tokens.html" class="ds-tab">Design Tokens</a>
+        <a href="iconography.html" class="ds-tab">Iconography</a>
+        <a href="components.html" class="ds-tab active">Components</a>
+        <a href="dashboard.html" class="ds-tab">Dashboard Preview</a>
+        <a href="mobile-dashboard.html" class="ds-tab">Mobile Dashboard</a>
+        <a href="login-registration.html" class="ds-tab">Login &amp; Registration</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-content">
+    <a href="components.html" class="back-link">&larr; All Components</a>
+    <h1>FieldLabel</h1>
+    <div class="file-name">FieldLabel.tsx</div>
+    <p class="description">Small form field label with optional bold weight, required asterisk, and info tooltip icon. Eight combinations of bold/regular, info/no-info, and required/not-required.</p>
+    <a href="https://github.com/ssutantoatcaptech/moo-ds/blob/main/src/components/FieldLabel.tsx" class="gh-link" target="_blank">View on GitHub &rarr;</a>
+
+    <h2 class="section-title">Bold Variants</h2>
+    <div class="preview-box" style="gap: 48px;">
+      <div class="variant-group">
+        <div class="variant-label">bold</div>
+        <div class="field-label field-label--bold">Email Address</div>
+      </div>
+      <div class="variant-group">
+        <div class="variant-label">bold + required</div>
+        <div class="field-label field-label--bold">Email Address <span class="field-label__required">*</span></div>
+      </div>
+      <div class="variant-group">
+        <div class="variant-label">bold + info</div>
+        <div class="field-label field-label--bold">Email Address <span class="field-label__info">i</span></div>
+      </div>
+      <div class="variant-group">
+        <div class="variant-label">bold + required + info</div>
+        <div class="field-label field-label--bold">Email Address <span class="field-label__required">*</span> <span class="field-label__info">i</span></div>
+      </div>
+    </div>
+
+    <h2 class="section-title">Regular Variants</h2>
+    <div class="preview-box" style="gap: 48px;">
+      <div class="variant-group">
+        <div class="variant-label">regular</div>
+        <div class="field-label field-label--regular">Email Address</div>
+      </div>
+      <div class="variant-group">
+        <div class="variant-label">regular + required</div>
+        <div class="field-label field-label--regular">Email Address <span class="field-label__required">*</span></div>
+      </div>
+      <div class="variant-group">
+        <div class="variant-label">regular + info</div>
+        <div class="field-label field-label--regular">Email Address <span class="field-label__info">i</span></div>
+      </div>
+      <div class="variant-group">
+        <div class="variant-label">regular + required + info</div>
+        <div class="field-label field-label--regular">Email Address <span class="field-label__required">*</span> <span class="field-label__info">i</span></div>
+      </div>
+    </div>
+
+    <h2 class="section-title">Design Tokens Used</h2>
+    <div class="preview-box" style="flex-direction: column; gap: 8px; align-items: flex-start;">
+      <div><strong>Label color:</strong> <code>--text-default</code> (#222222)</div>
+      <div><strong>Required asterisk:</strong> <code>--semantics-error</code> (#c12506)</div>
+      <div><strong>Info icon background:</strong> <code>--foundation-grays-lightest</code> (#e8e8e8)</div>
+      <div><strong>Info icon color:</strong> <code>--foundation-grays-dark</code> (#5d5d5d)</div>
+      <div><strong>Font size:</strong> <code>--font-size-2xs</code> (12px)</div>
+      <div><strong>Font weight bold:</strong> <code>--font-weight-semibold</code> (600)</div>
+      <div><strong>Font weight regular:</strong> <code>--font-weight-normal</code> (400)</div>
+    </div>
+  </div>
+</body>
+</html>

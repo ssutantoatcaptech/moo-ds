@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkbox - MoO Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <nav class="ds-nav">
+    <div class="ds-nav-left">
+      <span class="ds-brand">MoO Design System</span>
+      <div class="ds-tabs">
+        <a href="index.html" class="ds-tab">Overview</a>
+        <a href="tokens.html" class="ds-tab">Design Tokens</a>
+        <a href="iconography.html" class="ds-tab">Iconography</a>
+        <a href="components.html" class="ds-tab active">Components</a>
+        <a href="dashboard.html" class="ds-tab">Dashboard Preview</a>
+        <a href="mobile-dashboard.html" class="ds-tab">Mobile Dashboard</a>
+        <a href="login-registration.html" class="ds-tab">Login &amp; Registration</a>
+      </div>
+    </div>
+  </nav>
+
+  <div style="max-width: 960px; margin: 0 auto; padding: 40px 60px;">
+    <a href="components.html" style="font-size: 14px; color: #105fa8; text-decoration: none; display: flex; align-items: center; gap: 6px; margin-bottom: 24px;">&larr; Back to Components</a>
+
+    <h1 style="font-size: 32px; color: #003a70; margin-bottom: 4px;">Checkbox</h1>
+    <div style="font-size: 13px; color: #105fa8; font-family: 'SF Mono', 'Courier New', monospace; margin-bottom: 8px;">Checkbox.tsx</div>
+    <p style="font-size: 16px; color: #5d5d5d; margin-bottom: 32px;">Checkbox input for toggling boolean values with label and hint support.</p>
+    <a href="https://github.com/ssutantoatcaptech/moo-ds/blob/main/src/components/Checkbox.tsx" style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: #105fa8; text-decoration: none; font-weight: 600; margin-bottom: 32px;">View on GitHub &rarr;</a>
+
+    <!-- States -->
+    <h2 style="font-size: 20px; color: #003a70; margin-bottom: 16px;">States</h2>
+    <div style="background: #f9fafb; border: 1px solid #f0f0f0; border-radius: 8px; padding: 32px; margin-bottom: 32px;">
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <!-- Unchecked -->
+        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+          <input type="checkbox" style="width: 18px; height: 18px; accent-color: #105fa8; cursor: pointer;">
+          <span style="font-size: 16px; color: #222;">Subscribe to updates</span>
+        </label>
+
+        <!-- Checked -->
+        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+          <input type="checkbox" checked style="width: 18px; height: 18px; accent-color: #105fa8; cursor: pointer;">
+          <span style="font-size: 16px; color: #222;">I agree to the terms</span>
+        </label>
+
+        <!-- With hint -->
+        <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
+          <input type="checkbox" checked style="width: 18px; height: 18px; accent-color: #105fa8; cursor: pointer; margin-top: 2px;">
+          <div>
+            <span style="font-size: 16px; color: #222;">I agree to the terms</span>
+            <div style="font-size: 13px; color: #838383;">Required for account creation</div>
+          </div>
+        </label>
+
+        <!-- Disabled -->
+        <label style="display: flex; align-items: center; gap: 10px; opacity: 0.4; cursor: not-allowed;">
+          <input type="checkbox" disabled style="width: 18px; height: 18px; accent-color: #105fa8; cursor: not-allowed;">
+          <span style="font-size: 16px; color: #222;">Unavailable option</span>
+        </label>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

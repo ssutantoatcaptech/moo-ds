@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FieldLabelError - MoO Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    .page-content { max-width: 960px; margin: 0 auto; padding: 40px 60px; }
+    .back-link { font-size: 14px; color: #105fa8; text-decoration: none; display: flex; align-items: center; gap: 6px; margin-bottom: 24px; }
+    .back-link:hover { text-decoration: underline; }
+    h1 { font-size: 32px; color: #003a70; margin-bottom: 4px; }
+    .file-name { font-size: 13px; color: #105fa8; font-family: 'SF Mono', 'Courier New', monospace; margin-bottom: 8px; }
+    .description { font-size: 16px; color: #5d5d5d; margin-bottom: 32px; }
+    .gh-link { display: block; margin-bottom: 32px; font-size: 13px; color: #105fa8; text-decoration: none; font-weight: 600; }
+    .gh-link:hover { text-decoration: underline; }
+    .section-title { font-size: 20px; color: #003a70; margin-bottom: 16px; }
+    .preview-box { background: #f9fafb; border: 1px solid #f0f0f0; border-radius: 8px; padding: 32px; margin-bottom: 32px; display: flex; gap: 40px; flex-wrap: wrap; justify-content: center; }
+
+    /* FieldLabelError styles */
+    .field-label-error {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 12px;
+      line-height: 16px;
+      color: #c12506;
+    }
+    .field-label-error__icon {
+      width: 14px; height: 14px;
+      flex-shrink: 0;
+    }
+    .field-label-error__icon svg {
+      width: 14px; height: 14px;
+      fill: #c12506;
+    }
+
+    /* Context demo: label + input + error */
+    .field-demo {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      width: 300px;
+    }
+    .field-demo__label {
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 12px; font-weight: 600; color: #222;
+    }
+    .field-demo__input {
+      padding: 8px 12px;
+      border: 1px solid #c12506;
+      border-radius: 4px;
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 14px;
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+  <nav class="ds-nav">
+    <div class="ds-nav-left">
+      <span class="ds-brand">MoO Design System</span>
+      <div class="ds-tabs">
+        <a href="index.html" class="ds-tab">Overview</a>
+        <a href="tokens.html" class="ds-tab">Design Tokens</a>
+        <a href="iconography.html" class="ds-tab">Iconography</a>
+        <a href="components.html" class="ds-tab active">Components</a>
+        <a href="dashboard.html" class="ds-tab">Dashboard Preview</a>
+        <a href="mobile-dashboard.html" class="ds-tab">Mobile Dashboard</a>
+        <a href="login-registration.html" class="ds-tab">Login &amp; Registration</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-content">
+    <a href="components.html" class="back-link">&larr; All Components</a>
+    <h1>FieldLabelError</h1>
+    <div class="file-name">FieldLabelError.tsx</div>
+    <p class="description">Displays a form field validation error message in red, typically rendered directly below an input field.</p>
+    <a href="https://github.com/ssutantoatcaptech/moo-ds/blob/main/src/components/FieldLabelError.tsx" class="gh-link" target="_blank">View on GitHub &rarr;</a>
+
+    <h2 class="section-title">Standalone Error Message</h2>
+    <div class="preview-box" style="flex-direction: column; align-items: center;">
+      <div class="field-label-error">
+        <div class="field-label-error__icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+        </div>
+        <span>This field is required</span>
+      </div>
+    </div>
+
+    <h2 class="section-title">In Context (with Input Field)</h2>
+    <div class="preview-box" style="flex-direction: column; align-items: center;">
+      <div class="field-demo">
+        <label class="field-demo__label">Email Address <span style="color: #c12506;">*</span></label>
+        <input class="field-demo__input" type="text" value="not-an-email" />
+        <div class="field-label-error">
+          <div class="field-label-error__icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+          </div>
+          <span>Please enter a valid email address</span>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title">Design Tokens Used</h2>
+    <div class="preview-box" style="flex-direction: column; gap: 8px; align-items: flex-start;">
+      <div><strong>Error text color:</strong> <code>--semantics-error</code> (#c12506)</div>
+      <div><strong>Error icon fill:</strong> <code>--semantics-error</code> (#c12506)</div>
+      <div><strong>Font size:</strong> <code>--font-size-2xs</code> (12px)</div>
+      <div><strong>Typography:</strong> <code>--font-family-title</code></div>
+    </div>
+  </div>
+</body>
+</html>

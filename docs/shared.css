@@ -1,0 +1,117 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Source Sans Pro', sans-serif; background: #f5f7fa; color: #222; }
+
+/* ===== NAV ===== */
+.ds-nav {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 24px; background: #fff; border-bottom: 1px solid #f0f0f0;
+  position: sticky; top: 0; z-index: 100;
+}
+.ds-nav-left { display: flex; align-items: center; gap: 32px; }
+.ds-brand { font-size: 18px; font-weight: 600; color: #003a70; }
+.ds-tabs { display: flex; gap: 4px; }
+.ds-tab {
+  padding: 8px 14px; border-radius: 4px; font-size: 14px; color: #444;
+  text-decoration: none; transition: background 0.15s;
+}
+.ds-tab:hover { background: #f5f7f9; }
+.ds-tab.active { background: #eceff2; color: #222; font-weight: 600; }
+.ds-nav-right { display: flex; align-items: center; gap: 10px; margin-left: auto; }
+.figma-send-btn {
+  display: flex; align-items: center; gap: 6px;
+  background: linear-gradient(to right, #105fa8, #03746e);
+  color: #fff; border: none; padding: 7px 14px;
+  border-radius: 6px; font-size: 13px; font-weight: 600;
+  cursor: pointer; font-family: 'Source Sans Pro', sans-serif;
+  transition: opacity 0.15s;
+}
+.figma-send-btn:hover { opacity: 0.85; }
+.figma-status { font-size: 12px; color: #838383; white-space: nowrap; }
+.figma-status--pending { color: #fcbc0b; }
+.figma-status--success { color: #0ACF83; text-decoration: none; }
+.figma-status--success:hover { text-decoration: underline; }
+.figma-status--error { color: #ff6b6b; }
+
+/* ===== HERO ===== */
+.hero {
+  background: linear-gradient(to right, #003a70, #105fa8);
+  padding: 48px 60px; color: #fff;
+}
+.hero h1 { font-size: 36px; font-weight: 400; margin-bottom: 12px; }
+.hero p { font-size: 18px; font-weight: 600; opacity: 0.9; }
+
+/* ===== PAGE CONTENT ===== */
+.page-content { max-width: 1320px; margin: 0 auto; padding: 40px 60px; }
+
+/* ===== OVERVIEW ===== */
+.overview-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 48px; }
+.overview-card {
+  background: #fff; border-radius: 8px; padding: 28px; text-decoration: none; color: #222;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06); transition: box-shadow 0.2s, transform 0.2s;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.overview-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.12); transform: translateY(-2px); }
+.ov-icon { width: 56px; height: 56px; border-radius: 12px; display: flex; align-items: center; justify-content: center; }
+.overview-card h3 { font-size: 20px; color: #003a70; }
+.overview-card p { font-size: 14px; color: #5d5d5d; line-height: 20px; }
+.ov-count { font-size: 12px; font-weight: 600; color: #105fa8; text-transform: uppercase; letter-spacing: 0.5px; }
+
+.overview-section { margin-bottom: 48px; }
+.overview-section h2 { font-size: 24px; color: #003a70; margin-bottom: 8px; }
+.overview-section > p { font-size: 14px; color: #5d5d5d; margin-bottom: 20px; }
+.source-list { display: flex; flex-direction: column; gap: 12px; }
+.source-item {
+  background: #fff; padding: 16px 20px; border-radius: 4px; box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.source-item strong { font-size: 16px; color: #222; }
+.source-desc { font-size: 14px; color: #838383; }
+
+/* ===== TOKENS PAGE ===== */
+.token-section { margin-bottom: 48px; }
+.token-section h2 { font-size: 24px; color: #003a70; margin-bottom: 6px; }
+.token-section > p { font-size: 14px; color: #838383; margin-bottom: 20px; }
+
+.color-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+.color-card { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+.color-swatch { height: 80px; }
+.color-info { padding: 12px; }
+.color-info .name { font-size: 13px; font-weight: 600; color: #222; margin-bottom: 2px; }
+.color-info .value { font-size: 12px; color: #838383; font-family: 'SF Mono', 'Courier New', monospace; }
+.color-info .css-var { font-size: 11px; color: #105fa8; font-family: 'SF Mono', 'Courier New', monospace; margin-top: 4px; }
+
+.typo-table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+.typo-table th { text-align: left; padding: 12px 16px; font-size: 12px; font-weight: 600; color: #838383; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid #f0f0f0; }
+.typo-table td { padding: 16px; border-bottom: 1px solid #f0f0f0; vertical-align: middle; }
+.typo-table .sample { color: #222; }
+.typo-table .token-name { font-size: 13px; font-weight: 600; color: #003a70; }
+.typo-table .token-detail { font-size: 12px; color: #838383; font-family: 'SF Mono', 'Courier New', monospace; }
+
+.token-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
+.token-chip {
+  background: #fff; border-radius: 6px; padding: 14px 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  display: flex; flex-direction: column; gap: 4px;
+}
+.token-chip .label { font-size: 12px; font-weight: 600; color: #003a70; }
+.token-chip .val { font-size: 13px; color: #444; font-family: 'SF Mono', 'Courier New', monospace; }
+
+.gradient-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.gradient-card { border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+.gradient-swatch { height: 80px; }
+.gradient-info { background: #fff; padding: 12px; }
+.gradient-info .name { font-size: 13px; font-weight: 600; color: #222; }
+.gradient-info .value { font-size: 12px; color: #838383; font-family: 'SF Mono', 'Courier New', monospace; margin-top: 2px; }
+
+/* ===== COMPONENTS PAGE ===== */
+.component-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+.component-card {
+  background: #fff; border-radius: 8px; padding: 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+.component-card h3 { font-size: 18px; color: #003a70; margin-bottom: 4px; }
+.component-card .file { font-size: 12px; color: #105fa8; font-family: 'SF Mono', 'Courier New', monospace; margin-bottom: 12px; }
+.component-card .desc { font-size: 14px; color: #5d5d5d; line-height: 20px; margin-bottom: 16px; }
+.component-card .gh-link {
+  display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: #105fa8;
+  text-decoration: none; font-weight: 600;
+}
+.component-card .gh-link:hover { text-decoration: underline; }

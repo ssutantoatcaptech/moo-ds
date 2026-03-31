@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Dental Coverage - MoO Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+  <script src="figma-toolbar.js" defer></script>
+  <style>
+    /* ===== MoO DESIGN TOKENS ===== */
+    :root {
+      /* Foundation Colors */
+      --foundation-primary-bluedark: #003a70;
+      --foundation-primary-blue: #105fa8;
+      --foundation-primary-teal: #03746e;
+      --foundation-primary-white: #ffffff;
+
+      /* Grays */
+      --foundation-grays-darkest: #222222;
+      --foundation-grays-darker: #444444;
+      --foundation-grays-dark: #5d5d5d;
+      --foundation-grays-gray: #838383;
+      --foundation-grays-light: #bababa;
+      --foundation-grays-lighter: #f0f0f0;
+
+      /* Semantics */
+      --semantics-success: #1c9e3b;
+      --semantics-pending: #fcbc0b;
+      --semantics-warning: #df6903;
+      --semantics-info: #067ac1;
+
+      /* Text */
+      --text-links-link: #105fa8;
+      --supporting-black-transparent-16: rgba(34,34,34,0.16);
+
+      /* Typography */
+      --font-family-title: 'Source Sans Pro', sans-serif;
+      --font-family-body: 'Source Sans Pro', sans-serif;
+    }
+
+    /* ===== RESET ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-family-body);
+      background: var(--foundation-primary-white);
+      color: var(--foundation-grays-darkest);
+      max-width: 375px;
+      margin: 0 auto;
+      border-left: 1px solid var(--foundation-grays-lighter);
+      border-right: 1px solid var(--foundation-grays-lighter);
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* ===== HEADER ===== */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px;
+      padding-bottom: 17px;
+      background: var(--foundation-primary-white);
+      border-bottom: 1px solid var(--foundation-grays-lighter);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .header-left { display: flex; align-items: center; }
+    .menu-btn {
+      background: none; border: none; cursor: pointer; padding: 8px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .menu-btn svg { width: 18px; height: 20px; }
+    .header-right { display: flex; align-items: center; gap: 16px; }
+    .notif-btn {
+      background: none; border: none; cursor: pointer; position: relative;
+      display: flex; align-items: center; justify-content: center; padding: 4px;
+    }
+    .notif-btn svg { width: 18px; height: 20px; }
+    .notif-dot {
+      position: absolute; top: 4px; right: 4px;
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--foundation-grays-darkest);
+      border: 1px solid var(--foundation-primary-white);
+    }
+    .avatar-btn {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: var(--foundation-grays-lighter);
+      border: 1px solid var(--foundation-grays-light);
+      overflow: hidden; display: flex; align-items: center; justify-content: center;
+    }
+    .avatar-btn svg { width: 30px; height: 30px; }
+
+    /* ===== MAIN CONTENT ===== */
+    .main {
+      background: #fafafa;
+      padding: 24px 16px 48px;
+      display: flex; flex-direction: column; gap: 20px;
+    }
+
+    /* ===== PAGE TITLE ===== */
+    .page-title {
+      font-family: var(--font-family-title);
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 32px;
+      color: var(--foundation-primary-bluedark);
+    }
+
+    /* ===== CARD ===== */
+    .card {
+      background: var(--foundation-primary-white);
+      border: 1px solid var(--foundation-grays-lighter);
+      border-radius: 12px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      padding: 17px;
+    }
+
+    /* ===== SECTION HEADING ===== */
+    .section-heading {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 20px;
+      color: var(--foundation-primary-bluedark);
+      margin-bottom: 16px;
+    }
+
+    /* ===== QUICK ACTIONS ===== */
+    .quick-actions { display: flex; flex-direction: column; gap: 8px; }
+    .action-btn {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 13px 17px;
+      border: 1px solid var(--foundation-grays-light);
+      border-radius: 8px;
+      background: var(--foundation-primary-white);
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .action-btn:hover { background: #fafafa; }
+    .action-btn-left { display: flex; align-items: center; gap: 12px; }
+    .action-btn-icon { width: 16px; height: 14px; display: flex; align-items: center; justify-content: center; color: var(--foundation-grays-darker); }
+    .action-btn-icon svg { width: 16px; height: 14px; }
+    .action-btn-label {
+      font-size: 14px; line-height: 20px;
+      color: var(--foundation-grays-darker);
+    }
+    .action-btn-chevron { color: var(--foundation-grays-light); }
+    .action-btn-chevron svg { width: 8px; height: 12px; }
+
+    /* ===== MESSAGE CARD ===== */
+    .message-card {
+      background: var(--foundation-primary-white);
+      border: 1px solid var(--foundation-grays-lighter);
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      padding: 13px;
+      display: flex; flex-direction: column; gap: 4px; align-items: flex-end;
+    }
+    .message-accent {
+      position: absolute; left: 0; top: 0; bottom: 0; width: 6px;
+      background: var(--foundation-primary-blue);
+    }
+    .message-top {
+      display: flex; justify-content: space-between; align-items: flex-start; width: 100%;
+    }
+    .message-content { display: flex; gap: 8px; align-items: flex-start; }
+    .message-icon { flex-shrink: 0; padding-top: 2px; color: var(--semantics-info); }
+    .message-icon svg { width: 16px; height: 16px; }
+    .message-title {
+      font-size: 14px; line-height: 20px;
+      color: var(--foundation-primary-blue);
+    }
+    .message-subtitle {
+      font-size: 12px; line-height: 16px;
+      color: var(--foundation-grays-gray);
+    }
+    .message-close {
+      flex-shrink: 0; cursor: pointer; background: none; border: none;
+      color: var(--foundation-grays-darker);
+    }
+    .message-close svg { width: 14px; height: 18px; }
+    .message-link {
+      font-size: 12px; line-height: 16px;
+      color: var(--foundation-primary-blue);
+      text-decoration: underline;
+    }
+
+    /* ===== DETAIL ROWS ===== */
+    .detail-rows { display: flex; flex-direction: column; gap: 8px; }
+    .detail-row {
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 14px; line-height: 24px;
+    }
+    .detail-row-label { color: var(--foundation-grays-darkest); }
+    .detail-row-value { color: var(--foundation-grays-darkest); }
+    .detail-divider { height: 1px; background: var(--foundation-grays-lighter); width: 100%; }
+
+    /* ===== COVERAGE USE ===== */
+    .coverage-use-card {
+      background: var(--foundation-primary-white);
+      border: 1px solid var(--foundation-grays-lighter);
+      border-radius: 12px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      padding: 21px;
+      display: flex; flex-direction: column; gap: 16px; align-items: flex-end;
+    }
+    .coverage-header { width: 100%; }
+    .coverage-title {
+      font-size: 16px; line-height: 24px;
+      color: var(--foundation-primary-bluedark);
+    }
+    .filter-section { width: 100%; margin-top: 8px; }
+    .filter-label {
+      font-size: 12px; line-height: 16px; letter-spacing: 0.6px;
+      text-transform: uppercase;
+      color: var(--foundation-grays-gray);
+      margin-bottom: 8px;
+    }
+    .filter-select {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid var(--foundation-grays-lighter);
+      border-radius: 8px;
+      font-family: var(--font-family-body);
+      font-size: 14px; line-height: 20px;
+      color: var(--foundation-grays-darkest);
+      background: var(--foundation-primary-white);
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M6 9l6 6 6-6' stroke='%23838383' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+    }
+
+    /* ===== PLAN INFO ===== */
+    .plan-info { width: 100%; display: flex; gap: 4px; justify-content: space-between; }
+    .plan-info-left { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+    .plan-name {
+      font-size: 16px; line-height: 24px;
+      color: var(--foundation-primary-bluedark);
+    }
+    .plan-meta {
+      font-size: 12px; line-height: 16px;
+      color: var(--foundation-grays-gray);
+    }
+    .badge-active {
+      background: var(--foundation-grays-lighter);
+      border: 1px solid var(--foundation-grays-lighter);
+      border-radius: 8px;
+      padding: 5px 11px;
+      font-size: 12px; line-height: 16px;
+      color: var(--foundation-grays-darkest);
+      align-self: flex-start;
+    }
+
+    /* ===== USAGE METERS ===== */
+    .usage-meters { width: 100%; display: flex; flex-direction: column; gap: 8px; }
+    .usage-meter {
+      background: #fafafa;
+      border: 1px solid var(--foundation-grays-lighter);
+      border-radius: 8px;
+      padding: 13px;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .meter-label {
+      font-size: 12px; line-height: 16px;
+      color: var(--foundation-grays-darkest);
+    }
+    .meter-values {
+      display: flex; justify-content: space-between; align-items: flex-end;
+    }
+    .meter-amount {
+      font-size: 24px; line-height: 32px;
+      color: var(--foundation-primary-bluedark);
+    }
+    .meter-total {
+      font-size: 12px; line-height: 16px;
+      color: var(--foundation-grays-darkest);
+      text-align: right;
+    }
+    .progress-bar {
+      height: 10px; border-radius: 9999px;
+      background: var(--supporting-black-transparent-16);
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%; border-radius: 9999px;
+      background: linear-gradient(to right, var(--foundation-primary-blue), var(--foundation-primary-teal));
+    }
+    .meter-desc {
+      font-size: 12px; line-height: normal;
+      color: var(--foundation-grays-dark);
+    }
+
+    /* ===== BENEFIT DETAILS TABLE ===== */
+    .benefit-table-card {
+      background: var(--foundation-primary-white);
+      border: 1px solid var(--foundation-grays-lighter);
+      border-radius: 12px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      padding: 21px;
+    }
+    .benefit-table-heading {
+      font-size: 16px; line-height: 24px;
+      color: var(--foundation-primary-bluedark);
+      margin-bottom: 16px;
+    }
+    .table-header {
+      display: flex; justify-content: space-between; margin-bottom: 8px;
+    }
+    .table-header span {
+      font-size: 12px; line-height: 16px;
+      color: var(--foundation-grays-darkest);
+    }
+    .table-row {
+      display: flex; justify-content: space-between; align-items: flex-start;
+    }
+    .table-row-label { font-size: 14px; line-height: 24px; color: var(--foundation-grays-darkest); }
+    .table-row-value { font-size: 14px; line-height: 24px; color: var(--foundation-grays-darkest); text-align: right; }
+
+    /* ===== BUTTON ===== */
+    .btn-primary {
+      width: 100%;
+      background: var(--foundation-primary-blue);
+      color: var(--foundation-primary-white);
+      font-family: var(--font-family-body);
+      font-size: 16px; font-weight: 600; line-height: 24px;
+      padding: 8px 24px;
+      border: none; border-radius: 4px;
+      cursor: pointer; text-align: center;
+    }
+    .btn-primary:hover { background: var(--foundation-primary-bluedark); }
+
+    /* ===== TRACKER TABLE ===== */
+    .tracker-card {
+      background: var(--foundation-primary-white);
+      border: 1px solid var(--foundation-grays-lighter);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .tracker-heading {
+      font-size: 16px; font-weight: 400; line-height: 20px;
+      color: var(--foundation-primary-bluedark);
+      margin-bottom: 16px;
+    }
+    .tracker-header {
+      display: flex; justify-content: space-between; margin-bottom: 6px;
+    }
+    .tracker-header span {
+      font-size: 12px; line-height: 16px;
+      color: var(--foundation-grays-darkest);
+    }
+    .tracker-row {
+      display: flex; justify-content: space-between; align-items: flex-start;
+    }
+    .tracker-row-label {
+      font-size: 14px; line-height: 20px;
+      color: var(--foundation-grays-darker);
+    }
+    .tracker-row-right { text-align: right; }
+    .tracker-row-date {
+      font-size: 14px; line-height: 20px;
+      color: var(--foundation-grays-dark);
+    }
+    .tracker-row-note {
+      font-size: 10px; line-height: 15px;
+      color: var(--foundation-grays-darkest);
+    }
+    .tracker-divider { height: 1px; background: var(--foundation-grays-lighter); margin: 8px 0; }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: var(--foundation-grays-lighter);
+      border-top: 1px solid var(--foundation-grays-lighter);
+      padding: 25px 16px 24px;
+      text-align: center;
+    }
+    .footer-text {
+      font-size: 12px; line-height: 16px;
+      color: var(--foundation-grays-gray);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== BACK BAR ===== -->
+  <div style="background:#fff;padding:8px 16px;border-bottom:1px solid #f0f0f0;">
+    <a href="index.html" style="font-family:'Source Sans Pro',sans-serif;font-size:14px;color:#105fa8;text-decoration:none;">&larr; Back to MoO Design System</a>
+  </div>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header">
+    <div class="header-left">
+      <button class="menu-btn" aria-label="Menu">
+        <svg viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="0" y1="4" x2="18" y2="4" stroke="#222222" stroke-width="2" stroke-linecap="round"/>
+          <line x1="0" y1="10" x2="18" y2="10" stroke="#222222" stroke-width="2" stroke-linecap="round"/>
+          <line x1="0" y1="16" x2="18" y2="16" stroke="#222222" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+    <div class="header-right">
+      <button class="notif-btn" aria-label="Notifications">
+        <svg viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 7A6 6 0 104 7c0 7-3 9-3 9h18s-3-2-3-9z" stroke="#222222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M11.73 20a2 2 0 01-3.46 0" stroke="#222222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="notif-dot"></span>
+      </button>
+      <div class="avatar-btn" aria-label="Profile">
+        <svg viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="15" cy="11" r="5" stroke="#838383" stroke-width="1.5"/>
+          <path d="M5 26c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="#838383" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== MAIN ===== -->
+  <main class="main">
+
+    <!-- Page Title -->
+    <h1 class="page-title">My Dental Coverage</h1>
+
+    <!-- Quick Actions -->
+    <div class="card">
+      <h2 class="section-heading">Quick Actions</h2>
+      <div class="quick-actions">
+        <a href="#" class="action-btn">
+          <div class="action-btn-left">
+            <span class="action-btn-icon">
+              <svg viewBox="0 0 16 14" fill="none"><rect x="1" y="1" width="14" height="10" rx="1" stroke="currentColor" stroke-width="1.5"/><line x1="1" y1="5" x2="15" y2="5" stroke="currentColor" stroke-width="1.5"/></svg>
+            </span>
+            <span class="action-btn-label">View ID Cards</span>
+          </div>
+          <span class="action-btn-chevron"><svg viewBox="0 0 8 12" fill="none"><path d="M1 1l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a href="#" class="action-btn">
+          <div class="action-btn-left">
+            <span class="action-btn-icon">
+              <svg viewBox="0 0 14 14" fill="none"><path d="M13 8v4a1 1 0 01-1 1H2a1 1 0 01-1-1V4a1 1 0 011-1h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 1h3v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><line x1="6" y1="8" x2="13" y2="1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+            <span class="action-btn-label">Submit New Claim</span>
+          </div>
+          <span class="action-btn-chevron"><svg viewBox="0 0 8 12" fill="none"><path d="M1 1l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a href="#" class="action-btn">
+          <div class="action-btn-left">
+            <span class="action-btn-icon">
+              <svg viewBox="0 0 14 14" fill="none"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M13 13l-3.5-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+            <span class="action-btn-label">Find a Provider</span>
+          </div>
+          <span class="action-btn-chevron"><svg viewBox="0 0 8 12" fill="none"><path d="M1 1l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+        <a href="#" class="action-btn">
+          <div class="action-btn-left">
+            <span class="action-btn-icon">
+              <svg viewBox="0 0 14 15" fill="none"><path d="M10 13v-1a3 3 0 00-3-3H4a3 3 0 00-3 3v1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="5.5" cy="4" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M11 6v4M13 8h-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+            <span class="action-btn-label">Invite Dependent</span>
+          </div>
+          <span class="action-btn-chevron"><svg viewBox="0 0 8 12" fill="none"><path d="M1 1l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Message Banner -->
+    <div class="message-card">
+      <div class="message-accent"></div>
+      <div class="message-top">
+        <div class="message-content">
+          <span class="message-icon">
+            <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/><line x1="8" y1="11" x2="8" y2="8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="5" r="0.75" fill="currentColor"/></svg>
+          </span>
+          <div>
+            <div class="message-title">Preventive Cleaning Overdue</div>
+            <div class="message-subtitle">Last cleaning: 8 months ago</div>
+          </div>
+        </div>
+        <button class="message-close" aria-label="Dismiss">
+          <svg viewBox="0 0 14 18" fill="none"><path d="M3 5l8 8M11 5l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <a href="#" class="message-link">Go to My Providers</a>
+    </div>
+
+    <!-- Dental Plan Details -->
+    <div class="card">
+      <h2 class="section-heading">Dental Plan Details</h2>
+      <div class="detail-rows">
+        <div class="detail-row">
+          <span class="detail-row-label">Primary Subscriber Name</span>
+          <span class="detail-row-value">Sarah Johnson</span>
+        </div>
+        <div class="detail-divider"></div>
+        <div class="detail-row">
+          <span class="detail-row-label">Subscriber Type</span>
+          <span class="detail-row-value">Employee + Family</span>
+        </div>
+        <div class="detail-divider"></div>
+        <div class="detail-row">
+          <span class="detail-row-label">Group Name</span>
+          <span class="detail-row-value">Acme Company</span>
+        </div>
+        <div class="detail-divider"></div>
+        <div class="detail-row">
+          <span class="detail-row-label">Group Number</span>
+          <span class="detail-row-value">987654321</span>
+        </div>
+        <div class="detail-divider"></div>
+        <div class="detail-row">
+          <span class="detail-row-label">Member ID</span>
+          <span class="detail-row-value">123456789</span>
+        </div>
+        <div class="detail-divider"></div>
+        <div class="detail-row">
+          <span class="detail-row-label">Plan Name</span>
+          <span class="detail-row-value">Premier PPO Dental Plan</span>
+        </div>
+        <div class="detail-divider"></div>
+        <div class="detail-row">
+          <span class="detail-row-label">Effective Date</span>
+          <span class="detail-row-value">01/01/2026</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dental Coverage Use -->
+    <div class="coverage-use-card">
+      <div class="coverage-header" style="width:100%;">
+        <div class="coverage-title">Dental Coverage Use</div>
+        <div class="filter-section">
+          <div class="filter-label">Select Member Name</div>
+          <select class="filter-select">
+            <option>Sarah Johnson (Primary)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Plan Info -->
+      <div class="plan-info" style="width:100%;">
+        <div class="plan-info-left">
+          <div class="plan-name">Premier PPO Dental Plan</div>
+          <div class="plan-meta">Member ID #123456789</div>
+          <div class="plan-meta">Plan Reset 01/01/2026</div>
+        </div>
+        <span class="badge-active">Active</span>
+      </div>
+
+      <!-- Usage Meters -->
+      <div class="usage-meters">
+        <div class="usage-meter">
+          <div class="meter-label">Individual Deductible</div>
+          <div class="meter-values">
+            <span class="meter-amount">$0</span>
+            <span class="meter-total">$50 of $50 used</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill" style="width: 100%;"></div></div>
+          <div class="meter-desc">The amount you pay yearly for covered dental services before insurance begins sharing the cost.</div>
+        </div>
+        <div class="usage-meter">
+          <div class="meter-label">Family Deductible</div>
+          <div class="meter-values">
+            <span class="meter-amount">$100</span>
+            <span class="meter-total">$100 of $150 used</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill" style="width: 67%;"></div></div>
+          <div class="meter-desc">The amount a family pays yearly for covered dental services before insurance begins sharing the cost.</div>
+        </div>
+        <div class="usage-meter">
+          <div class="meter-label">Annual Maximum</div>
+          <div class="meter-values">
+            <span class="meter-amount">$1,250</span>
+            <span class="meter-total">$750 of $2,000 used</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill" style="width: 37.5%;"></div></div>
+          <div class="meter-desc">The amount your plan will pay for covered dental services in a year; you pay any additional costs.</div>
+        </div>
+        <div class="usage-meter">
+          <div class="meter-label">Orthodontia Lifetime Max</div>
+          <div class="meter-values">
+            <span class="meter-amount">$1,700</span>
+            <span class="meter-total">$500 of $2,200 used</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill" style="width: 22.7%;"></div></div>
+          <div class="meter-desc">The amount your plan will pay for covered dental services in a year; you pay any additional costs.</div>
+        </div>
+      </div>
+
+      <!-- Benefit Details -->
+      <div class="benefit-table-card" style="width:100%;">
+        <div class="benefit-table-heading">Benefit Details</div>
+        <div class="table-header">
+          <span>Benefit</span>
+          <span>Coverage</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div class="table-row">
+            <span class="table-row-label">Annual Deductible (ind/fam)</span>
+            <span class="table-row-value">$50/$150</span>
+          </div>
+          <div class="detail-divider"></div>
+          <div class="table-row">
+            <span class="table-row-label">Annual Maximum</span>
+            <span class="table-row-value">$2,200</span>
+          </div>
+          <div class="detail-divider"></div>
+          <div class="table-row">
+            <span class="table-row-label">Preventive Procedures</span>
+            <span class="table-row-value">100%</span>
+          </div>
+          <div class="detail-divider"></div>
+          <div class="table-row">
+            <span class="table-row-label">Basic Procedures</span>
+            <span class="table-row-value">80%</span>
+          </div>
+          <div class="detail-divider"></div>
+          <div class="table-row">
+            <span class="table-row-label">Major Procedures</span>
+            <span class="table-row-value">50%</span>
+          </div>
+          <div class="detail-divider"></div>
+          <div class="table-row">
+            <span class="table-row-label">Orthodontia</span>
+            <span class="table-row-value">50% Coinsurance,<br>$2,200 Lifetime Max</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- View More Details Button -->
+      <button class="btn-primary">View More Details</button>
+    </div>
+
+    <!-- Preventive Care Tracker -->
+    <div class="tracker-card">
+      <h2 class="tracker-heading">Preventive Care Tracker</h2>
+      <div class="tracker-header">
+        <span>Procedure</span>
+        <span>Date of Last Service</span>
+      </div>
+      <div style="display:flex;flex-direction:column;">
+        <div class="tracker-row">
+          <span class="tracker-row-label">Routine Cleaning</span>
+          <div class="tracker-row-right">
+            <div class="tracker-row-date">03/01/2025</div>
+            <div class="tracker-row-note">2 per plan year included</div>
+          </div>
+        </div>
+        <div class="tracker-divider"></div>
+        <div class="tracker-row">
+          <span class="tracker-row-label">X-Rays</span>
+          <div class="tracker-row-right">
+            <div class="tracker-row-date">03/01/2025</div>
+            <div class="tracker-row-note">1 per plan year included</div>
+          </div>
+        </div>
+        <div class="tracker-divider"></div>
+        <div class="tracker-row">
+          <span class="tracker-row-label">Fluoride Treatment</span>
+          <div class="tracker-row-right">
+            <div class="tracker-row-date">N/A</div>
+            <div class="tracker-row-note">0 per plan year included</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <p class="footer-text">&copy; 2025 DentalCare Insurance. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

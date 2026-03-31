@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Preview - MoO Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Source Sans Pro', sans-serif; background: #dfe8f0; }
+    .ds-nav + .main-navigation { margin-top: 0; }
+
+    /* ===== HAMBURGER BUTTON (mobile only) ===== */
+    .hamburger {
+      display: none; background: none; border: none; cursor: pointer;
+      width: 44px; height: 44px; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .hamburger span {
+      display: block; width: 22px; height: 2px; background: #222;
+      position: relative; transition: all 200ms ease;
+    }
+    .hamburger span::before, .hamburger span::after {
+      content: ''; position: absolute; width: 22px; height: 2px;
+      background: #222; transition: all 200ms ease;
+    }
+    .hamburger span::before { top: -7px; }
+    .hamburger span::after { top: 7px; }
+    .hamburger.open span { background: transparent; }
+    .hamburger.open span::before { top: 0; transform: rotate(45deg); }
+    .hamburger.open span::after { top: 0; transform: rotate(-45deg); }
+
+    /* ===== MOBILE DRAWER OVERLAY ===== */
+    .drawer-overlay {
+      display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4);
+      z-index: 90; opacity: 0; transition: opacity 200ms ease;
+    }
+    .drawer-overlay.visible { display: block; opacity: 1; }
+
+    /* ===== NAV ===== */
+    .main-navigation {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 24px; background: #fff; border-bottom: 1px solid #f0f0f0;
+      position: relative; z-index: 100;
+      transition: padding 200ms ease;
+    }
+    .nav-left { display: flex; align-items: center; gap: 32px; transition: gap 200ms ease; }
+    .brand-name { font-size: 18px; line-height: 28px; color: #105fa8; white-space: nowrap; }
+    .main-tabs { display: flex; align-items: center; gap: 4px; transition: all 200ms ease; }
+    .nav-link {
+      padding: 8px 12px; border-radius: 4px; font-size: 14px; line-height: 20px;
+      color: #222; text-decoration: none; cursor: pointer; white-space: nowrap;
+      transition: background 150ms ease;
+    }
+    .nav-link:hover { background: #f5f7f9; }
+    .nav-link.active { background: #eceff2; }
+    .utility-tabs { display: flex; align-items: center; gap: 24px; transition: gap 200ms ease; }
+    .utility-link {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 14px; color: #444; text-decoration: none; white-space: nowrap;
+    }
+    .utility-link:hover { color: #105fa8; }
+    .utility-link-text { transition: all 200ms ease; }
+    .icon-sm { width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; }
+    .icon-sm img { width: 20px; height: 20px; }
+    .bell-icon {
+      width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; border-radius: 50%; transition: background 150ms ease;
+    }
+    .bell-icon:hover { background: #f5f7f9; }
+    .bell-icon img { width: 20px; height: 20px; }
+    .profile { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+    .profile-picture {
+      width: 34px; height: 34px; border-radius: 9999px; border: 1px solid #f0f0f0;
+      overflow: hidden; display: flex; align-items: center; justify-content: center;
+    }
+    .profile-picture img { width: 32px; height: 32px; border-radius: 9999px; object-fit: cover; }
+    .profile-name { font-size: 14px; color: #105fa8; transition: all 200ms ease; }
+
+    /* ===== HERO ===== */
+    .hero-banner {
+      background: linear-gradient(to right, #003a70, #105fa8);
+      padding: 48px 60px; overflow: hidden;
+      transition: padding 200ms ease;
+    }
+    .hero-banner h1 {
+      font-size: 40px; font-weight: 400; color: #fff; line-height: 1; margin-bottom: 12px;
+      transition: font-size 200ms ease;
+    }
+    .hero-banner p {
+      font-size: 20px; font-weight: 600; color: #fff;
+      transition: font-size 200ms ease;
+    }
+
+    /* ===== CONTENT AREA ===== */
+    .content-area {
+      padding: 60px; display: flex; gap: 20px; align-items: flex-start;
+      transition: padding 200ms ease, flex-direction 200ms ease;
+    }
+    .main-col {
+      flex: 1; display: flex; flex-direction: column; gap: 24px; min-width: 0;
+      transition: gap 200ms ease;
+    }
+    .side-col {
+      width: 394px; flex-shrink: 0; display: flex; flex-direction: column; gap: 24px;
+      transition: width 200ms ease;
+    }
+
+    /* ===== CARD ===== */
+    .card {
+      background: #fff; border-radius: 4px; box-shadow: 0 4px 4px rgba(0,0,0,0.04);
+    }
+    .card-translucent {
+      background: rgba(255,255,255,0.6); border-radius: 4px; box-shadow: 0 4px 4px rgba(0,0,0,0.04);
+    }
+    .card-header {
+      display: flex; align-items: center; justify-content: space-between; padding: 20px;
+      transition: padding 200ms ease;
+    }
+    .card-title {
+      font-size: 24px; font-weight: 400; color: #003a70; line-height: 32px;
+      transition: font-size 200ms ease;
+    }
+    .view-all { display: flex; align-items: center; gap: 4px; font-size: 14px; color: #105fa8; text-decoration: none; }
+    .view-all:hover { text-decoration: underline; }
+
+    /* ===== ALERT MESSAGES ===== */
+    .alerts { padding: 0 20px 20px; display: flex; flex-direction: column; gap: 16px; transition: padding 200ms ease; }
+    .alert { display: flex; border-radius: 4px; overflow: hidden; }
+    .alert-icon-bar {
+      width: 40px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+      border-radius: 4px 0 0 4px; transition: width 200ms ease;
+    }
+    .alert-icon-bar.warning { background: #df6903; }
+    .alert-icon-bar.info { background: #067ac1; }
+    .alert-icon-bar svg { width: 20px; height: 20px; }
+    .alert-content {
+      flex: 1; padding: 16px; border: 1px solid; border-left: none;
+      border-radius: 0 4px 4px 0; display: flex; justify-content: space-between; align-items: flex-start;
+      transition: padding 200ms ease;
+    }
+    .alert-content.warning { background: #fef8eb; border-color: #df6903; }
+    .alert-content.info { background: #f2f8fe; border-color: #067ac1; }
+    .alert-text h4 {
+      font-size: 20px; font-weight: 600; color: #444; line-height: 24px; margin-bottom: 4px;
+      transition: font-size 200ms ease;
+    }
+    .alert-text p { font-size: 14px; color: #222; line-height: 20px; }
+    .alert-text a { color: #105fa8; font-size: 14px; text-decoration: underline; }
+    .alert-close {
+      cursor: pointer; flex-shrink: 0; margin-left: 12px;
+      background: none; border: none; padding: 0;
+      min-width: 44px; min-height: 44px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 4px;
+    }
+    .alert-close:hover { background: rgba(0,0,0,0.05); }
+
+    /* ===== RECENT ACTIVITY ===== */
+    .activity-header {
+      display: flex; align-items: center; justify-content: space-between; padding: 20px;
+      transition: flex-direction 200ms ease, padding 200ms ease;
+    }
+    .filter-bar { display: flex; align-items: center; gap: 12px; transition: all 200ms ease; }
+    .filter-label { font-size: 12px; font-weight: 600; color: #838383; text-transform: uppercase; letter-spacing: 0.6px; }
+    .filter-select {
+      width: 240px; padding: 8px 12px; border: 1px solid #838383; border-radius: 4px;
+      font-family: 'Source Sans Pro', sans-serif; font-size: 14px; color: #222;
+      background: #fff; appearance: none; cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23444' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 12px center;
+      min-height: 44px;
+      transition: width 200ms ease;
+    }
+    .activity-row {
+      display: flex; align-items: center; gap: 16px; padding: 17px 20px;
+      background: #fff; border-top: 1px solid #f0f0f0; border-bottom: 1px solid #f0f0f0;
+      cursor: pointer; min-height: 44px;
+      transition: padding 200ms ease, gap 200ms ease;
+    }
+    .activity-row:hover { background: #f9fafb; }
+    .activity-icon {
+      width: 48px; height: 48px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .activity-icon.information { background: #067ac1; }
+    .activity-icon.pending { background: #fcbc0b; }
+    .activity-icon.success { background: #1fa668; }
+    .activity-icon.needs-attention { background: #c12506; }
+    .activity-icon svg { width: 20px; height: 20px; }
+    .activity-icon img { width: 20px; height: 20px; }
+    .activity-info { flex: 1; min-width: 0; }
+    .activity-info .title { font-size: 16px; font-weight: 600; color: #222; line-height: 24px; }
+    .activity-info .desc {
+      font-size: 16px; color: #222; line-height: 24px;
+      overflow: hidden; text-overflow: ellipsis;
+      transition: font-size 200ms ease;
+    }
+    .activity-info .date { font-size: 14px; color: #838383; line-height: 20px; }
+    .chevron-right {
+      width: 44px; height: 44px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .chevron-right svg { width: 8px; height: 14px; }
+    .card-footer {
+      padding: 20px; display: flex; justify-content: flex-end; background: #fff;
+      border-radius: 0 0 4px 4px;
+      transition: padding 200ms ease, justify-content 200ms ease;
+    }
+
+    /* ===== BUTTON ===== */
+    .btn-primary {
+      background: #105fa8; color: #fff; font-family: 'Source Sans Pro', sans-serif;
+      font-size: 16px; font-weight: 600; line-height: 24px; padding: 8px 24px;
+      border: none; border-radius: 4px; cursor: pointer; min-height: 44px;
+      transition: background 150ms ease, width 200ms ease;
+    }
+    .btn-primary:hover { background: #0d4f8e; }
+
+    /* ===== LEAVE REQUEST ===== */
+    .leave-card-header { padding: 24px 20px 20px; background: #fff; border-radius: 4px 4px 0 0; }
+    .leave-body { padding: 0 20px; background: #fff; transition: padding 200ms ease; }
+    .leave-details {
+      background: #f0f0f0; border-radius: 4px; padding: 24px;
+      display: flex; flex-direction: column; gap: 32px;
+      transition: padding 200ms ease;
+    }
+    .leave-title-row {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+    .leave-title { font-size: 20px; font-weight: 600; color: #222; line-height: 24px; transition: font-size 200ms ease; }
+    .badge-progress {
+      background: #fcbc0b; padding: 6px 12px; border-radius: 56px;
+      font-size: 12px; font-weight: 600; color: #222; text-transform: uppercase; letter-spacing: 0.072px;
+    }
+    .leave-meta {
+      display: flex; align-items: center; gap: 12px; font-size: 14px; color: #444;
+      line-height: 20px; flex-wrap: wrap;
+      transition: all 200ms ease;
+    }
+    .leave-meta .sep { color: #444; }
+
+    /* ===== PROGRESS STEPPER ===== */
+    .stepper { display: flex; align-items: flex-start; justify-content: space-between; position: relative; }
+    .stepper::before {
+      content: ''; position: absolute; top: 20px; left: 20px; right: 20px; height: 2px;
+      background: #d0d0d0; z-index: 0;
+    }
+    .stepper::after {
+      content: ''; position: absolute; top: 20px; left: 20px; width: calc(33% - 10px); height: 2px;
+      background: #1c9e3b; z-index: 1;
+    }
+    .step { display: flex; flex-direction: column; align-items: center; gap: 4px; position: relative; z-index: 2; }
+    .step-circle {
+      width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center;
+      justify-content: center; border: 2px solid transparent;
+    }
+    .step-circle.completed { background: #1c9e3b; border-color: #1c9e3b; }
+    .step-circle.current { background: #fcbc0b; border-color: #444; }
+    .step-circle.pending { background: #fff; border-color: #838383; }
+    .step-circle svg, .step-circle img { width: 16px; height: 16px; }
+    .step-label { font-size: 16px; color: #222; line-height: 24px; text-align: center; transition: font-size 200ms ease; }
+    .step-label.muted { color: #5d5d5d; }
+    .step-sub { font-size: 14px; color: #838383; line-height: 20px; text-align: center; }
+
+    /* ===== QUICK ACTIONS ===== */
+    .quick-actions { display: flex; flex-direction: column; gap: 12px; padding: 0 20px 20px; transition: padding 200ms ease; }
+    .quick-action-row {
+      display: flex; align-items: center; gap: 16px; padding: 8px 16px;
+      background: #fff; border-radius: 4px; box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+      cursor: pointer; min-height: 44px;
+      transition: background 150ms ease, padding 200ms ease;
+    }
+    .quick-action-row:hover { background: #f9fafb; }
+    .qa-icon {
+      width: 32px; height: 32px; border-radius: 50%; background: #f0f0f0;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .qa-icon img { width: 14px; height: 14px; }
+    .qa-label { flex: 1; font-size: 16px; font-weight: 600; color: #222; line-height: 24px; }
+    .qa-chevron {
+      width: 44px; height: 44px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .qa-chevron svg { width: 8px; height: 14px; }
+
+    /* ===== ACTIVE BENEFITS ===== */
+    .benefits-wrapper { padding: 20px; }
+    .benefits-title { display: block; margin-bottom: 24px; }
+    .benefits-list { display: flex; flex-direction: column; gap: 16px; }
+    .benefit-card {
+      background: #fff; border-radius: 4px; box-shadow: 0 1px 4px rgba(0,0,0,0.04); padding: 12px;
+    }
+    .benefit-top { display: flex; gap: 16px; align-items: flex-start; }
+    .benefit-icon {
+      width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0;
+      background: linear-gradient(to right, #003a70, #105fa8);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .benefit-icon img { width: 19px; height: 19px; }
+    .benefit-info { flex: 1; }
+    .benefit-info .name { font-size: 16px; font-weight: 600; color: #444; line-height: 24px; }
+    .benefit-info .plan { font-size: 14px; color: #444; line-height: 20px; }
+    .benefit-usage { margin-top: 16px; }
+    .benefit-usage-header {
+      display: flex; justify-content: space-between; font-size: 14px; color: #444; line-height: 20px; margin-bottom: 4px;
+    }
+    .progress-bar { height: 10px; border-radius: 9999px; background: rgba(34,34,34,0.16); overflow: hidden; }
+    .progress-fill {
+      height: 100%; border-radius: 9999px;
+      background: linear-gradient(to right, #105fa8, #03746e); width: 17%;
+    }
+    .benefits-footer { display: flex; justify-content: flex-end; margin-top: 24px; transition: justify-content 200ms ease; }
+
+    /* ========================================
+       TABLET: 768–1023px
+       ======================================== */
+    @media (max-width: 1023px) {
+      .main-navigation { padding: 12px 20px; }
+      .nav-left { gap: 20px; }
+      .utility-link-text { display: none; }
+      .utility-tabs { gap: 12px; }
+      .profile-name { display: none; }
+
+      .hero-banner { padding: 36px 32px; }
+      .hero-banner h1 { font-size: 32px; }
+      .hero-banner p { font-size: 18px; }
+
+      .content-area { padding: 32px; flex-direction: column; }
+      .side-col { width: 100%; flex-direction: row; gap: 20px; }
+      .side-col > * { flex: 1; min-width: 0; }
+
+      .filter-select { width: 200px; }
+    }
+
+    /* ========================================
+       MOBILE: < 768px
+       ======================================== */
+    @media (max-width: 767px) {
+      /* Show hamburger, hide desktop nav items */
+      .hamburger { display: flex; }
+      .main-tabs {
+        display: none; position: fixed; top: 0; left: 0; width: 280px; height: 100vh;
+        background: #fff; flex-direction: column; padding: 72px 16px 24px;
+        box-shadow: 4px 0 16px rgba(0,0,0,0.15); z-index: 95;
+        gap: 4px; overflow-y: auto;
+        transform: translateX(-100%); transition: transform 200ms ease;
+      }
+      .main-tabs.open {
+        display: flex; transform: translateX(0);
+      }
+      .nav-link {
+        padding: 12px 16px; font-size: 16px; min-height: 44px;
+        display: flex; align-items: center;
+      }
+      .main-navigation { padding: 8px 16px; }
+      .nav-left { gap: 12px; }
+      .utility-tabs { gap: 4px; }
+      .utility-link { display: none; }
+      .profile-name { display: none; }
+
+      .hero-banner { padding: 24px 16px; }
+      .hero-banner h1 { font-size: 24px; margin-bottom: 8px; }
+      .hero-banner p { font-size: 16px; }
+
+      .content-area { padding: 16px; flex-direction: column; gap: 16px; }
+      .main-col { gap: 16px; }
+      .side-col { width: 100%; flex-direction: column; gap: 16px; }
+
+      .card-header { padding: 16px; }
+      .card-title { font-size: 20px; }
+      .alerts { padding: 0 16px 16px; }
+      .alert-text h4 { font-size: 16px; }
+
+      .activity-header {
+        flex-direction: column; align-items: flex-start; gap: 12px; padding: 16px;
+      }
+      .filter-bar { width: 100%; }
+      .filter-select { width: 100%; }
+      .activity-row { padding: 12px 16px; gap: 12px; }
+      .activity-info .desc { font-size: 14px; }
+      .card-footer { padding: 16px; justify-content: stretch; }
+      .card-footer .btn-primary { width: 100%; text-align: center; }
+
+      .leave-body { padding: 0 16px; }
+      .leave-details { padding: 16px; gap: 24px; }
+      .leave-title { font-size: 18px; }
+      .leave-meta { gap: 4px; }
+      .leave-meta .sep { display: none; }
+      .leave-meta span { display: block; }
+      .step-label { font-size: 13px; }
+      .step-sub { font-size: 12px; }
+
+      .quick-actions { padding: 0 16px 16px; }
+      .quick-action-row { padding: 12px 16px; }
+
+      .benefits-wrapper { padding: 16px; }
+      .benefits-footer { justify-content: stretch; }
+      .benefits-footer .btn-primary { width: 100%; text-align: center; }
+    }
+  </style>
+  <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+  <script src="figma-toolbar.js" defer></script>
+</head>
+<body>
+
+  <!-- ===== DS NAV ===== -->
+  <nav class="ds-nav">
+    <div class="ds-nav-left">
+      <span class="ds-brand">MoO Design System</span>
+      <div class="ds-tabs">
+        <a href="index.html" class="ds-tab">Overview</a>
+        <a href="tokens.html" class="ds-tab">Design Tokens</a>
+        <a href="iconography.html" class="ds-tab">Iconography</a>
+        <a href="components.html" class="ds-tab">Components</a>
+        <a href="dashboard.html" class="ds-tab active">Dashboard Preview</a>
+        <a href="mobile-dashboard.html" class="ds-tab">Mobile Dashboard</a>
+        <a href="login-registration.html" class="ds-tab">Login &amp; Registration</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile drawer overlay -->
+  <div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()" aria-hidden="true"></div>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="main-navigation" role="navigation" aria-label="Main navigation">
+    <div class="nav-left">
+      <button class="hamburger" id="hamburgerBtn" onclick="toggleDrawer()" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span>
+      </button>
+      <span class="brand-name">MyBenefits Hub</span>
+      <div class="main-tabs" id="mainTabs" role="menubar">
+        <a href="#" class="nav-link active" role="menuitem">Dashboard</a>
+        <a href="#" class="nav-link" role="menuitem">My Coverages</a>
+        <a href="#" class="nav-link" role="menuitem">Claims</a>
+        <a href="#" class="nav-link" role="menuitem">Leave</a>
+        <a href="#" class="nav-link" role="menuitem">Support</a>
+      </div>
+    </div>
+    <div class="utility-tabs">
+      <a href="#" class="utility-link" aria-label="Find ID Card">
+        <span class="icon-sm"><img src="https://www.figma.com/api/mcp/asset/6174eaa3-3026-46bd-abd2-f84d06f742c0" alt=""></span>
+        <span class="utility-link-text">Find ID Card</span>
+      </a>
+      <a href="#" class="utility-link" aria-label="Messages">
+        <span class="icon-sm"><img src="https://www.figma.com/api/mcp/asset/65d5f162-1b22-477a-ba2a-12950bd509c2" alt=""></span>
+        <span class="utility-link-text">Messages</span>
+      </a>
+      <span class="bell-icon" title="Notifications" role="button" aria-label="Notifications" tabindex="0">
+        <img src="https://www.figma.com/api/mcp/asset/8a34fc7a-a733-4851-a94a-6642ae7e832a" alt="">
+      </span>
+      <div class="profile" role="button" aria-label="User profile" tabindex="0">
+        <div class="profile-picture">
+          <img src="https://www.figma.com/api/mcp/asset/9a682ae7-0f64-481d-a014-ddecb0a829b7" alt="Sarah Johnson profile photo">
+        </div>
+        <span class="profile-name">Sarah Johnson</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== HERO BANNER ===== -->
+  <section class="hero-banner">
+    <h1>Welcome Back, Sarah</h1>
+    <p>Review your plan details, see what's next, and stay on top of your care.</p>
+  </section>
+
+  <!-- ===== CONTENT AREA ===== -->
+  <div class="content-area">
+
+    <!-- LEFT COLUMN -->
+    <div class="main-col">
+
+      <!-- Items Requiring Action -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Items Requiring Action</span>
+          <a href="#" class="view-all">
+            View All
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4 2l4 4-4 4" stroke="#105fa8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+        <div class="alerts">
+          <!-- Warning Alert -->
+          <div class="alert" role="alert">
+            <div class="alert-icon-bar warning" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 2L1 21h22L12 2z" fill="none" stroke="#fff" stroke-width="2"/><line x1="12" y1="9" x2="12" y2="15" stroke="#fff" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="18" r="1" fill="#fff"/></svg>
+            </div>
+            <div class="alert-content warning">
+              <div class="alert-text">
+                <h4>Upload Missing Document</h4>
+                <p>Upload documents required to support your leave request. <a href="#">Upload Documents</a></p>
+              </div>
+              <button class="alert-close" aria-label="Dismiss alert"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 1l12 12M13 1L1 13" stroke="#444" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+            </div>
+          </div>
+          <!-- Info Alert -->
+          <div class="alert" role="alert">
+            <div class="alert-icon-bar info" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#fff" stroke-width="2"/><line x1="12" y1="16" x2="12" y2="12" stroke="#fff" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="8" r="1" fill="#fff"/></svg>
+            </div>
+            <div class="alert-content info">
+              <div class="alert-text">
+                <h4>Schedule Dental Exam</h4>
+                <p>Last cleaning: 8 months ago. <a href="#">Go to My Providers</a></p>
+              </div>
+              <button class="alert-close" aria-label="Dismiss alert"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 1l12 12M13 1L1 13" stroke="#444" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Activity -->
+      <div class="card" style="border-radius:4px; overflow:hidden;">
+        <div class="activity-header">
+          <span class="card-title">Recent activity</span>
+          <div class="filter-bar">
+            <label class="filter-label" for="memberFilter">Select Member Name</label>
+            <select class="filter-select" id="memberFilter">
+              <option>Sarah Johnson (Primary)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Information variant (blue) -->
+        <div class="activity-row" tabindex="0" role="link" aria-label="Dental EOB Available - Jan 20, 2025">
+          <div class="activity-icon information" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" width="20" height="20"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 2v6h6" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><line x1="8" y1="13" x2="16" y2="13" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/><line x1="8" y1="17" x2="16" y2="17" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div class="activity-info">
+            <div class="title">Dental EOB Available</div>
+            <div class="desc">Your dental Explanation of Benefits from Dec 10, 2024 is now available.</div>
+            <div class="date">Jan 20, 2025</div>
+          </div>
+          <div class="chevron-right" aria-hidden="true">
+            <svg viewBox="0 0 8 14" fill="none"><path d="M1 1l6 6-6 6" stroke="#105fa8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+
+        <!-- Pending variant (yellow) -->
+        <div class="activity-row" tabindex="0" role="link" aria-label="Claim Processed - Jan 18, 2025">
+          <div class="activity-icon pending" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" width="20" height="20"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 2v6h6" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><line x1="8" y1="13" x2="16" y2="13" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/><line x1="8" y1="17" x2="16" y2="17" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div class="activity-info">
+            <div class="title">Claim Processed</div>
+            <div class="desc">Dental claim #VC-2025-4412</div>
+            <div class="date">Jan 18, 2025</div>
+          </div>
+          <div class="chevron-right" aria-hidden="true">
+            <svg viewBox="0 0 8 14" fill="none"><path d="M1 1l6 6-6 6" stroke="#105fa8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+
+        <!-- Success variant (green) -->
+        <div class="activity-row" tabindex="0" role="link" aria-label="Leave Request Approved - Jan 18, 2025">
+          <div class="activity-icon success" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" width="20" height="20"><circle cx="12" cy="12" r="9" stroke="#fff" stroke-width="1.5"/><path d="M8 12l3 3 5-5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="activity-info">
+            <div class="title">Leave Request Approved</div>
+            <div class="desc">Leave from 2/2/25 through 2/10/25</div>
+            <div class="date">Jan 18, 2025</div>
+          </div>
+          <div class="chevron-right" aria-hidden="true">
+            <svg viewBox="0 0 8 14" fill="none"><path d="M1 1l6 6-6 6" stroke="#105fa8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+
+        <!-- Needs Attention variant (red) -->
+        <div class="activity-row" tabindex="0" role="link" aria-label="Document Upload Required - Jan 15, 2025">
+          <div class="activity-icon needs-attention" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" width="20" height="20"><circle cx="12" cy="12" r="9" stroke="#fff" stroke-width="1.5"/><line x1="12" y1="8" x2="12" y2="13" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="16" r="1" fill="#fff"/></svg>
+          </div>
+          <div class="activity-info">
+            <div class="title">Document Upload Required</div>
+            <div class="desc">Missing documentation for leave request ML-2025-1847.</div>
+            <div class="date">Jan 15, 2025</div>
+          </div>
+          <div class="chevron-right" aria-hidden="true">
+            <svg viewBox="0 0 8 14" fill="none"><path d="M1 1l6 6-6 6" stroke="#105fa8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+
+        <div class="card-footer">
+          <button class="btn-primary">View Benefit Summary Details</button>
+        </div>
+      </div>
+
+      <!-- Leave Request -->
+      <div class="card" style="overflow:hidden;">
+        <div class="leave-card-header">
+          <span class="card-title">Leave Request</span>
+        </div>
+        <div class="leave-body">
+          <div class="leave-details">
+            <div>
+              <div class="leave-title-row">
+                <span class="leave-title">Surgery Recovery</span>
+                <span class="badge-progress">In Progress</span>
+              </div>
+              <div class="leave-meta">
+                <span>Claim Number: ML-2025-1847</span>
+                <span class="sep">&bull;</span>
+                <span>March 1, 2025 &ndash; March 15, 2025</span>
+                <span class="sep">&bull;</span>
+                <span>2 weeks</span>
+              </div>
+            </div>
+
+            <!-- Progress Stepper -->
+            <div class="stepper" role="progressbar" aria-valuenow="2" aria-valuemin="1" aria-valuemax="4" aria-label="Leave request progress">
+              <div class="step">
+                <div class="step-circle completed">
+                  <svg viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <span class="step-label">Submitted</span>
+                <span class="step-sub">Jan 18</span>
+              </div>
+              <div class="step">
+                <div class="step-circle current">
+                  <img src="https://www.figma.com/api/mcp/asset/caa2ba1c-6ec8-48fc-b1e2-86fb2f9e315e" alt="">
+                </div>
+                <span class="step-label">Review</span>
+                <span class="step-sub">In Progress</span>
+              </div>
+              <div class="step">
+                <div class="step-circle pending">
+                  <img src="https://www.figma.com/api/mcp/asset/0c8b474d-9339-44e9-adaf-fdbe034c7e08" alt="">
+                </div>
+                <span class="step-label muted">Approval</span>
+              </div>
+              <div class="step">
+                <div class="step-circle pending">
+                  <img src="https://www.figma.com/api/mcp/asset/4d858a41-fa1c-459f-a654-4d778e3e9060" alt="">
+                </div>
+                <span class="step-label muted">Closed</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button class="btn-primary">View Request Details</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div class="side-col">
+
+      <!-- Quick Actions -->
+      <div class="card-translucent">
+        <div class="card-header">
+          <span class="card-title">Quick Actions</span>
+        </div>
+        <nav class="quick-actions" aria-label="Quick actions">
+          <a href="#" class="quick-action-row" aria-label="View ID Cards">
+            <div class="qa-icon" aria-hidden="true"><img src="https://www.figma.com/api/mcp/asset/87654240-484d-488e-99b9-beefb4b570fe" alt=""></div>
+            <span class="qa-label">View ID Cards</span>
+            <div class="qa-chevron" aria-hidden="true"><svg viewBox="0 0 8 14" fill="none"><path d="M1 1l6 6-6 6" stroke="#105fa8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </a>
+          <a href="#" class="quick-action-row" aria-label="Submit New Claim">
+            <div class="qa-icon" aria-hidden="true"><img src="https://www.figma.com/api/mcp/asset/7e4a9d7c-8914-4309-a503-cc1d3128a2d5" alt=""></div>
+            <span class="qa-label">Submit New Claim</span>
+            <div class="qa-chevron" aria-hidden="true"><svg viewBox="0 0 8 14" fill="none"><path d="M1 1l6 6-6 6" stroke="#105fa8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </a>
+          <a href="#" class="quick-action-row" aria-label="Request Leave">
+            <div class="qa-icon" aria-hidden="true"><img src="https://www.figma.com/api/mcp/asset/12cc3554-805f-4991-afdb-0a45abc75138" alt=""></div>
+            <span class="qa-label">Request Leave</span>
+            <div class="qa-chevron" aria-hidden="true"><svg viewBox="0 0 8 14" fill="none"><path d="M1 1l6 6-6 6" stroke="#105fa8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </a>
+          <a href="#" class="quick-action-row" aria-label="Manage Preferences">
+            <div class="qa-icon" aria-hidden="true"><img src="https://www.figma.com/api/mcp/asset/fa3dd3d3-7cd1-4aa5-a895-fed096ee8ddb" alt=""></div>
+            <span class="qa-label">Manage Preferences</span>
+            <div class="qa-chevron" aria-hidden="true"><svg viewBox="0 0 8 14" fill="none"><path d="M1 1l6 6-6 6" stroke="#105fa8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </a>
+          <a href="#" class="quick-action-row" aria-label="Contact Support">
+            <div class="qa-icon" aria-hidden="true"><img src="https://www.figma.com/api/mcp/asset/4a232fc1-fdea-4354-ab08-2eb1c8c38faf" alt=""></div>
+            <span class="qa-label">Contact Support</span>
+            <div class="qa-chevron" aria-hidden="true"><svg viewBox="0 0 8 14" fill="none"><path d="M1 1l6 6-6 6" stroke="#105fa8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </a>
+        </nav>
+      </div>
+
+      <!-- Active Benefits -->
+      <div class="card-translucent">
+        <div class="benefits-wrapper">
+          <span class="card-title benefits-title">Active Benefits</span>
+
+          <div class="benefits-list">
+            <!-- Dental -->
+            <div class="benefit-card">
+              <div class="benefit-top">
+                <div class="benefit-icon" aria-hidden="true">
+                  <img src="https://www.figma.com/api/mcp/asset/3d2deb8e-39d2-4593-aab6-c79b700c46e3" alt="">
+                </div>
+                <div class="benefit-info">
+                  <div class="name">Dental Insurance</div>
+                  <div class="plan">Premier PPO Dental Plan</div>
+                </div>
+              </div>
+              <div class="benefit-usage">
+                <div class="benefit-usage-header">
+                  <span>Dental Max Used</span>
+                  <span>$340 / $2,000</span>
+                </div>
+                <div class="progress-bar" role="progressbar" aria-valuenow="17" aria-valuemin="0" aria-valuemax="100" aria-label="Dental benefit usage 17%">
+                  <div class="progress-fill"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Vision -->
+            <div class="benefit-card">
+              <div class="benefit-top">
+                <div class="benefit-icon" aria-hidden="true">
+                  <img src="https://www.figma.com/api/mcp/asset/5767dda2-dc4f-4b0b-ae23-89229a4a568d" alt="">
+                </div>
+                <div class="benefit-info">
+                  <div class="name">Vision Insurance</div>
+                  <div class="plan">Premier Vision Plan</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Short-Term Disability -->
+            <div class="benefit-card">
+              <div class="benefit-top">
+                <div class="benefit-icon" aria-hidden="true">
+                  <img src="https://www.figma.com/api/mcp/asset/423bf8b3-3d1d-4463-8d13-6c9b85ada1a3" alt="">
+                </div>
+                <div class="benefit-info">
+                  <div class="name">Short-Term Disability</div>
+                  <div class="plan">Base Plan</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Long-Term Disability -->
+            <div class="benefit-card">
+              <div class="benefit-top">
+                <div class="benefit-icon" aria-hidden="true">
+                  <img src="https://www.figma.com/api/mcp/asset/423bf8b3-3d1d-4463-8d13-6c9b85ada1a3" alt="">
+                </div>
+                <div class="benefit-info">
+                  <div class="name">Long-Term Disability</div>
+                  <div class="plan">Base Plan</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="benefits-footer">
+            <button class="btn-primary">View Coverage</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function toggleDrawer() {
+      const tabs = document.getElementById('mainTabs');
+      const btn = document.getElementById('hamburgerBtn');
+      const overlay = document.getElementById('drawerOverlay');
+      const isOpen = tabs.classList.contains('open');
+
+      if (isOpen) {
+        closeDrawer();
+      } else {
+        tabs.classList.add('open');
+        btn.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+        overlay.classList.add('visible');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeDrawer() {
+      const tabs = document.getElementById('mainTabs');
+      const btn = document.getElementById('hamburgerBtn');
+      const overlay = document.getElementById('drawerOverlay');
+      tabs.classList.remove('open');
+      btn.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+      overlay.classList.remove('visible');
+      document.body.style.overflow = '';
+    }
+
+    // Close drawer on Escape
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeDrawer();
+    });
+
+    // Close drawer on resize past mobile breakpoint
+    window.addEventListener('resize', function() {
+      if (window.innerWidth >= 768) closeDrawer();
+    });
+  </script>
+
+</body>
+</html>

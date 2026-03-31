@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MobileFooter - MoO Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    .page-content { max-width: 960px; margin: 0 auto; padding: 40px 60px; }
+    .back-link { font-size: 14px; color: #105fa8; text-decoration: none; display: flex; align-items: center; gap: 6px; margin-bottom: 24px; }
+    .back-link:hover { text-decoration: underline; }
+    h1 { font-size: 32px; color: #003a70; margin-bottom: 4px; }
+    .file-name { font-size: 13px; color: #105fa8; font-family: 'SF Mono', 'Courier New', monospace; margin-bottom: 8px; }
+    .description { font-size: 16px; color: #5d5d5d; margin-bottom: 32px; }
+    .gh-link { display: block; margin-bottom: 32px; font-size: 13px; color: #105fa8; text-decoration: none; font-weight: 600; }
+    .gh-link:hover { text-decoration: underline; }
+    .section-title { font-size: 20px; color: #003a70; margin-bottom: 16px; }
+    .preview-box { background: #f9fafb; border: 1px solid #f0f0f0; border-radius: 8px; padding: 32px; margin-bottom: 32px; display: flex; gap: 40px; flex-wrap: wrap; justify-content: center; }
+
+    /* MobileFooter styles */
+    .mobile-footer {
+      max-width: 375px;
+      width: 100%;
+      background: #fff;
+      border-top: 4px solid #105fa8;
+      font-family: 'Source Sans Pro', sans-serif;
+      padding: 32px 24px 24px;
+    }
+    .footer-logo {
+      font-size: 18px;
+      font-weight: 700;
+      color: #003a70;
+      margin-bottom: 24px;
+    }
+    .footer-section-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #838383;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+    }
+    .footer-links {
+      list-style: none;
+      margin-bottom: 24px;
+    }
+    .footer-links li {
+      margin-bottom: 8px;
+    }
+    .footer-links a {
+      font-size: 14px;
+      color: #105fa8;
+      text-decoration: none;
+    }
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+    .phone-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .phone-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .phone-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #5d5d5d;
+    }
+    .phone-number {
+      font-size: 14px;
+      color: #105fa8;
+      text-decoration: none;
+    }
+    .phone-number:hover {
+      text-decoration: underline;
+    }
+    .legal-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+      margin-bottom: 16px;
+      list-style: none;
+    }
+    .legal-links a {
+      font-size: 12px;
+      color: #105fa8;
+      text-decoration: none;
+    }
+    .legal-links a:hover {
+      text-decoration: underline;
+    }
+    .footer-divider {
+      border: none;
+      border-top: 1px solid #e8e8e8;
+      margin: 20px 0;
+    }
+    .copyright {
+      font-size: 12px;
+      color: #838383;
+      line-height: 18px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="ds-nav">
+    <div class="ds-nav-left">
+      <span class="ds-brand">MoO Design System</span>
+      <div class="ds-tabs">
+        <a href="index.html" class="ds-tab">Overview</a>
+        <a href="tokens.html" class="ds-tab">Design Tokens</a>
+        <a href="iconography.html" class="ds-tab">Iconography</a>
+        <a href="components.html" class="ds-tab active">Components</a>
+        <a href="dashboard.html" class="ds-tab">Dashboard Preview</a>
+        <a href="mobile-dashboard.html" class="ds-tab">Mobile Dashboard</a>
+        <a href="login-registration.html" class="ds-tab">Login &amp; Registration</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-content">
+    <a href="components.html" class="back-link">&larr; All Components</a>
+    <h1>MobileFooter</h1>
+    <div class="file-name">MobileFooter.tsx</div>
+    <p class="description">Mobile-optimized footer (375px max width) with blue top border, logo, assistance links, phone numbers grid, legal links, and copyright notice.</p>
+    <a href="https://github.com/ssutantoatcaptech/moo-ds/blob/main/src/components/MobileFooter.tsx" class="gh-link" target="_blank">View on GitHub &rarr;</a>
+
+    <h2 class="section-title">Default</h2>
+    <div class="preview-box">
+      <div class="mobile-footer">
+        <div class="footer-logo">Mutual of Omaha</div>
+
+        <div class="footer-section-title">Need Assistance?</div>
+        <ul class="footer-links">
+          <li><a href="#">Find a Provider</a></li>
+          <li><a href="#">File a Claim</a></li>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+
+        <div class="footer-section-title">Call Us</div>
+        <div class="phone-grid">
+          <div class="phone-item">
+            <span class="phone-label">Customer Service</span>
+            <a href="#" class="phone-number">1-800-775-6000</a>
+          </div>
+          <div class="phone-item">
+            <span class="phone-label">Claims</span>
+            <a href="#" class="phone-number">1-800-769-7100</a>
+          </div>
+          <div class="phone-item">
+            <span class="phone-label">Dental</span>
+            <a href="#" class="phone-number">1-800-886-2280</a>
+          </div>
+          <div class="phone-item">
+            <span class="phone-label">Disability</span>
+            <a href="#" class="phone-number">1-800-877-5176</a>
+          </div>
+        </div>
+
+        <hr class="footer-divider">
+
+        <ul class="legal-links">
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Use</a></li>
+          <li><a href="#">Accessibility</a></li>
+          <li><a href="#">Disclosures</a></li>
+        </ul>
+
+        <p class="copyright">&copy; 2026 Mutual of Omaha Insurance Company. All rights reserved.</p>
+      </div>
+    </div>
+
+    <h2 class="section-title">Design Tokens Used</h2>
+    <div class="preview-box" style="flex-direction: column; gap: 8px; align-items: flex-start;">
+      <div><strong>Top border:</strong> <code>--foundation-primary-blue</code> (#105fa8)</div>
+      <div><strong>Link color:</strong> <code>--text-link</code> (#105fa8)</div>
+      <div><strong>Logo color:</strong> <code>--foundation-primary-blue-dark</code> (#003a70)</div>
+      <div><strong>Section title color:</strong> <code>--foundation-grays-medium</code> (#838383)</div>
+      <div><strong>Copyright color:</strong> <code>--foundation-grays-medium</code> (#838383)</div>
+      <div><strong>Divider:</strong> <code>--foundation-grays-lighter</code> (#e8e8e8)</div>
+      <div><strong>Typography:</strong> <code>--font-family-title</code>, <code>--font-weight-semibold</code></div>
+    </div>
+  </div>
+</body>
+</html>

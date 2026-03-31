@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design Tokens - MoO Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+  <script src="figma-toolbar.js" defer></script>
+</head>
+<body>
+  <nav class="ds-nav">
+    <div class="ds-nav-left">
+      <span class="ds-brand">MoO Design System</span>
+      <div class="ds-tabs">
+        <a href="index.html" class="ds-tab">Overview</a>
+        <a href="tokens.html" class="ds-tab active">Design Tokens</a>
+        <a href="iconography.html" class="ds-tab">Iconography</a>
+        <a href="components.html" class="ds-tab">Components</a>
+        <a href="dashboard.html" class="ds-tab">Dashboard Preview</a>
+        <a href="mobile-dashboard.html" class="ds-tab">Mobile Dashboard</a>
+        <a href="login-registration.html" class="ds-tab">Login &amp; Registration</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <h1>Design Tokens</h1>
+    <p>Variables, styles, and tokens extracted from Figma.</p>
+  </section>
+
+  <div class="page-content">
+
+    <!-- ===== FOUNDATION COLORS ===== -->
+    <div class="token-section">
+      <h2>Foundation Colors</h2>
+      <p>Primary brand and neutral colors from the Member Experience design system.</p>
+      <div class="color-grid">
+        <div class="color-card">
+          <div class="color-swatch" style="background: #003a70;"></div>
+          <div class="color-info">
+            <div class="name">Primary / BlueDark</div>
+            <div class="value">#003a70</div>
+            <div class="css-var">--foundation-primary-bluedark</div>
+          </div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background: #105fa8;"></div>
+          <div class="color-info">
+            <div class="name">Primary / Blue</div>
+            <div class="value">#105fa8</div>
+            <div class="css-var">--foundation-primary-blue</div>
+          </div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background: #03746e;"></div>
+          <div class="color-info">
+            <div class="name">Primary / Teal</div>
+            <div class="value">#03746e</div>
+            <div class="css-var">--foundation-primary-teal</div>
+          </div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background: #ffffff; border-bottom: 1px solid #f0f0f0;"></div>
+          <div class="color-info">
+            <div class="name">Primary / White</div>
+            <div class="value">#ffffff</div>
+            <div class="css-var">--foundation-primary-white</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== GRAYS ===== -->
+    <div class="token-section">
+      <h2>Grays</h2>
+      <p>Neutral gray scale for text, borders, and backgrounds.</p>
+      <div class="color-grid">
+        <div class="color-card">
+          <div class="color-swatch" style="background: #222222;"></div>
+          <div class="color-info">
+            <div class="name">Grays / Darkest</div>
+            <div class="value">#222222</div>
+            <div class="css-var">--foundation-grays-darkest</div>
+          </div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background: #444444;"></div>
+          <div class="color-info">
+            <div class="name">Grays / Darker</div>
+            <div class="value">#444444</div>
+            <div class="css-var">--foundation-grays-darker</div>
+          </div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background: #5d5d5d;"></div>
+          <div class="color-info">
+            <div class="name">Grays / Dark</div>
+            <div class="value">#5d5d5d</div>
+            <div class="css-var">--foundation-grays-dark</div>
+          </div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background: #838383;"></div>
+          <div class="color-info">
+            <div class="name">Grays / Gray</div>
+            <div class="value">#838383</div>
+            <div class="css-var">--foundation-grays-gray</div>
+          </div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background: #bababa;"></div>
+          <div class="color-info">
+            <div class="name">Grays / Light</div>
+            <div class="value">#bababa</div>
+            <div class="css-var">--foundation-grays-light</div>
+          </div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background: #f0f0f0;"></div>
+          <div class="color-info">
+            <div class="name">Grays / Lighter</div>
+            <div class="value">#f0f0f0</div>
+            <div class="css-var">--foundation-grays-lighter</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== SEMANTIC COLORS ===== -->
+    <div class="token-section">
+      <h2>Semantic Colors</h2>
+      <p>Status and feedback colors.</p>
+      <div class="color-grid">
+        <div class="color-card">
+          <div class="color-swatch" style="background: #1c9e3b;"></div>
+          <div class="color-info">
+            <div class="name">Success</div>
+            <div class="value">#1c9e3b</div>
+            <div class="css-var">--semantics-success</div>
+          </div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background: #fcbc0b;"></div>
+          <div class="color-info">
+            <div class="name">Pending / Warning</div>
+            <div class="value">#fcbc0b</div>
+            <div class="css-var">--semantics-pending</div>
+          </div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background: #df6903;"></div>
+          <div class="color-info">
+            <div class="name">Warning (Alert)</div>
+            <div class="value">#df6903</div>
+            <div class="css-var">--semantics-warning</div>
+          </div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background: #067ac1;"></div>
+          <div class="color-info">
+            <div class="name">Information</div>
+            <div class="value">#067ac1</div>
+            <div class="css-var">--semantics-info</div>
+          </div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background: #105fa8;"></div>
+          <div class="color-info">
+            <div class="name">Text / Link</div>
+            <div class="value">#105fa8</div>
+            <div class="css-var">--text-links-link</div>
+          </div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background: #222222; opacity: 0.16;"></div>
+          <div class="color-info">
+            <div class="name">Black Transparent / 16%</div>
+            <div class="value">rgba(34,34,34,0.16)</div>
+            <div class="css-var">--supporting-black-transparent-16</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== GRADIENTS ===== -->
+    <div class="token-section">
+      <h2>Gradients</h2>
+      <p>Brand gradient combinations.</p>
+      <div class="gradient-grid">
+        <div class="gradient-card">
+          <div class="gradient-swatch" style="background: linear-gradient(to right, #003a70, #105fa8);"></div>
+          <div class="gradient-info">
+            <div class="name">Dark Blue and Blue</div>
+            <div class="value">linear-gradient(to right, #003a70, #105fa8)</div>
+          </div>
+        </div>
+        <div class="gradient-card">
+          <div class="gradient-swatch" style="background: linear-gradient(to right, #105fa8, #03746e);"></div>
+          <div class="gradient-info">
+            <div class="name">Blue and Teal</div>
+            <div class="value">linear-gradient(to right, #105fa8, #03746e)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== TYPOGRAPHY ===== -->
+    <div class="token-section">
+      <h2>Typography</h2>
+      <p>Font families, weights, sizes, and text styles.</p>
+      <table class="typo-table">
+        <thead>
+          <tr><th>Style</th><th>Sample</th><th>Properties</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="token-name">Heading 1 - Regular</span><br><span class="token-detail">Member Experience</span></td>
+            <td><span class="sample" style="font-size:40px; font-weight:400; line-height:1;">Welcome Back</span></td>
+            <td><span class="token-detail">Source Sans Pro / Regular / 40px / line-height: 100%</span></td>
+          </tr>
+          <tr>
+            <td><span class="token-name">Headline / H3</span><br><span class="token-detail">Font/Family/Title</span></td>
+            <td><span class="sample" style="font-size:24px; font-weight:400; line-height:32px;">Section Title</span></td>
+            <td><span class="token-detail">Source Sans Pro / Regular / 24px / line-height: 32px</span></td>
+          </tr>
+          <tr>
+            <td><span class="token-name">Headline / H4</span><br><span class="token-detail">Font/Family/Title</span></td>
+            <td><span class="sample" style="font-size:20px; font-weight:600; line-height:24px;">Card Heading</span></td>
+            <td><span class="token-detail">Source Sans Pro / SemiBold / 20px / line-height: 24px</span></td>
+          </tr>
+          <tr>
+            <td><span class="token-name">Headline / H5</span><br><span class="token-detail">Font/Family/Title</span></td>
+            <td><span class="sample" style="font-size:16px; font-weight:600; line-height:24px;">Row Title</span></td>
+            <td><span class="token-detail">Source Sans Pro / SemiBold / 16px / line-height: 24px</span></td>
+          </tr>
+          <tr>
+            <td><span class="token-name">Body / Small Text</span><br><span class="token-detail">Font/Family/Body</span></td>
+            <td><span class="sample" style="font-size:16px; font-weight:400; line-height:24px;">Body text content goes here</span></td>
+            <td><span class="token-detail">Source Sans Pro / Regular / 16px / line-height: 24px</span></td>
+          </tr>
+          <tr>
+            <td><span class="token-name">Body / Smaller Text</span><br><span class="token-detail">Font/Family/Body</span></td>
+            <td><span class="sample" style="font-size:14px; font-weight:400; line-height:20px;">Smaller body text and labels</span></td>
+            <td><span class="token-detail">Source Sans Pro / Regular / 14px / line-height: 20px</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ===== FONT TOKENS ===== -->
+    <div class="token-section">
+      <h2>Font Tokens</h2>
+      <p>Primitive typography tokens used across text styles.</p>
+      <div class="token-grid">
+        <div class="token-chip">
+          <span class="label">Font/Family/Title</span>
+          <span class="val">Source Sans Pro</span>
+        </div>
+        <div class="token-chip">
+          <span class="label">Font/Family/Body</span>
+          <span class="val">Source Sans Pro</span>
+        </div>
+        <div class="token-chip">
+          <span class="label">Font/Weight/400</span>
+          <span class="val">Regular</span>
+        </div>
+        <div class="token-chip">
+          <span class="label">Font/Weight/600</span>
+          <span class="val">SemiBold</span>
+        </div>
+        <div class="token-chip">
+          <span class="label">Font/Size/xl</span>
+          <span class="val">24px</span>
+        </div>
+        <div class="token-chip">
+          <span class="label">Font/Size/lg</span>
+          <span class="val">20px</span>
+        </div>
+        <div class="token-chip">
+          <span class="label">Font/Size/sm</span>
+          <span class="val">16px</span>
+        </div>
+        <div class="token-chip">
+          <span class="label">Font/Size/xs</span>
+          <span class="val">14px</span>
+        </div>
+        <div class="token-chip">
+          <span class="label">Line-Height/lg</span>
+          <span class="val">32px</span>
+        </div>
+        <div class="token-chip">
+          <span class="label">Line-Height/sm</span>
+          <span class="val">24px</span>
+        </div>
+        <div class="token-chip">
+          <span class="label">Line-Height/xs</span>
+          <span class="val">20px</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== EXTENDED PALETTE ===== -->
+    <div class="token-section">
+      <h2>Extended Palette</h2>
+      <p>Additional color variables from the MoM - Member Experience DS library.</p>
+      <div class="color-grid">
+        <div class="color-card">
+          <div class="color-swatch" style="background: #2563eb;"></div>
+          <div class="color-info">
+            <div class="name">color/blue/7</div>
+            <div class="value">Blue 7</div>
+            <div class="css-var">html.to.design collection</div>
+          </div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background: #1d4ed8;"></div>
+          <div class="color-info">
+            <div class="name">color/blue/8</div>
+            <div class="value">Blue 8</div>
+            <div class="css-var">html.to.design collection</div>
+          </div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background: #06b6d4;"></div>
+          <div class="color-info">
+            <div class="name">color/cyan/23</div>
+            <div class="value">Cyan 23</div>
+            <div class="css-var">html.to.design collection</div>
+          </div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background: #f9fafb;"></div>
+          <div class="color-info">
+            <div class="name">color/grey/98</div>
+            <div class="value">Grey 98</div>
+            <div class="css-var">html.to.design collection</div>
+          </div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background: #f3f4f6;"></div>
+          <div class="color-info">
+            <div class="name">color/grey/95</div>
+            <div class="value">Grey 95</div>
+            <div class="css-var">html.to.design collection</div>
+          </div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background: #e5e7eb;"></div>
+          <div class="color-info">
+            <div class="name">color/grey/92</div>
+            <div class="value">Grey 92</div>
+            <div class="css-var">html.to.design collection</div>
+          </div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background: #d1d5db;"></div>
+          <div class="color-info">
+            <div class="name">color/grey/85</div>
+            <div class="value">Grey 85</div>
+            <div class="css-var">claude.ai collection</div>
+          </div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background: #6b7280;"></div>
+          <div class="color-info">
+            <div class="name">color/grey/46</div>
+            <div class="value">Grey 46</div>
+            <div class="css-var">html.to.design collection</div>
+          </div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background: #9ca3af;"></div>
+          <div class="color-info">
+            <div class="name">color/grey/40</div>
+            <div class="value">Grey 40</div>
+            <div class="css-var">html.to.design collection</div>
+          </div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background: #4b5563;"></div>
+          <div class="color-info">
+            <div class="name">color/grey/36</div>
+            <div class="value">Grey 36</div>
+            <div class="css-var">html.to.design collection</div>
+          </div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background: #374151;"></div>
+          <div class="color-info">
+            <div class="name">color/grey/27</div>
+            <div class="value">Grey 27</div>
+            <div class="css-var">html.to.design collection</div>
+          </div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background: #1f2937;"></div>
+          <div class="color-info">
+            <div class="name">color/grey/13</div>
+            <div class="value">Grey 13</div>
+            <div class="css-var">html.to.design collection</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== FIGMA STYLES ===== -->
+    <div class="token-section">
+      <h2>Figma Styles (from Libraries)</h2>
+      <p>Shared styles from connected Figma libraries.</p>
+      <div class="token-grid">
+        <div class="token-chip">
+          <span class="label">Foundation/Blue/Blue-40</span>
+          <span class="val">$color-text-link</span>
+        </div>
+        <div class="token-chip">
+          <span class="label">Foundation/Yellow/Yellow-95</span>
+          <span class="val">$color-background-highlight</span>
+        </div>
+        <div class="token-chip">
+          <span class="label">box-shadow/focus</span>
+          <span class="val">Focus state effect</span>
+        </div>
+        <div class="token-chip">
+          <span class="label">color/info/1 (Blue 40)</span>
+          <span class="val">Informational fill</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

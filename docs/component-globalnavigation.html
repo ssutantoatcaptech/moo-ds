@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GlobalNavigation - MoO Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    .page-content { max-width: 960px; margin: 0 auto; padding: 40px 60px; }
+    .back-link { font-size: 14px; color: #105fa8; text-decoration: none; display: flex; align-items: center; gap: 6px; margin-bottom: 24px; }
+    .back-link:hover { text-decoration: underline; }
+    h1 { font-size: 32px; color: #003a70; margin-bottom: 4px; }
+    .file-name { font-size: 13px; color: #105fa8; font-family: 'SF Mono', 'Courier New', monospace; margin-bottom: 8px; }
+    .description { font-size: 16px; color: #5d5d5d; margin-bottom: 32px; }
+    .gh-link { display: block; margin-bottom: 32px; font-size: 13px; color: #105fa8; text-decoration: none; font-weight: 600; }
+    .gh-link:hover { text-decoration: underline; }
+    .section-title { font-size: 20px; color: #003a70; margin-bottom: 16px; }
+    .preview-box { background: #f9fafb; border: 1px solid #f0f0f0; border-radius: 8px; padding: 0; margin-bottom: 32px; overflow: hidden; }
+  </style>
+</head>
+<body>
+  <nav class="ds-nav">
+    <div class="ds-nav-left">
+      <span class="ds-brand">MoO Design System</span>
+      <div class="ds-tabs">
+        <a href="index.html" class="ds-tab">Overview</a>
+        <a href="tokens.html" class="ds-tab">Design Tokens</a>
+        <a href="iconography.html" class="ds-tab">Iconography</a>
+        <a href="components.html" class="ds-tab active">Components</a>
+        <a href="dashboard.html" class="ds-tab">Dashboard Preview</a>
+        <a href="mobile-dashboard.html" class="ds-tab">Mobile Dashboard</a>
+        <a href="login-registration.html" class="ds-tab">Login &amp; Registration</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-content">
+    <a href="components.html" class="back-link">&larr; Back to Components</a>
+    <h1>GlobalNavigation</h1>
+    <div class="file-name">GlobalNavigation.tsx</div>
+    <p class="description">Top-level navigation bar with brand, main tabs, utility links, and user profile.</p>
+    <a href="https://github.com/ssutantoatcaptech/moo-ds/blob/main/src/components/GlobalNavigation.tsx" class="gh-link">View on GitHub &rarr;</a>
+
+    <h2 class="section-title">Default</h2>
+    <div class="preview-box">
+      <div style="display: flex; align-items: center; justify-content: space-between; padding: 16px 24px; background: white; border-bottom: 1px solid #f0f0f0; font-family: 'Source Sans Pro', sans-serif;">
+        <!-- Left side -->
+        <div style="display: flex; align-items: center; gap: 32px;">
+          <span style="font-size: 18px; font-weight: 600; color: #105fa8;">MyBenefits Hub</span>
+          <div style="display: flex; gap: 4px;">
+            <a href="#" style="padding: 8px 12px; border-radius: 4px; font-size: 14px; color: #222; text-decoration: none; background: #eceff2; font-weight: 600;">Dashboard</a>
+            <a href="#" style="padding: 8px 12px; border-radius: 4px; font-size: 14px; color: #222; text-decoration: none;">My Coverages</a>
+            <a href="#" style="padding: 8px 12px; border-radius: 4px; font-size: 14px; color: #222; text-decoration: none;">Claims</a>
+            <a href="#" style="padding: 8px 12px; border-radius: 4px; font-size: 14px; color: #222; text-decoration: none;">Leave</a>
+            <a href="#" style="padding: 8px 12px; border-radius: 4px; font-size: 14px; color: #222; text-decoration: none;">Support</a>
+          </div>
+        </div>
+        <!-- Right side -->
+        <div style="display: flex; align-items: center; gap: 24px;">
+          <a href="#" style="font-size: 14px; color: #444; text-decoration: none;">Find ID Card</a>
+          <a href="#" style="font-size: 14px; color: #444; text-decoration: none;">Messages</a>
+          <div style="width: 44px; height: 44px; border-radius: 9999px; background: #f0f0f0; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <div style="width: 34px; height: 34px; border-radius: 9999px; background: #105fa8; color: white; font-weight: 600; font-size: 13px; display: flex; align-items: center; justify-content: center;">SJ</div>
+            <span style="font-size: 14px; color: #105fa8; font-weight: 600;">Sarah Johnson</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

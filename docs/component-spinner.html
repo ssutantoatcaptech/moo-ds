@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spinner - MoO Design System</title>
+  <link rel="stylesheet" href="shared.css">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+  <nav class="ds-nav">
+    <div class="ds-nav-left">
+      <div class="ds-brand">MoO Design System</div>
+      <div class="ds-tabs">
+        <a class="ds-tab" href="index.html">Overview</a>
+        <a class="ds-tab" href="tokens.html">Design Tokens</a>
+        <a class="ds-tab active" href="components.html">Components</a>
+        <a class="ds-tab" href="dashboard.html">Dashboard Preview</a>
+        <a class="ds-tab" href="login-registration.html">Login &amp; Registration</a>
+      </div>
+    </div>
+  </nav>
+
+  <div style="max-width: 960px; margin: 0 auto; padding: 40px 60px;">
+    <a href="components.html" style="font-size: 14px; color: #105fa8; text-decoration: none; display: flex; align-items: center; gap: 6px; margin-bottom: 24px;">&larr; Back to Components</a>
+
+    <h1 style="font-size: 32px; color: #003a70; margin-bottom: 4px;">Spinner</h1>
+    <div style="font-size: 13px; color: #105fa8; font-family: 'SF Mono', 'Courier New', monospace; margin-bottom: 8px;">Spinner.tsx</div>
+    <p style="font-size: 16px; color: #5d5d5d; margin-bottom: 32px;">A simple animated spinner indicating loading state. Available in multiple sizes for different contexts.</p>
+    <a href="https://github.com/ssutantoatcaptech/moo-ds/blob/main/src/components/Spinner.tsx" style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: #105fa8; text-decoration: none; font-weight: 600; margin-bottom: 32px;">View on GitHub &rarr;</a>
+
+    <h2 style="font-size: 20px; color: #003a70; margin-bottom: 16px;">Sizes</h2>
+    <div style="background: #f9fafb; border: 1px solid #f0f0f0; border-radius: 8px; padding: 32px; margin-bottom: 32px;">
+      <div style="display: flex; gap: 32px; align-items: end;">
+        <!-- Tiny -->
+        <div style="display: flex; flex-direction: column; align-items: center;">
+          <div style="width: 8px; height: 8px; border: 1px solid rgba(34,34,34,0.12); border-top-color: #105fa8; border-radius: 50%; animation: spin 0.8s linear infinite;"></div>
+          <div style="font-size: 12px; color: #838383; margin-top: 8px; text-align: center;">Tiny</div>
+        </div>
+        <!-- Extra-small -->
+        <div style="display: flex; flex-direction: column; align-items: center;">
+          <div style="width: 12px; height: 12px; border: 1.5px solid rgba(34,34,34,0.12); border-top-color: #105fa8; border-radius: 50%; animation: spin 0.8s linear infinite;"></div>
+          <div style="font-size: 12px; color: #838383; margin-top: 8px; text-align: center;">Extra-small</div>
+        </div>
+        <!-- Small -->
+        <div style="display: flex; flex-direction: column; align-items: center;">
+          <div style="width: 16px; height: 16px; border: 2px solid rgba(34,34,34,0.12); border-top-color: #105fa8; border-radius: 50%; animation: spin 0.8s linear infinite;"></div>
+          <div style="font-size: 12px; color: #838383; margin-top: 8px; text-align: center;">Small</div>
+        </div>
+        <!-- Medium -->
+        <div style="display: flex; flex-direction: column; align-items: center;">
+          <div style="width: 24px; height: 24px; border: 3px solid rgba(34,34,34,0.12); border-top-color: #105fa8; border-radius: 50%; animation: spin 0.8s linear infinite;"></div>
+          <div style="font-size: 12px; color: #838383; margin-top: 8px; text-align: center;">Medium</div>
+        </div>
+        <!-- Large -->
+        <div style="display: flex; flex-direction: column; align-items: center;">
+          <div style="width: 32px; height: 32px; border: 3px solid rgba(34,34,34,0.12); border-top-color: #105fa8; border-radius: 50%; animation: spin 0.8s linear infinite;"></div>
+          <div style="font-size: 12px; color: #838383; margin-top: 8px; text-align: center;">Large</div>
+        </div>
+        <!-- Extra-large -->
+        <div style="display: flex; flex-direction: column; align-items: center;">
+          <div style="width: 48px; height: 48px; border: 4px solid rgba(34,34,34,0.12); border-top-color: #105fa8; border-radius: 50%; animation: spin 0.8s linear infinite;"></div>
+          <div style="font-size: 12px; color: #838383; margin-top: 8px; text-align: center;">Extra-large</div>
+        </div>
+        <!-- Huge -->
+        <div style="display: flex; flex-direction: column; align-items: center;">
+          <div style="width: 64px; height: 64px; border: 4px solid rgba(34,34,34,0.12); border-top-color: #105fa8; border-radius: 50%; animation: spin 0.8s linear infinite;"></div>
+          <div style="font-size: 12px; color: #838383; margin-top: 8px; text-align: center;">Huge</div>
+        </div>
+      </div>
+    </div>
+
+    <h2 style="font-size: 20px; color: #003a70; margin-bottom: 16px;">With Label</h2>
+    <div style="background: #f9fafb; border: 1px solid #f0f0f0; border-radius: 8px; padding: 32px; margin-bottom: 32px;">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <div style="width: 24px; height: 24px; border: 3px solid rgba(34,34,34,0.12); border-top-color: #105fa8; border-radius: 50%; animation: spin 0.8s linear infinite;"></div>
+        <span style="font-size: 14px; color: #444;">Loading...</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

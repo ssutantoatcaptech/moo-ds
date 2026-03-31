@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Avatar - MoO Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    .page-content { max-width: 960px; margin: 0 auto; padding: 40px 60px; }
+    .back-link { font-size: 14px; color: #105fa8; text-decoration: none; display: flex; align-items: center; gap: 6px; margin-bottom: 24px; }
+    .back-link:hover { text-decoration: underline; }
+    h1 { font-size: 32px; color: #003a70; margin-bottom: 4px; }
+    .file-name { font-size: 13px; color: #105fa8; font-family: 'SF Mono', 'Courier New', monospace; margin-bottom: 8px; }
+    .description { font-size: 16px; color: #5d5d5d; margin-bottom: 32px; }
+    .gh-link { display: block; margin-bottom: 32px; font-size: 13px; color: #105fa8; text-decoration: none; font-weight: 600; }
+    .gh-link:hover { text-decoration: underline; }
+    .section-title { font-size: 20px; color: #003a70; margin-bottom: 16px; }
+    .preview-box { background: #f9fafb; border: 1px solid #f0f0f0; border-radius: 8px; padding: 32px; margin-bottom: 32px; }
+  </style>
+</head>
+<body>
+  <nav class="ds-nav">
+    <div class="ds-nav-left">
+      <span class="ds-brand">MoO Design System</span>
+      <div class="ds-tabs">
+        <a href="index.html" class="ds-tab">Overview</a>
+        <a href="tokens.html" class="ds-tab">Design Tokens</a>
+        <a href="iconography.html" class="ds-tab">Iconography</a>
+        <a href="components.html" class="ds-tab active">Components</a>
+        <a href="dashboard.html" class="ds-tab">Dashboard Preview</a>
+        <a href="mobile-dashboard.html" class="ds-tab">Mobile Dashboard</a>
+        <a href="login-registration.html" class="ds-tab">Login &amp; Registration</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-content">
+    <a href="components.html" class="back-link">&larr; Back to Components</a>
+    <h1>Avatar</h1>
+    <div class="file-name">Avatar.tsx</div>
+    <p class="description">User profile picture with circular crop, initials fallback, and multiple sizes.</p>
+    <a href="https://github.com/ssutantoatcaptech/moo-ds/blob/main/src/components/Avatar.tsx" class="gh-link">View on GitHub &rarr;</a>
+
+    <h2 class="section-title">Sizes</h2>
+    <div class="preview-box">
+      <div style="display: flex; gap: 20px; align-items: end;">
+        <div style="width: 20px; height: 20px; border-radius: 9999px; background: #105fa8; color: white; font-weight: 600; font-size: 8px; display: flex; align-items: center; justify-content: center; font-family: 'Source Sans Pro', sans-serif; flex-shrink: 0;">SJ</div>
+        <div style="width: 24px; height: 24px; border-radius: 9999px; background: #105fa8; color: white; font-weight: 600; font-size: 10px; display: flex; align-items: center; justify-content: center; font-family: 'Source Sans Pro', sans-serif; flex-shrink: 0;">SJ</div>
+        <div style="width: 28px; height: 28px; border-radius: 9999px; background: #105fa8; color: white; font-weight: 600; font-size: 11px; display: flex; align-items: center; justify-content: center; font-family: 'Source Sans Pro', sans-serif; flex-shrink: 0;">SJ</div>
+        <div style="width: 32px; height: 32px; border-radius: 9999px; background: #105fa8; color: white; font-weight: 600; font-size: 13px; display: flex; align-items: center; justify-content: center; font-family: 'Source Sans Pro', sans-serif; flex-shrink: 0;">SJ</div>
+        <div style="width: 40px; height: 40px; border-radius: 9999px; background: #105fa8; color: white; font-weight: 600; font-size: 16px; display: flex; align-items: center; justify-content: center; font-family: 'Source Sans Pro', sans-serif; flex-shrink: 0;">SJ</div>
+        <div style="width: 48px; height: 48px; border-radius: 9999px; background: #105fa8; color: white; font-weight: 600; font-size: 19px; display: flex; align-items: center; justify-content: center; font-family: 'Source Sans Pro', sans-serif; flex-shrink: 0;">SJ</div>
+        <div style="width: 56px; height: 56px; border-radius: 9999px; background: #105fa8; color: white; font-weight: 600; font-size: 22px; display: flex; align-items: center; justify-content: center; font-family: 'Source Sans Pro', sans-serif; flex-shrink: 0;">SJ</div>
+        <div style="width: 64px; height: 64px; border-radius: 9999px; background: #105fa8; color: white; font-weight: 600; font-size: 26px; display: flex; align-items: center; justify-content: center; font-family: 'Source Sans Pro', sans-serif; flex-shrink: 0;">SJ</div>
+        <div style="width: 80px; height: 80px; border-radius: 9999px; background: #105fa8; color: white; font-weight: 600; font-size: 32px; display: flex; align-items: center; justify-content: center; font-family: 'Source Sans Pro', sans-serif; flex-shrink: 0;">SJ</div>
+        <div style="width: 96px; height: 96px; border-radius: 9999px; background: #105fa8; color: white; font-weight: 600; font-size: 38px; display: flex; align-items: center; justify-content: center; font-family: 'Source Sans Pro', sans-serif; flex-shrink: 0;">SJ</div>
+        <div style="width: 120px; height: 120px; border-radius: 9999px; background: #105fa8; color: white; font-weight: 600; font-size: 48px; display: flex; align-items: center; justify-content: center; font-family: 'Source Sans Pro', sans-serif; flex-shrink: 0;">SJ</div>
+      </div>
+    </div>
+
+    <h2 class="section-title">Colors</h2>
+    <div class="preview-box">
+      <div style="display: flex; gap: 20px; align-items: center;">
+        <div style="width: 48px; height: 48px; border-radius: 9999px; background: #105fa8; color: white; font-weight: 600; font-size: 19px; display: flex; align-items: center; justify-content: center; font-family: 'Source Sans Pro', sans-serif;">SJ</div>
+        <div style="width: 48px; height: 48px; border-radius: 9999px; background: #003a70; color: white; font-weight: 600; font-size: 19px; display: flex; align-items: center; justify-content: center; font-family: 'Source Sans Pro', sans-serif;">MK</div>
+        <div style="width: 48px; height: 48px; border-radius: 9999px; background: #03746e; color: white; font-weight: 600; font-size: 19px; display: flex; align-items: center; justify-content: center; font-family: 'Source Sans Pro', sans-serif;">AB</div>
+        <div style="width: 48px; height: 48px; border-radius: 9999px; background: #8b5e3c; color: white; font-weight: 600; font-size: 19px; display: flex; align-items: center; justify-content: center; font-family: 'Source Sans Pro', sans-serif;">RW</div>
+        <div style="width: 48px; height: 48px; border-radius: 9999px; background: #c12506; color: white; font-weight: 600; font-size: 19px; display: flex; align-items: center; justify-content: center; font-family: 'Source Sans Pro', sans-serif;">DP</div>
+        <div style="width: 48px; height: 48px; border-radius: 9999px; background: #1c9e3b; color: white; font-weight: 600; font-size: 19px; display: flex; align-items: center; justify-content: center; font-family: 'Source Sans Pro', sans-serif;">LT</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>InlineMessage - MoO Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    .page-content { max-width: 960px; margin: 0 auto; padding: 40px 60px; }
+    .back-link { font-size: 14px; color: #105fa8; text-decoration: none; display: flex; align-items: center; gap: 6px; margin-bottom: 24px; }
+    .back-link:hover { text-decoration: underline; }
+    h1 { font-size: 32px; color: #003a70; margin-bottom: 4px; }
+    .file-name { font-size: 13px; color: #105fa8; font-family: 'SF Mono', 'Courier New', monospace; margin-bottom: 8px; }
+    .description { font-size: 16px; color: #5d5d5d; margin-bottom: 32px; }
+    .figma-link { display: inline-flex; align-items: center; gap: 6px; margin-bottom: 32px; font-size: 13px; color: #105fa8; text-decoration: none; font-weight: 600; }
+    .figma-link:hover { text-decoration: underline; }
+    .section-title { font-size: 20px; color: #003a70; margin-bottom: 16px; }
+    .preview-box { background: #f9fafb; border: 1px solid #f0f0f0; border-radius: 8px; padding: 32px; margin-bottom: 32px; }
+    .variant-label { font-size: 12px; font-weight: 600; color: #838383; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+
+    /* ===== Inline Message Component ===== */
+    .inline-msg { display: flex; border-radius: 12px; overflow: hidden; font-family: 'Source Sans Pro', sans-serif; max-width: 477px; }
+    .inline-msg-stripe {
+      width: 40px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+      color: #fff; font-size: 18px;
+    }
+    .inline-msg-stripe--success { background: #1fa668; }
+    .inline-msg-stripe--error { background: #c12506; }
+    .inline-msg-stripe--warning { background: #df6903; }
+    .inline-msg-stripe--info { background: #067ac1; }
+
+    .inline-msg-body {
+      flex: 1; padding: 16px; border: 1px solid; border-left: none;
+      border-radius: 0 12px 12px 0;
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
+    }
+    .inline-msg-body--success { background: #edf8f3; border-color: #1fa668; }
+    .inline-msg-body--error { background: #fdf4f2; border-color: #c12506; }
+    .inline-msg-body--warning { background: #fef8eb; border-color: #df6903; }
+    .inline-msg-body--info { background: #f2f8fe; border-color: #067ac1; }
+
+    .inline-msg-text { flex: 1; }
+    .inline-msg-title { font-size: 14px; font-weight: 600; color: #444; line-height: 20px; margin-bottom: 4px; }
+    .inline-msg-desc { font-size: 14px; color: #444; line-height: 20px; }
+    .inline-msg-link { color: #105fa8; text-decoration: underline; font-size: 14px; cursor: pointer; }
+    .inline-msg-link i { font-size: 12px; margin-left: 2px; }
+    .inline-msg-close {
+      background: none; border: none; font-size: 16px; color: #444; cursor: pointer;
+      padding: 0; line-height: 1; flex-shrink: 0; opacity: 0.6;
+      transition: opacity 0.15s;
+    }
+    .inline-msg-close:hover { opacity: 1; }
+
+    /* Props table */
+    .props-table { width: 100%; border-collapse: collapse; margin-bottom: 32px; }
+    .props-table th { text-align: left; font-size: 12px; font-weight: 600; color: #838383; text-transform: uppercase; letter-spacing: 0.5px; padding: 8px 12px; border-bottom: 2px solid #f0f0f0; }
+    .props-table td { font-size: 14px; color: #444; padding: 10px 12px; border-bottom: 1px solid #f0f0f0; }
+    .props-table code { background: #f0f0f0; padding: 2px 6px; border-radius: 3px; font-size: 13px; }
+  </style>
+  <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+  <script src="figma-toolbar.js" defer></script>
+</head>
+<body>
+  <nav class="ds-nav">
+    <div class="ds-nav-left">
+      <span class="ds-brand">MoO Design System</span>
+      <div class="ds-tabs">
+        <a href="index.html" class="ds-tab">Overview</a>
+        <a href="tokens.html" class="ds-tab">Design Tokens</a>
+        <a href="iconography.html" class="ds-tab">Iconography</a>
+        <a href="components.html" class="ds-tab active">Components</a>
+        <a href="dashboard.html" class="ds-tab">Dashboard Preview</a>
+        <a href="mobile-dashboard.html" class="ds-tab">Mobile Dashboard</a>
+        <a href="login-registration.html" class="ds-tab">Login &amp; Registration</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-content">
+    <a href="components.html" class="back-link">&larr; Back to Components</a>
+    <h1>InlineMessage</h1>
+    <div class="file-name">InlineMessage.tsx</div>
+    <p class="description">Inline notification messages with colored status stripe, icon, body text with optional links, and dismissible close button. Four variants: Success, Error, Warning, and Information.</p>
+    <a href="https://www.figma.com/design/IE52Pd1nEcinhqOlSy4efj/Member-Experience-Design-System?node-id=8020-7613&m=dev" class="figma-link" target="_blank">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 5.5A3.5 3.5 0 0 1 8.5 2H12v7H8.5A3.5 3.5 0 0 1 5 5.5z" fill="#F24E1E"/><path d="M12 2h3.5a3.5 3.5 0 1 1 0 7H12V2z" fill="#FF7262"/><path d="M12 12.5a3.5 3.5 0 1 1 7 0 3.5 3.5 0 1 1-7 0z" fill="#1ABCFE"/><path d="M5 19.5A3.5 3.5 0 0 1 8.5 16H12v3.5a3.5 3.5 0 1 1-7 0z" fill="#0ACF83"/><path d="M5 12.5A3.5 3.5 0 0 1 8.5 9H12v7H8.5A3.5 3.5 0 0 1 5 12.5z" fill="#A259FF"/></svg>
+      View in Figma &rarr;
+    </a>
+
+    <h2 class="section-title">Variants</h2>
+    <div class="preview-box">
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+
+        <!-- Success -->
+        <div class="variant-label">Success</div>
+        <div class="inline-msg">
+          <div class="inline-msg-stripe inline-msg-stripe--success">
+            <i class="fas fa-check-circle"></i>
+          </div>
+          <div class="inline-msg-body inline-msg-body--success">
+            <div class="inline-msg-text">
+              <div class="inline-msg-title">You're All Caught Up</div>
+              <div class="inline-msg-desc">
+                requests are up to date. <a href="#" class="inline-msg-link">Link here <i class="fas fa-chevron-circle-right"></i></a><br>
+                requests are up to date. <a href="#" class="inline-msg-link">Link here <i class="fas fa-chevron-circle-right"></i></a>
+              </div>
+            </div>
+            <button class="inline-msg-close"><i class="fas fa-times"></i></button>
+          </div>
+        </div>
+
+        <!-- Error -->
+        <div class="variant-label" style="margin-top: 12px;">Error</div>
+        <div class="inline-msg">
+          <div class="inline-msg-stripe inline-msg-stripe--error">
+            <i class="fas fa-exclamation-circle"></i>
+          </div>
+          <div class="inline-msg-body inline-msg-body--error">
+            <div class="inline-msg-text">
+              <div class="inline-msg-title">You're All Caught Up</div>
+              <div class="inline-msg-desc">
+                requests are up to date. <a href="#" class="inline-msg-link">Link here <i class="fas fa-chevron-circle-right"></i></a><br>
+                requests are up to date. <a href="#" class="inline-msg-link">Link here <i class="fas fa-chevron-circle-right"></i></a>
+              </div>
+            </div>
+            <button class="inline-msg-close"><i class="fas fa-times"></i></button>
+          </div>
+        </div>
+
+        <!-- Warning -->
+        <div class="variant-label" style="margin-top: 12px;">Warning</div>
+        <div class="inline-msg">
+          <div class="inline-msg-stripe inline-msg-stripe--warning">
+            <i class="fas fa-exclamation-triangle"></i>
+          </div>
+          <div class="inline-msg-body inline-msg-body--warning">
+            <div class="inline-msg-text">
+              <div class="inline-msg-title">You're All Caught Up</div>
+              <div class="inline-msg-desc">
+                requests are up to date. <a href="#" class="inline-msg-link">Link here <i class="fas fa-chevron-circle-right"></i></a><br>
+                requests are up to date. <a href="#" class="inline-msg-link">Link here <i class="fas fa-chevron-circle-right"></i></a>
+              </div>
+            </div>
+            <button class="inline-msg-close"><i class="fas fa-times"></i></button>
+          </div>
+        </div>
+
+        <!-- Information -->
+        <div class="variant-label" style="margin-top: 12px;">Information</div>
+        <div class="inline-msg">
+          <div class="inline-msg-stripe inline-msg-stripe--info">
+            <i class="fas fa-info-circle"></i>
+          </div>
+          <div class="inline-msg-body inline-msg-body--info">
+            <div class="inline-msg-text">
+              <div class="inline-msg-title">You're All Caught Up</div>
+              <div class="inline-msg-desc">
+                requests are up to date. <a href="#" class="inline-msg-link">Link here <i class="fas fa-chevron-circle-right"></i></a><br>
+                requests are up to date. <a href="#" class="inline-msg-link">Link here <i class="fas fa-chevron-circle-right"></i></a>
+              </div>
+            </div>
+            <button class="inline-msg-close"><i class="fas fa-times"></i></button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <h2 class="section-title">Props</h2>
+    <table class="props-table">
+      <thead>
+        <tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>property1</code></td>
+          <td><code>"Success" | "Error" | "Warning" | "Information"</code></td>
+          <td><code>"Success"</code></td>
+          <td>Controls the variant: color, icon, and tint.</td>
+        </tr>
+        <tr>
+          <td><code>title</code></td>
+          <td><code>string</code></td>
+          <td>&mdash;</td>
+          <td>Bold heading text displayed in the message.</td>
+        </tr>
+        <tr>
+          <td><code>children</code></td>
+          <td><code>ReactNode</code></td>
+          <td>&mdash;</td>
+          <td>Body content including text and optional links.</td>
+        </tr>
+        <tr>
+          <td><code>onDismiss</code></td>
+          <td><code>() =&gt; void</code></td>
+          <td>&mdash;</td>
+          <td>Callback when the close button is clicked. If omitted, close button is hidden.</td>
+        </tr>
+        <tr>
+          <td><code>className</code></td>
+          <td><code>string</code></td>
+          <td>&mdash;</td>
+          <td>Additional CSS class for the wrapper.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="section-title">Design Tokens</h2>
+    <div class="preview-box">
+      <table class="props-table" style="margin-bottom: 0;">
+        <thead>
+          <tr><th>Variant</th><th>Stripe</th><th>Background Tint</th><th>Border</th><th>Icon</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Success</td>
+            <td><span style="display:inline-block;width:12px;height:12px;background:#1fa668;border-radius:2px;vertical-align:middle;margin-right:6px;"></span><code>#1fa668</code></td>
+            <td><span style="display:inline-block;width:12px;height:12px;background:#edf8f3;border-radius:2px;vertical-align:middle;margin-right:6px;"></span><code>#edf8f3</code></td>
+            <td><code>#1fa668</code></td>
+            <td><code>fa-check-circle</code></td>
+          </tr>
+          <tr>
+            <td>Error</td>
+            <td><span style="display:inline-block;width:12px;height:12px;background:#c12506;border-radius:2px;vertical-align:middle;margin-right:6px;"></span><code>#c12506</code></td>
+            <td><span style="display:inline-block;width:12px;height:12px;background:#fdf4f2;border-radius:2px;vertical-align:middle;margin-right:6px;"></span><code>#fdf4f2</code></td>
+            <td><code>#c12506</code></td>
+            <td><code>fa-exclamation-circle</code></td>
+          </tr>
+          <tr>
+            <td>Warning</td>
+            <td><span style="display:inline-block;width:12px;height:12px;background:#df6903;border-radius:2px;vertical-align:middle;margin-right:6px;"></span><code>#df6903</code></td>
+            <td><span style="display:inline-block;width:12px;height:12px;background:#fef8eb;border-radius:2px;vertical-align:middle;margin-right:6px;"></span><code>#fef8eb</code></td>
+            <td><code>#df6903</code></td>
+            <td><code>fa-exclamation-triangle</code></td>
+          </tr>
+          <tr>
+            <td>Information</td>
+            <td><span style="display:inline-block;width:12px;height:12px;background:#067ac1;border-radius:2px;vertical-align:middle;margin-right:6px;"></span><code>#067ac1</code></td>
+            <td><span style="display:inline-block;width:12px;height:12px;background:#f2f8fe;border-radius:2px;vertical-align:middle;margin-right:6px;"></span><code>#f2f8fe</code></td>
+            <td><code>#067ac1</code></td>
+            <td><code>fa-info-circle</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="section-title">Anatomy</h2>
+    <div class="preview-box">
+      <div style="display:flex;flex-direction:column;gap:8px;font-size:14px;color:#444;line-height:24px;">
+        <div><strong>1. Status Stripe</strong> &mdash; 40px wide colored sidebar with centered icon (white). Rounded on left side (12px).</div>
+        <div><strong>2. Content Area</strong> &mdash; Tinted background with matching border. Rounded on right side (12px). Contains title, body text, and optional links.</div>
+        <div><strong>3. Title</strong> &mdash; Headline/H6 style (Source Sans Pro SemiBold, 14px, #444).</div>
+        <div><strong>4. Body Text</strong> &mdash; Body/Smaller Text (Source Sans Pro Regular, 14px, #444) with optional inline links (#105fa8, underlined).</div>
+        <div><strong>5. Close Button</strong> &mdash; Dismiss icon (top-right), optional via <code>onDismiss</code> prop.</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ProgressBar - MoO Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    @keyframes indeterminate {
+      0% { left: -30%; width: 30%; }
+      100% { left: 100%; width: 30%; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="ds-nav">
+    <div class="ds-nav-left">
+      <span class="ds-brand">MoO Design System</span>
+      <div class="ds-tabs">
+        <a href="index.html" class="ds-tab">Overview</a>
+        <a href="tokens.html" class="ds-tab">Design Tokens</a>
+        <a href="iconography.html" class="ds-tab">Iconography</a>
+        <a href="components.html" class="ds-tab active">Components</a>
+        <a href="dashboard.html" class="ds-tab">Dashboard Preview</a>
+        <a href="mobile-dashboard.html" class="ds-tab">Mobile Dashboard</a>
+        <a href="login-registration.html" class="ds-tab">Login &amp; Registration</a>
+      </div>
+    </div>
+  </nav>
+
+  <div style="max-width: 960px; margin: 0 auto; padding: 40px 60px;">
+    <a href="components.html" style="font-size: 14px; color: #105fa8; text-decoration: none; display: flex; align-items: center; gap: 6px; margin-bottom: 24px;">&larr; Back to Components</a>
+
+    <h1 style="font-size: 32px; color: #003a70; margin-bottom: 4px;">ProgressBar</h1>
+    <div style="font-size: 13px; color: #105fa8; font-family: 'SF Mono', 'Courier New', monospace; margin-bottom: 8px;">ProgressBar.tsx</div>
+    <p style="font-size: 16px; color: #5d5d5d; margin-bottom: 32px;">Visual indicator for progress, usage, and completion status.</p>
+    <a href="https://github.com/ssutantoatcaptech/moo-ds/blob/main/src/components/ProgressBar.tsx" style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: #105fa8; text-decoration: none; font-weight: 600; margin-bottom: 32px;">View on GitHub &rarr;</a>
+
+    <!-- Default -->
+    <h2 style="font-size: 20px; color: #003a70; margin-bottom: 16px;">Default</h2>
+    <div style="background: #f9fafb; border: 1px solid #f0f0f0; border-radius: 8px; padding: 32px; margin-bottom: 32px;">
+      <div style="width: 100%;">
+        <div style="display: flex; justify-content: space-between; font-size: 14px; color: #444; margin-bottom: 6px;">
+          <span>Dental Max Used</span>
+          <span>$340 / $2,000</span>
+        </div>
+        <div style="height: 8px; border-radius: 9999px; background: rgba(34,34,34,0.12); overflow: hidden;">
+          <div style="width: 17%; height: 100%; border-radius: 9999px; background: linear-gradient(to right, #105fa8, #03746e);"></div>
+        </div>
+        <div style="text-align: right; font-size: 13px; color: #838383; margin-top: 4px;">17%</div>
+      </div>
+    </div>
+
+    <!-- Colors -->
+    <h2 style="font-size: 20px; color: #003a70; margin-bottom: 16px;">Colors</h2>
+    <div style="background: #f9fafb; border: 1px solid #f0f0f0; border-radius: 8px; padding: 32px; margin-bottom: 32px;">
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+        <!-- Brand -->
+        <div>
+          <div style="font-size: 13px; color: #444; margin-bottom: 4px; font-weight: 600;">Brand</div>
+          <div style="height: 8px; border-radius: 9999px; background: rgba(34,34,34,0.12); overflow: hidden;">
+            <div style="width: 60%; height: 100%; border-radius: 9999px; background: linear-gradient(to right, #105fa8, #03746e);"></div>
+          </div>
+        </div>
+        <!-- Success -->
+        <div>
+          <div style="font-size: 13px; color: #444; margin-bottom: 4px; font-weight: 600;">Success</div>
+          <div style="height: 8px; border-radius: 9999px; background: rgba(34,34,34,0.12); overflow: hidden;">
+            <div style="width: 60%; height: 100%; border-radius: 9999px; background: #1c9e3b;"></div>
+          </div>
+        </div>
+        <!-- Warning -->
+        <div>
+          <div style="font-size: 13px; color: #444; margin-bottom: 4px; font-weight: 600;">Warning</div>
+          <div style="height: 8px; border-radius: 9999px; background: rgba(34,34,34,0.12); overflow: hidden;">
+            <div style="width: 60%; height: 100%; border-radius: 9999px; background: #df6903;"></div>
+          </div>
+        </div>
+        <!-- Error -->
+        <div>
+          <div style="font-size: 13px; color: #444; margin-bottom: 4px; font-weight: 600;">Error</div>
+          <div style="height: 8px; border-radius: 9999px; background: rgba(34,34,34,0.12); overflow: hidden;">
+            <div style="width: 60%; height: 100%; border-radius: 9999px; background: #c12506;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Thickness -->
+    <h2 style="font-size: 20px; color: #003a70; margin-bottom: 16px;">Thickness</h2>
+    <div style="background: #f9fafb; border: 1px solid #f0f0f0; border-radius: 8px; padding: 32px; margin-bottom: 32px;">
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+        <!-- Medium -->
+        <div>
+          <div style="font-size: 13px; color: #444; margin-bottom: 4px; font-weight: 600;">Medium (4px)</div>
+          <div style="height: 4px; border-radius: 9999px; background: rgba(34,34,34,0.12); overflow: hidden;">
+            <div style="width: 60%; height: 100%; border-radius: 9999px; background: linear-gradient(to right, #105fa8, #03746e);"></div>
+          </div>
+        </div>
+        <!-- Large -->
+        <div>
+          <div style="font-size: 13px; color: #444; margin-bottom: 4px; font-weight: 600;">Large (8px)</div>
+          <div style="height: 8px; border-radius: 9999px; background: rgba(34,34,34,0.12); overflow: hidden;">
+            <div style="width: 60%; height: 100%; border-radius: 9999px; background: linear-gradient(to right, #105fa8, #03746e);"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Indeterminate -->
+    <h2 style="font-size: 20px; color: #003a70; margin-bottom: 16px;">Indeterminate</h2>
+    <div style="background: #f9fafb; border: 1px solid #f0f0f0; border-radius: 8px; padding: 32px; margin-bottom: 32px;">
+      <div>
+        <div style="font-size: 13px; color: #444; margin-bottom: 4px; font-weight: 600;">Loading...</div>
+        <div style="height: 8px; border-radius: 9999px; background: rgba(34,34,34,0.12); overflow: hidden; position: relative;">
+          <div style="position: absolute; height: 100%; border-radius: 9999px; background: linear-gradient(to right, #105fa8, #03746e); animation: indeterminate 1.5s ease-in-out infinite;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

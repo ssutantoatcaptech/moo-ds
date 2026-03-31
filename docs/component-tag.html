@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tag - MoO Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <nav class="ds-nav">
+    <div class="ds-nav-left">
+      <span class="ds-brand">MoO Design System</span>
+      <div class="ds-tabs">
+        <a href="index.html" class="ds-tab">Overview</a>
+        <a href="tokens.html" class="ds-tab">Design Tokens</a>
+        <a href="iconography.html" class="ds-tab">Iconography</a>
+        <a href="components.html" class="ds-tab active">Components</a>
+        <a href="dashboard.html" class="ds-tab">Dashboard Preview</a>
+        <a href="mobile-dashboard.html" class="ds-tab">Mobile Dashboard</a>
+        <a href="login-registration.html" class="ds-tab">Login &amp; Registration</a>
+      </div>
+    </div>
+  </nav>
+
+  <div style="max-width: 960px; margin: 0 auto; padding: 40px 60px;">
+    <a href="components.html" style="font-size: 14px; color: #105fa8; text-decoration: none; display: flex; align-items: center; gap: 6px; margin-bottom: 24px;">&larr; Back to Components</a>
+
+    <h1 style="font-size: 32px; color: #003a70; margin-bottom: 4px;">Tag</h1>
+    <div style="font-size: 13px; color: #105fa8; font-family: 'SF Mono', 'Courier New', monospace; margin-bottom: 8px;">Tag.tsx</div>
+    <p style="font-size: 16px; color: #5d5d5d; margin-bottom: 32px;">Compact label for categorization, filtering, and status indication.</p>
+    <a href="https://github.com/ssutantoatcaptech/moo-ds/blob/main/src/components/Tag.tsx" style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: #105fa8; text-decoration: none; font-weight: 600; margin-bottom: 32px;">View on GitHub &rarr;</a>
+
+    <!-- Appearances -->
+    <h2 style="font-size: 20px; color: #003a70; margin-bottom: 16px;">Appearances</h2>
+    <div style="background: #f9fafb; border: 1px solid #f0f0f0; border-radius: 8px; padding: 32px; margin-bottom: 32px;">
+      <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+        <!-- Filled -->
+        <span style="display: inline-flex; align-items: center; gap: 8px; background: #f0f0f0; color: #444; font-size: 14px; font-weight: 600; padding: 6px 12px; border-radius: 4px; font-family: 'Source Sans Pro', sans-serif;">
+          Dental
+          <button style="background: none; border: none; cursor: pointer; padding: 0; display: flex; align-items: center; color: #444; font-size: 14px; line-height: 1;">&times;</button>
+        </span>
+        <!-- Brand -->
+        <span style="display: inline-flex; align-items: center; gap: 8px; background: #ecf3fc; color: #105fa8; font-size: 14px; font-weight: 600; padding: 6px 12px; border-radius: 4px; font-family: 'Source Sans Pro', sans-serif;">
+          Vision
+          <button style="background: none; border: none; cursor: pointer; padding: 0; display: flex; align-items: center; color: #105fa8; font-size: 14px; line-height: 1;">&times;</button>
+        </span>
+        <!-- Outline -->
+        <span style="display: inline-flex; align-items: center; gap: 8px; background: transparent; border: 1px solid #838383; color: #444; font-size: 14px; font-weight: 600; padding: 6px 12px; border-radius: 4px; font-family: 'Source Sans Pro', sans-serif;">
+          Disability
+        </span>
+      </div>
+    </div>
+
+    <!-- Sizes -->
+    <h2 style="font-size: 20px; color: #003a70; margin-bottom: 16px;">Sizes</h2>
+    <div style="background: #f9fafb; border: 1px solid #f0f0f0; border-radius: 8px; padding: 32px; margin-bottom: 32px;">
+      <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+        <!-- Small -->
+        <span style="display: inline-flex; align-items: center; background: #f0f0f0; color: #444; font-size: 12px; font-weight: 600; padding: 4px 8px; border-radius: 4px; font-family: 'Source Sans Pro', sans-serif;">Small</span>
+        <!-- Medium -->
+        <span style="display: inline-flex; align-items: center; background: #f0f0f0; color: #444; font-size: 14px; font-weight: 600; padding: 6px 12px; border-radius: 4px; font-family: 'Source Sans Pro', sans-serif;">Medium</span>
+        <!-- Large -->
+        <span style="display: inline-flex; align-items: center; background: #f0f0f0; color: #444; font-size: 16px; font-weight: 600; padding: 8px 16px; border-radius: 4px; font-family: 'Source Sans Pro', sans-serif;">Large</span>
+      </div>
+    </div>
+
+    <!-- Disabled -->
+    <h2 style="font-size: 20px; color: #003a70; margin-bottom: 16px;">Disabled</h2>
+    <div style="background: #f9fafb; border: 1px solid #f0f0f0; border-radius: 8px; padding: 32px; margin-bottom: 32px;">
+      <span style="display: inline-flex; align-items: center; gap: 8px; background: #f0f0f0; color: #444; font-size: 14px; font-weight: 600; padding: 6px 12px; border-radius: 4px; font-family: 'Source Sans Pro', sans-serif; opacity: 0.4;">
+        Dental
+        <button style="background: none; border: none; padding: 0; display: flex; align-items: center; color: #444; font-size: 14px; line-height: 1; cursor: not-allowed;">&times;</button>
+      </span>
+    </div>
+  </div>
+</body>
+</html>

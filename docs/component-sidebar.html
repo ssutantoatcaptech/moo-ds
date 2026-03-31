@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sidebar - MoO Design System</title>
+  <link rel="stylesheet" href="shared.css">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    .sb-nav-item:hover { background: #f5f7f9; }
+  </style>
+</head>
+<body>
+  <nav class="ds-nav">
+    <div class="ds-nav-left">
+      <div class="ds-brand">MoO Design System</div>
+      <div class="ds-tabs">
+        <a class="ds-tab" href="index.html">Overview</a>
+        <a class="ds-tab" href="tokens.html">Design Tokens</a>
+        <a class="ds-tab active" href="components.html">Components</a>
+        <a class="ds-tab" href="dashboard.html">Dashboard Preview</a>
+        <a class="ds-tab" href="login-registration.html">Login &amp; Registration</a>
+      </div>
+    </div>
+  </nav>
+
+  <div style="max-width: 960px; margin: 0 auto; padding: 40px 60px;">
+    <a href="components.html" style="font-size: 14px; color: #105fa8; text-decoration: none; display: flex; align-items: center; gap: 6px; margin-bottom: 24px;">&larr; Back to Components</a>
+
+    <h1 style="font-size: 32px; color: #003a70; margin-bottom: 4px;">Sidebar</h1>
+    <div style="font-size: 13px; color: #105fa8; font-family: 'SF Mono', 'Courier New', monospace; margin-bottom: 8px;">Sidebar.tsx</div>
+    <p style="font-size: 16px; color: #5d5d5d; margin-bottom: 32px;">A vertical navigation sidebar with branding, nav items, badges, and a version footer. Used as the primary navigation in dashboard layouts.</p>
+    <a href="https://github.com/ssutantoatcaptech/moo-ds/blob/main/src/components/Sidebar.tsx" style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: #105fa8; text-decoration: none; font-weight: 600; margin-bottom: 32px;">View on GitHub &rarr;</a>
+
+    <h2 style="font-size: 20px; color: #003a70; margin-bottom: 16px;">Default</h2>
+    <div style="background: #f9fafb; border: 1px solid #f0f0f0; border-radius: 8px; padding: 32px; margin-bottom: 32px;">
+      <div style="width: 224px; min-height: 500px; background: white; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); padding: 16px 0; display: flex; flex-direction: column;">
+        <!-- Header -->
+        <div style="padding: 0 16px 16px; border-bottom: 1px solid #f0f0f0; margin-bottom: 8px;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div style="width: 32px; height: 32px; background: #105fa8; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 14px;">DB</div>
+            <div style="font-size: 16px; font-weight: 700; color: #003a70;">DB Dashboard</div>
+          </div>
+          <div style="font-size: 12px; color: #838383; margin-top: 4px;">demo.db &middot; SQLite</div>
+        </div>
+
+        <!-- Nav Items -->
+        <div class="sb-nav-item" style="display: flex; align-items: center; gap: 10px; padding: 10px 16px; font-size: 14px; background: #ecf3fc; color: #105fa8; font-weight: 600; cursor: pointer; border-radius: 0;">Overview</div>
+        <div class="sb-nav-item" style="display: flex; align-items: center; gap: 10px; padding: 10px 16px; font-size: 14px; color: #444; cursor: pointer; border-radius: 0;">
+          Tables
+          <span style="font-size: 11px; background: #f0f0f0; color: #444; padding: 1px 8px; border-radius: 56px; margin-left: auto;">12</span>
+        </div>
+        <div class="sb-nav-item" style="display: flex; align-items: center; gap: 10px; padding: 10px 16px; font-size: 14px; color: #444; cursor: pointer; border-radius: 0;">Query Editor</div>
+        <div class="sb-nav-item" style="display: flex; align-items: center; gap: 10px; padding: 10px 16px; font-size: 14px; color: #444; cursor: pointer; border-radius: 0;">Activity Log</div>
+        <div class="sb-nav-item" style="display: flex; align-items: center; gap: 10px; padding: 10px 16px; font-size: 14px; color: #444; cursor: pointer; border-radius: 0;">Figma Files</div>
+        <div class="sb-nav-item" style="display: flex; align-items: center; gap: 10px; padding: 10px 16px; font-size: 14px; color: #444; cursor: pointer; border-radius: 0;">Components</div>
+
+        <!-- Footer -->
+        <div style="margin-top: auto; padding: 16px; border-top: 1px solid #f0f0f0;">
+          <div style="font-size: 12px; color: #838383;">v0.1.0</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

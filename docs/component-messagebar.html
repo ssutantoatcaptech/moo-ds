@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MessageBar - MoO Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    .page-content { max-width: 960px; margin: 0 auto; padding: 40px 60px; }
+    .back-link { font-size: 14px; color: #105fa8; text-decoration: none; display: flex; align-items: center; gap: 6px; margin-bottom: 24px; }
+    .back-link:hover { text-decoration: underline; }
+    h1 { font-size: 32px; color: #003a70; margin-bottom: 4px; }
+    .file-name { font-size: 13px; color: #105fa8; font-family: 'SF Mono', 'Courier New', monospace; margin-bottom: 8px; }
+    .description { font-size: 16px; color: #5d5d5d; margin-bottom: 32px; }
+    .gh-link { display: block; margin-bottom: 32px; font-size: 13px; color: #105fa8; text-decoration: none; font-weight: 600; }
+    .gh-link:hover { text-decoration: underline; }
+    .section-title { font-size: 20px; color: #003a70; margin-bottom: 16px; }
+    .preview-box { background: #f9fafb; border: 1px solid #f0f0f0; border-radius: 8px; padding: 32px; margin-bottom: 32px; }
+  </style>
+</head>
+<body>
+  <nav class="ds-nav">
+    <div class="ds-nav-left">
+      <span class="ds-brand">MoO Design System</span>
+      <div class="ds-tabs">
+        <a href="index.html" class="ds-tab">Overview</a>
+        <a href="tokens.html" class="ds-tab">Design Tokens</a>
+        <a href="iconography.html" class="ds-tab">Iconography</a>
+        <a href="components.html" class="ds-tab active">Components</a>
+        <a href="dashboard.html" class="ds-tab">Dashboard Preview</a>
+        <a href="mobile-dashboard.html" class="ds-tab">Mobile Dashboard</a>
+        <a href="login-registration.html" class="ds-tab">Login &amp; Registration</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-content">
+    <a href="components.html" class="back-link">&larr; Back to Components</a>
+    <h1>MessageBar</h1>
+    <div class="file-name">MessageBar.tsx</div>
+    <p class="description">Inline alert messages with info, success, warning, and error variants.</p>
+    <a href="https://github.com/ssutantoatcaptech/moo-ds/blob/main/src/components/MessageBar.tsx" class="gh-link">View on GitHub &rarr;</a>
+
+    <h2 class="section-title">Variants</h2>
+    <div class="preview-box">
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <!-- Info -->
+        <div style="border-left: 4px solid #067ac1; background: #f2f8fe; padding: 16px 20px; border-radius: 4px; display: flex; gap: 12px; align-items: flex-start; font-family: 'Source Sans Pro', sans-serif;">
+          <div style="width: 24px; height: 24px; border-radius: 9999px; background: #067ac1; color: white; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">i</div>
+          <div>
+            <div style="font-size: 16px; font-weight: 600; color: #222; margin-bottom: 4px;">Information</div>
+            <div style="font-size: 14px; color: #444; line-height: 20px;">Your dental EOB from Dec 10 is now available.</div>
+          </div>
+        </div>
+        <!-- Success -->
+        <div style="border-left: 4px solid #1c9e3b; background: #f0faf4; padding: 16px 20px; border-radius: 4px; display: flex; gap: 12px; align-items: flex-start; font-family: 'Source Sans Pro', sans-serif;">
+          <div style="width: 24px; height: 24px; border-radius: 9999px; background: #1c9e3b; color: white; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">&#10003;</div>
+          <div>
+            <div style="font-size: 16px; font-weight: 600; color: #222; margin-bottom: 4px;">Success</div>
+            <div style="font-size: 14px; color: #444; line-height: 20px;">Your claim has been approved.</div>
+          </div>
+        </div>
+        <!-- Warning -->
+        <div style="border-left: 4px solid #df6903; background: #fef8eb; padding: 16px 20px; border-radius: 4px; display: flex; gap: 12px; align-items: flex-start; font-family: 'Source Sans Pro', sans-serif;">
+          <div style="width: 24px; height: 24px; border-radius: 9999px; background: #df6903; color: white; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">!</div>
+          <div>
+            <div style="font-size: 16px; font-weight: 600; color: #222; margin-bottom: 4px;">Warning</div>
+            <div style="font-size: 14px; color: #444; line-height: 20px;">Document upload required for your leave request.</div>
+          </div>
+        </div>
+        <!-- Error -->
+        <div style="border-left: 4px solid #c12506; background: #fef2f0; padding: 16px 20px; border-radius: 4px; display: flex; gap: 12px; align-items: flex-start; font-family: 'Source Sans Pro', sans-serif;">
+          <div style="width: 24px; height: 24px; border-radius: 9999px; background: #c12506; color: white; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">&times;</div>
+          <div>
+            <div style="font-size: 16px; font-weight: 600; color: #222; margin-bottom: 4px;">Error</div>
+            <div style="font-size: 14px; color: #444; line-height: 20px;">Claim #VC-2025-4412 has been denied.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title">Dismissible</h2>
+    <div class="preview-box">
+      <div style="border-left: 4px solid #067ac1; background: #f2f8fe; padding: 16px 20px; border-radius: 4px; display: flex; gap: 12px; align-items: flex-start; font-family: 'Source Sans Pro', sans-serif;">
+        <div style="width: 24px; height: 24px; border-radius: 9999px; background: #067ac1; color: white; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">i</div>
+        <div style="flex: 1;">
+          <div style="font-size: 16px; font-weight: 600; color: #222; margin-bottom: 4px;">Information</div>
+          <div style="font-size: 14px; color: #444; line-height: 20px;">Your dental EOB from Dec 10 is now available.</div>
+        </div>
+        <button style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; background: none; border: none; font-size: 20px; color: #838383; cursor: pointer; flex-shrink: 0; margin: -12px -12px -12px 0;">&times;</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

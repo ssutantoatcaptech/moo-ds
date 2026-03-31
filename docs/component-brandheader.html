@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BrandHeader - MoO Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    .page-content { max-width: 960px; margin: 0 auto; padding: 40px 60px; }
+    .back-link { font-size: 14px; color: #105fa8; text-decoration: none; display: flex; align-items: center; gap: 6px; margin-bottom: 24px; }
+    .back-link:hover { text-decoration: underline; }
+    h1 { font-size: 32px; color: #003a70; margin-bottom: 4px; }
+    .file-name { font-size: 13px; color: #105fa8; font-family: 'SF Mono', 'Courier New', monospace; margin-bottom: 8px; }
+    .description { font-size: 16px; color: #5d5d5d; margin-bottom: 32px; }
+    .gh-link { display: block; margin-bottom: 32px; font-size: 13px; color: #105fa8; text-decoration: none; font-weight: 600; }
+    .gh-link:hover { text-decoration: underline; }
+    .section-title { font-size: 20px; color: #003a70; margin-bottom: 16px; }
+    .preview-box { background: #f9fafb; border: 1px solid #f0f0f0; border-radius: 8px; padding: 32px; margin-bottom: 32px; display: flex; gap: 40px; flex-wrap: wrap; justify-content: center; }
+
+    /* BrandHeader styles */
+    .brand-header {
+      width: 100%;
+      max-width: 800px;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      border-radius: 8px;
+    }
+    .brand-header--default {
+      background: #105fa8;
+    }
+    .brand-header--default .brand-header__text {
+      font-family: 'Source Sans Pro', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      color: #fff;
+      letter-spacing: 0.3px;
+    }
+    .brand-header--cobrand {
+      background: #1a7a4c;
+      justify-content: space-between;
+    }
+    .brand-header__partner {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-header__partner-logo {
+      width: 36px; height: 36px; border-radius: 6px;
+      background: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 700; color: #1a7a4c;
+    }
+    .brand-header__partner-name {
+      font-family: 'Source Sans Pro', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      color: #fff;
+    }
+    .brand-header__powered {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 13px;
+      color: rgba(255,255,255,0.85);
+    }
+    .brand-header__moo-logo {
+      font-weight: 700;
+      font-size: 14px;
+      color: #fff;
+      padding: 4px 10px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="ds-nav">
+    <div class="ds-nav-left">
+      <span class="ds-brand">MoO Design System</span>
+      <div class="ds-tabs">
+        <a href="index.html" class="ds-tab">Overview</a>
+        <a href="tokens.html" class="ds-tab">Design Tokens</a>
+        <a href="iconography.html" class="ds-tab">Iconography</a>
+        <a href="components.html" class="ds-tab active">Components</a>
+        <a href="dashboard.html" class="ds-tab">Dashboard Preview</a>
+        <a href="mobile-dashboard.html" class="ds-tab">Mobile Dashboard</a>
+        <a href="login-registration.html" class="ds-tab">Login &amp; Registration</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-content">
+    <a href="components.html" class="back-link">&larr; All Components</a>
+    <h1>BrandHeader</h1>
+    <div class="file-name">BrandHeader.tsx</div>
+    <p class="description">Top-level brand header bar displaying the Mutual of Omaha identity. Supports a default branded variant and a co-branded variant with partner logo.</p>
+    <a href="https://github.com/ssutantoatcaptech/moo-ds/blob/main/src/components/BrandHeader.tsx" class="gh-link" target="_blank">View on GitHub &rarr;</a>
+
+    <h2 class="section-title">Default Variant</h2>
+    <div class="preview-box" style="flex-direction: column; align-items: center;">
+      <div class="brand-header brand-header--default">
+        <span class="brand-header__text">Mutual of Omaha</span>
+      </div>
+    </div>
+
+    <h2 class="section-title">Co-Branded Variant</h2>
+    <div class="preview-box" style="flex-direction: column; align-items: center;">
+      <div class="brand-header brand-header--cobrand">
+        <div class="brand-header__partner">
+          <div class="brand-header__partner-logo">ABC</div>
+          <span class="brand-header__partner-name">ABC Insurance Group</span>
+        </div>
+        <div class="brand-header__powered">
+          <span>powered by</span>
+          <span class="brand-header__moo-logo">Mutual of Omaha</span>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title">Design Tokens Used</h2>
+    <div class="preview-box" style="flex-direction: column; gap: 8px; align-items: flex-start;">
+      <div><strong>Default background:</strong> <code>--foundation-primary-blue</code> (#105fa8)</div>
+      <div><strong>Text color:</strong> <code>--text-white</code> (#ffffff)</div>
+      <div><strong>Brand font:</strong> <code>--font-family-title</code>, <code>--font-weight-bold</code></div>
+      <div><strong>Border radius:</strong> <code>--radius-md</code> (8px)</div>
+      <div><strong>Typography:</strong> <code>--font-size-lg</code> (20px)</div>
+    </div>
+  </div>
+</body>
+</html>

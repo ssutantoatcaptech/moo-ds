@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DataTable - MoO Design System</title>
+  <link rel="stylesheet" href="shared.css">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    .dt-table tr:hover td { background: #f9fafb; }
+  </style>
+</head>
+<body>
+  <nav class="ds-nav">
+    <div class="ds-nav-left">
+      <div class="ds-brand">MoO Design System</div>
+      <div class="ds-tabs">
+        <a class="ds-tab" href="index.html">Overview</a>
+        <a class="ds-tab" href="tokens.html">Design Tokens</a>
+        <a class="ds-tab active" href="components.html">Components</a>
+        <a class="ds-tab" href="dashboard.html">Dashboard Preview</a>
+        <a class="ds-tab" href="login-registration.html">Login &amp; Registration</a>
+      </div>
+    </div>
+  </nav>
+
+  <div style="max-width: 960px; margin: 0 auto; padding: 40px 60px;">
+    <a href="components.html" style="font-size: 14px; color: #105fa8; text-decoration: none; display: flex; align-items: center; gap: 6px; margin-bottom: 24px;">&larr; Back to Components</a>
+
+    <h1 style="font-size: 32px; color: #003a70; margin-bottom: 4px;">DataTable</h1>
+    <div style="font-size: 13px; color: #105fa8; font-family: 'SF Mono', 'Courier New', monospace; margin-bottom: 8px;">DataTable.tsx</div>
+    <p style="font-size: 16px; color: #5d5d5d; margin-bottom: 32px;">A responsive data table for displaying structured records with sortable columns, status badges, and hover states.</p>
+    <a href="https://github.com/ssutantoatcaptech/moo-ds/blob/main/src/components/DataTable.tsx" style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: #105fa8; text-decoration: none; font-weight: 600; margin-bottom: 32px;">View on GitHub &rarr;</a>
+
+    <h2 style="font-size: 20px; color: #003a70; margin-bottom: 16px;">Default</h2>
+    <div style="background: #f9fafb; border: 1px solid #f0f0f0; border-radius: 8px; padding: 32px; margin-bottom: 32px;">
+      <table class="dt-table" style="width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
+        <thead>
+          <tr>
+            <th style="text-align: left; padding: 14px 20px; font-size: 12px; font-weight: 600; color: #838383; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid #f0f0f0;">Claim #</th>
+            <th style="text-align: left; padding: 14px 20px; font-size: 12px; font-weight: 600; color: #838383; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid #f0f0f0;">Type</th>
+            <th style="text-align: left; padding: 14px 20px; font-size: 12px; font-weight: 600; color: #838383; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid #f0f0f0;">Provider</th>
+            <th style="text-align: left; padding: 14px 20px; font-size: 12px; font-weight: 600; color: #838383; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid #f0f0f0;">Date</th>
+            <th style="text-align: left; padding: 14px 20px; font-size: 12px; font-weight: 600; color: #838383; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid #f0f0f0;">Amount</th>
+            <th style="text-align: left; padding: 14px 20px; font-size: 12px; font-weight: 600; color: #838383; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 2px solid #f0f0f0;">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding: 16px 20px; border-bottom: 1px solid #f0f0f0; font-size: 14px; color: #222;">VC-2025-4412</td>
+            <td style="padding: 16px 20px; border-bottom: 1px solid #f0f0f0; font-size: 14px; color: #222;">Dental</td>
+            <td style="padding: 16px 20px; border-bottom: 1px solid #f0f0f0; font-size: 14px; color: #222;">Dr. Smith</td>
+            <td style="padding: 16px 20px; border-bottom: 1px solid #f0f0f0; font-size: 14px; color: #222;">Jan 18 2025</td>
+            <td style="padding: 16px 20px; border-bottom: 1px solid #f0f0f0; font-size: 14px; color: #222;">$180.00</td>
+            <td style="padding: 16px 20px; border-bottom: 1px solid #f0f0f0; font-size: 14px; color: #222;">
+              <span style="display: inline-block; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 56px; background: #f0faf4; color: #1c9e3b;">Processed</span>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 16px 20px; border-bottom: 1px solid #f0f0f0; font-size: 14px; color: #222;">VC-2025-4398</td>
+            <td style="padding: 16px 20px; border-bottom: 1px solid #f0f0f0; font-size: 14px; color: #222;">Vision</td>
+            <td style="padding: 16px 20px; border-bottom: 1px solid #f0f0f0; font-size: 14px; color: #222;">Dr. Lee</td>
+            <td style="padding: 16px 20px; border-bottom: 1px solid #f0f0f0; font-size: 14px; color: #222;">Jan 10 2025</td>
+            <td style="padding: 16px 20px; border-bottom: 1px solid #f0f0f0; font-size: 14px; color: #222;">$250.00</td>
+            <td style="padding: 16px 20px; border-bottom: 1px solid #f0f0f0; font-size: 14px; color: #222;">
+              <span style="display: inline-block; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 56px; background: #fef8eb; color: #df6903;">Pending</span>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 16px 20px; border-bottom: 1px solid #f0f0f0; font-size: 14px; color: #222;">ML-2025-1847</td>
+            <td style="padding: 16px 20px; border-bottom: 1px solid #f0f0f0; font-size: 14px; color: #222;">Leave</td>
+            <td style="padding: 16px 20px; border-bottom: 1px solid #f0f0f0; font-size: 14px; color: #222;">&mdash;</td>
+            <td style="padding: 16px 20px; border-bottom: 1px solid #f0f0f0; font-size: 14px; color: #222;">Feb 2 2025</td>
+            <td style="padding: 16px 20px; border-bottom: 1px solid #f0f0f0; font-size: 14px; color: #222;">&mdash;</td>
+            <td style="padding: 16px 20px; border-bottom: 1px solid #f0f0f0; font-size: 14px; color: #222;">
+              <span style="display: inline-block; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 56px; background: #f2f8fe; color: #067ac1;">In Review</span>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 16px 20px; border-bottom: 1px solid #f0f0f0; font-size: 14px; color: #222;">VC-2025-4350</td>
+            <td style="padding: 16px 20px; border-bottom: 1px solid #f0f0f0; font-size: 14px; color: #222;">Dental</td>
+            <td style="padding: 16px 20px; border-bottom: 1px solid #f0f0f0; font-size: 14px; color: #222;">Dr. Park</td>
+            <td style="padding: 16px 20px; border-bottom: 1px solid #f0f0f0; font-size: 14px; color: #222;">Dec 15 2024</td>
+            <td style="padding: 16px 20px; border-bottom: 1px solid #f0f0f0; font-size: 14px; color: #222;">$95.00</td>
+            <td style="padding: 16px 20px; border-bottom: 1px solid #f0f0f0; font-size: 14px; color: #222;">
+              <span style="display: inline-block; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 56px; background: #f0faf4; color: #1c9e3b;">Approved</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

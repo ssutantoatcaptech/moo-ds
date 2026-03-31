@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Input - MoO Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+</head>
+<body>
+  <nav class="ds-nav">
+    <div class="ds-nav-left">
+      <span class="ds-brand">MoO Design System</span>
+      <div class="ds-tabs">
+        <a href="index.html" class="ds-tab">Overview</a>
+        <a href="tokens.html" class="ds-tab">Design Tokens</a>
+        <a href="iconography.html" class="ds-tab">Iconography</a>
+        <a href="components.html" class="ds-tab active">Components</a>
+        <a href="dashboard.html" class="ds-tab">Dashboard Preview</a>
+        <a href="mobile-dashboard.html" class="ds-tab">Mobile Dashboard</a>
+        <a href="login-registration.html" class="ds-tab">Login &amp; Registration</a>
+      </div>
+    </div>
+  </nav>
+
+  <div style="max-width: 960px; margin: 0 auto; padding: 40px 60px;">
+    <a href="components.html" style="font-size: 14px; color: #105fa8; text-decoration: none; display: flex; align-items: center; gap: 6px; margin-bottom: 24px;">&larr; Back to Components</a>
+
+    <h1 style="font-size: 32px; color: #003a70; margin-bottom: 4px;">Input</h1>
+    <div style="font-size: 13px; color: #105fa8; font-family: 'SF Mono', 'Courier New', monospace; margin-bottom: 8px;">Input.tsx</div>
+    <p style="font-size: 16px; color: #5d5d5d; margin-bottom: 32px;">Text input field for forms with label, hint text, error, and disabled states.</p>
+    <a href="https://github.com/ssutantoatcaptech/moo-ds/blob/main/src/components/Input.tsx" style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: #105fa8; text-decoration: none; font-weight: 600; margin-bottom: 32px;">View on GitHub &rarr;</a>
+
+    <!-- Default -->
+    <h2 style="font-size: 20px; color: #003a70; margin-bottom: 16px;">Default</h2>
+    <div style="background: #f9fafb; border: 1px solid #f0f0f0; border-radius: 8px; padding: 32px; margin-bottom: 32px;">
+      <div style="width: 400px;">
+        <label style="display: block; font-size: 14px; font-weight: 600; color: #444; margin-bottom: 6px;">Email Address</label>
+        <input type="email" placeholder="sarah.johnson@example.com" style="width: 100%; padding: 10px 12px; border: 1px solid #838383; border-radius: 4px; font-size: 16px; font-family: 'Source Sans Pro', sans-serif; line-height: 24px; min-height: 44px; box-sizing: border-box;">
+      </div>
+    </div>
+
+    <!-- With Hint -->
+    <h2 style="font-size: 20px; color: #003a70; margin-bottom: 16px;">With Hint</h2>
+    <div style="background: #f9fafb; border: 1px solid #f0f0f0; border-radius: 8px; padding: 32px; margin-bottom: 32px;">
+      <div style="width: 400px;">
+        <label style="display: block; font-size: 14px; font-weight: 600; color: #444; margin-bottom: 6px;">Email Address</label>
+        <input type="email" placeholder="sarah.johnson@example.com" style="width: 100%; padding: 10px 12px; border: 1px solid #838383; border-radius: 4px; font-size: 16px; font-family: 'Source Sans Pro', sans-serif; line-height: 24px; min-height: 44px; box-sizing: border-box;">
+        <div style="font-size: 13px; color: #838383; margin-top: 4px;">We'll never share your email.</div>
+      </div>
+    </div>
+
+    <!-- Error State -->
+    <h2 style="font-size: 20px; color: #003a70; margin-bottom: 16px;">Error State</h2>
+    <div style="background: #f9fafb; border: 1px solid #f0f0f0; border-radius: 8px; padding: 32px; margin-bottom: 32px;">
+      <div style="width: 400px;">
+        <label style="display: block; font-size: 14px; font-weight: 600; color: #444; margin-bottom: 6px;">Email Address</label>
+        <input type="email" placeholder="sarah.johnson@example.com" style="width: 100%; padding: 10px 12px; border: 1px solid #c12506; border-radius: 4px; font-size: 16px; font-family: 'Source Sans Pro', sans-serif; line-height: 24px; min-height: 44px; box-sizing: border-box;">
+        <div style="font-size: 13px; color: #c12506; margin-top: 4px;">Please enter a valid email address.</div>
+      </div>
+    </div>
+
+    <!-- Disabled -->
+    <h2 style="font-size: 20px; color: #003a70; margin-bottom: 16px;">Disabled</h2>
+    <div style="background: #f9fafb; border: 1px solid #f0f0f0; border-radius: 8px; padding: 32px; margin-bottom: 32px;">
+      <div style="width: 400px;">
+        <label style="display: block; font-size: 14px; font-weight: 600; color: #444; margin-bottom: 6px;">Email Address</label>
+        <input type="email" value="disabled@example.com" disabled style="width: 100%; padding: 10px 12px; border: 1px solid #838383; border-radius: 4px; font-size: 16px; font-family: 'Source Sans Pro', sans-serif; line-height: 24px; min-height: 44px; box-sizing: border-box; background: #f0f0f0; color: #838383; cursor: not-allowed;">
+      </div>
+    </div>
+  </div>
+</body>
+</html>

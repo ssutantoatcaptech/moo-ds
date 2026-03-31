@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mobile Dental Flow - MoO Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+  <script src="figma-toolbar.js" defer></script>
+  <style>
+    :root {
+      --foundation-primary-bluedark: #003a70;
+      --foundation-primary-blue: #105fa8;
+      --foundation-primary-teal: #03746e;
+      --foundation-grays-darkest: #222222;
+      --foundation-grays-darker: #444444;
+      --foundation-grays-dark: #5d5d5d;
+      --foundation-grays-gray: #838383;
+      --foundation-grays-lighter: #f0f0f0;
+    }
+
+    .flow-content { max-width: 1320px; margin: 0 auto; padding: 40px 60px; }
+
+    .flow-intro { margin-bottom: 40px; }
+    .flow-intro h2 { font-size: 24px; color: var(--foundation-primary-bluedark); margin-bottom: 8px; }
+    .flow-intro p { font-size: 14px; color: var(--foundation-grays-dark); line-height: 20px; }
+
+    .flow-nav {
+      display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px;
+    }
+    .flow-nav-btn {
+      padding: 8px 16px; border-radius: 20px; font-size: 13px; font-weight: 600;
+      font-family: 'Source Sans Pro', sans-serif;
+      border: 1px solid var(--foundation-grays-lighter);
+      background: #fff; color: var(--foundation-grays-darker);
+      cursor: pointer; transition: all 0.15s;
+    }
+    .flow-nav-btn:hover { border-color: var(--foundation-primary-blue); color: var(--foundation-primary-blue); }
+    .flow-nav-btn.active {
+      background: var(--foundation-primary-blue); color: #fff;
+      border-color: var(--foundation-primary-blue);
+    }
+
+    .screen-container {
+      display: flex; flex-direction: column; gap: 48px; align-items: center;
+    }
+
+    .screen-card {
+      display: flex; flex-direction: column; align-items: center; gap: 16px;
+    }
+
+    .screen-label {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .screen-number {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--foundation-primary-blue), var(--foundation-primary-teal));
+      color: #fff; font-size: 13px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .screen-name {
+      font-size: 14px; font-weight: 600; color: var(--foundation-primary-bluedark);
+    }
+
+    .phone-frame {
+      width: 375px;
+      border: 2px solid var(--foundation-grays-lighter);
+      border-radius: 24px; overflow: visible;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      background: #fff;
+      position: relative;
+    }
+    .phone-frame iframe {
+      width: 375px; height: 2600px; border: none;
+      transform-origin: top left;
+    }
+
+    .flow-arrow {
+      display: flex; align-items: center; flex-shrink: 0; color: var(--foundation-primary-blue);
+    }
+    .flow-arrow svg { width: 32px; height: 32px; transform: rotate(90deg); }
+
+    /* Single screen view */
+    .single-view { display: none; }
+    .single-view.active { display: flex; justify-content: center; }
+    .single-view .phone-frame iframe { height: 2600px; }
+
+    /* All screens view */
+    .all-view { display: flex; }
+    .all-view.hidden { display: none; }
+
+    .scroll-hint {
+      text-align: center; font-size: 12px; color: var(--foundation-grays-gray);
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="ds-nav">
+    <div class="ds-nav-left">
+      <span class="ds-brand">MoO Design System</span>
+      <div class="ds-tabs">
+        <a href="index.html" class="ds-tab">Overview</a>
+        <a href="tokens.html" class="ds-tab">Design Tokens</a>
+        <a href="iconography.html" class="ds-tab">Iconography</a>
+        <a href="components.html" class="ds-tab">Components</a>
+        <a href="dashboard.html" class="ds-tab">Dashboard Preview</a>
+        <a href="mobile-dashboard.html" class="ds-tab">Mobile Dashboard</a>
+        <a href="login-registration.html" class="ds-tab">Login &amp; Registration</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <h1>Mobile Dental Flow</h1>
+    <p>End-to-end mobile experience for dental coverage, claims, benefits, and provider search.</p>
+  </section>
+
+  <div class="flow-content">
+    <div class="flow-intro">
+      <h2>User Flow</h2>
+      <p>7 screens covering the complete dental benefits journey from coverage overview to procedure search. All screens use MoO design tokens.</p>
+    </div>
+
+    <div class="flow-nav" id="flowNav">
+      <button class="flow-nav-btn active" data-screen="all">All Screens</button>
+      <button class="flow-nav-btn" data-screen="0">1. Coverage Landing</button>
+      <button class="flow-nav-btn" data-screen="1">2. Find ID Cards</button>
+      <button class="flow-nav-btn" data-screen="2">3. Claims</button>
+      <button class="flow-nav-btn" data-screen="3">4. Claims Expanded</button>
+      <button class="flow-nav-btn" data-screen="4">5. Claim Detail</button>
+      <button class="flow-nav-btn" data-screen="5">6. Benefits Summary</button>
+      <button class="flow-nav-btn" data-screen="6">7. Find Procedure</button>
+    </div>
+
+    <!-- All screens horizontal flow -->
+    <div class="all-view" id="allView">
+      <div class="screen-container" id="screenContainer">
+
+        <div class="screen-card">
+          <div class="screen-label"><span class="screen-number">1</span><span class="screen-name">Coverage Landing</span></div>
+          <div class="phone-frame" style="padding:16px;font-family:'Source Sans Pro',sans-serif;">
+            <div style="font-size:24px;color:#003a70;margin-bottom:16px;">My Dental Coverage</div>
+            <div style="background:#fff;border:1px solid #f0f0f0;border-radius:12px;padding:16px;margin-bottom:12px;">
+              <div style="font-size:16px;color:#003a70;margin-bottom:12px;">Quick Actions</div>
+              <div style="border:1px solid #bababa;border-radius:8px;padding:12px;margin-bottom:8px;font-size:14px;color:#444;">View ID Cards</div>
+              <div style="border:1px solid #bababa;border-radius:8px;padding:12px;margin-bottom:8px;font-size:14px;color:#444;">Submit New Claim</div>
+              <div style="border:1px solid #bababa;border-radius:8px;padding:12px;margin-bottom:8px;font-size:14px;color:#444;">Find a Provider</div>
+              <div style="border:1px solid #bababa;border-radius:8px;padding:12px;font-size:14px;color:#444;">Invite Dependent</div>
+            </div>
+            <div style="border-left:4px solid #067ac1;background:#fff;border:1px solid #f0f0f0;border-left:4px solid #067ac1;border-radius:8px;padding:12px;margin-bottom:12px;">
+              <div style="font-size:14px;color:#105fa8;">Preventive Cleaning Overdue</div>
+              <div style="font-size:12px;color:#838383;">Last cleaning: 8 months ago</div>
+            </div>
+            <div style="background:#fff;border:1px solid #f0f0f0;border-radius:12px;padding:16px;margin-bottom:12px;">
+              <div style="font-size:16px;color:#003a70;margin-bottom:12px;">Dental Plan Details</div>
+              <div style="display:flex;justify-content:space-between;font-size:13px;padding:6px 0;border-bottom:1px solid #f0f0f0;"><span style="color:#222;">Subscriber Name</span><span>Sarah Johnson</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:13px;padding:6px 0;border-bottom:1px solid #f0f0f0;"><span style="color:#222;">Plan Name</span><span>Premier PPO Dental</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:13px;padding:6px 0;"><span style="color:#222;">Member ID</span><span>123456789</span></div>
+            </div>
+            <div style="background:#fff;border:1px solid #f0f0f0;border-radius:12px;padding:16px;margin-bottom:12px;">
+              <div style="font-size:16px;color:#003a70;margin-bottom:12px;">Dental Coverage Use</div>
+              <div style="background:#fafafa;border-radius:8px;padding:12px;margin-bottom:8px;">
+                <div style="font-size:12px;color:#222;">Individual Deductible</div>
+                <div style="display:flex;justify-content:space-between;align-items:end;"><span style="font-size:24px;color:#003a70;">$0</span><span style="font-size:12px;color:#222;">$50 of $50 used</span></div>
+                <div style="height:10px;border-radius:99px;background:rgba(34,34,34,0.16);margin-top:4px;"><div style="height:100%;width:100%;border-radius:99px;background:linear-gradient(to right,#105fa8,#03746e);"></div></div>
+              </div>
+              <div style="background:#fafafa;border-radius:8px;padding:12px;margin-bottom:8px;">
+                <div style="font-size:12px;color:#222;">Annual Maximum</div>
+                <div style="display:flex;justify-content:space-between;align-items:end;"><span style="font-size:24px;color:#003a70;">$1,250</span><span style="font-size:12px;color:#222;">$750 of $2,000</span></div>
+                <div style="height:10px;border-radius:99px;background:rgba(34,34,34,0.16);margin-top:4px;"><div style="height:100%;width:37.5%;border-radius:99px;background:linear-gradient(to right,#105fa8,#03746e);"></div></div>
+              </div>
+              <button style="width:100%;padding:10px;background:#105fa8;color:#fff;border:none;border-radius:4px;font-family:'Source Sans Pro',sans-serif;font-size:16px;font-weight:600;margin-top:8px;">View More Details</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="flow-arrow"><svg viewBox="0 0 32 32" fill="none"><path d="M6 16h20M20 10l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+
+        <div class="screen-card">
+          <div class="screen-label"><span class="screen-number">2</span><span class="screen-name">Find ID Cards</span></div>
+          <div class="phone-frame" style="background:#fafafa;">
+            <div style="padding:20px;font-family:'Source Sans Pro',sans-serif;">
+              <div style="display:flex;justify-content:space-between;align-items:center;padding-bottom:16px;border-bottom:1px solid #f0f0f0;">
+                <svg width="18" height="18" viewBox="0 0 18 20" fill="none"><line x1="0" y1="4" x2="18" y2="4" stroke="#222" stroke-width="2" stroke-linecap="round"/><line x1="0" y1="10" x2="18" y2="10" stroke="#222" stroke-width="2" stroke-linecap="round"/><line x1="0" y1="16" x2="18" y2="16" stroke="#222" stroke-width="2" stroke-linecap="round"/></svg>
+                <span style="font-size:16px;font-weight:600;color:#003a70;">Find ID Cards</span>
+                <div style="width:18px;"></div>
+              </div>
+              <div style="margin-top:24px;">
+                <h2 style="font-size:20px;color:#003a70;margin-bottom:8px;">Your ID Cards</h2>
+                <p style="font-size:14px;color:#838383;margin-bottom:20px;">Select a plan to view or download your ID card.</p>
+                <div style="background:#fff;border:1px solid #f0f0f0;border-radius:12px;padding:16px;margin-bottom:12px;box-shadow:0 1px 2px rgba(0,0,0,0.05);">
+                  <div style="font-size:14px;font-weight:600;color:#003a70;">Dental ID Card</div>
+                  <div style="font-size:12px;color:#838383;margin-top:4px;">Premier PPO Dental Plan</div>
+                  <div style="margin-top:12px;background:linear-gradient(135deg,#003a70,#105fa8);border-radius:8px;height:120px;display:flex;align-items:center;justify-content:center;">
+                    <span style="color:#fff;font-size:14px;opacity:0.8;">Card Preview</span>
+                  </div>
+                  <div style="display:flex;gap:8px;margin-top:12px;">
+                    <button style="flex:1;padding:8px;border:1px solid #bababa;border-radius:6px;background:#fff;font-family:'Source Sans Pro',sans-serif;font-size:13px;color:#444;cursor:pointer;">Share</button>
+                    <button style="flex:1;padding:8px;border:none;border-radius:6px;background:#105fa8;font-family:'Source Sans Pro',sans-serif;font-size:13px;color:#fff;cursor:pointer;">Add to Wallet</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flow-arrow"><svg viewBox="0 0 32 32" fill="none"><path d="M6 16h20M20 10l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+
+        <div class="screen-card">
+          <div class="screen-label"><span class="screen-number">3</span><span class="screen-name">Claims</span></div>
+          <div class="phone-frame" style="background:#fff;">
+            <div style="font-family:'Source Sans Pro',sans-serif;padding:0;">
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:16px;border-bottom:1px solid #f0f0f0;">
+                <svg width="18" height="18" viewBox="0 0 18 20" fill="none"><line x1="0" y1="4" x2="18" y2="4" stroke="#222" stroke-width="2" stroke-linecap="round"/><line x1="0" y1="10" x2="18" y2="10" stroke="#222" stroke-width="2" stroke-linecap="round"/><line x1="0" y1="16" x2="18" y2="16" stroke="#222" stroke-width="2" stroke-linecap="round"/></svg>
+                <span style="font-size:16px;font-weight:600;color:#105fa8;">Benefits Hub</span>
+                <div style="width:32px;height:32px;border-radius:50%;background:#f0f0f0;"></div>
+              </div>
+              <div style="padding:20px;">
+                <h1 style="font-size:24px;color:#003a70;font-weight:400;margin-bottom:4px;">Claims</h1>
+                <p style="font-size:14px;color:#838383;margin-bottom:16px;">View and manage your claims across all benefit types.</p>
+                <div style="display:flex;gap:12px;margin-bottom:16px;border-bottom:2px solid #f0f0f0;padding-bottom:8px;">
+                  <span style="font-size:14px;font-weight:600;color:#003a70;border-bottom:2px solid #105fa8;padding-bottom:8px;margin-bottom:-10px;">Dental</span>
+                  <span style="font-size:14px;color:#838383;">Category 1</span>
+                  <span style="font-size:14px;color:#838383;">Category 2</span>
+                </div>
+                <select style="width:100%;padding:10px;border:1px solid #f0f0f0;border-radius:8px;font-family:'Source Sans Pro',sans-serif;font-size:14px;margin-bottom:8px;">
+                  <option>All Members</option>
+                </select>
+                <button style="padding:8px 16px;border:1px solid #f0f0f0;border-radius:8px;background:#fff;font-family:'Source Sans Pro',sans-serif;font-size:13px;color:#444;cursor:pointer;margin-bottom:20px;">Date Range</button>
+
+                <div style="border-top:1px solid #f0f0f0;padding-top:16px;">
+                  <div style="font-size:12px;color:#838383;margin-bottom:8px;">FEB 23, 2026</div>
+                  <div style="margin-bottom:4px;"><span style="font-size:14px;font-weight:600;color:#222;">Claim</span><span style="float:right;font-size:12px;color:#838383;background:#f0f0f0;padding:2px 8px;border-radius:4px;">Processed</span></div>
+                  <div style="font-size:12px;color:#838383;">CLM-98234 &bull; Sarah Johnson (Primary) &bull; Dr. Guy Smith</div>
+                  <div style="font-size:14px;color:#5d5d5d;margin-top:8px;">Billed Amount: $250.00</div>
+                  <div style="font-size:16px;font-weight:600;color:#222;margin-top:2px;">Member Pays: $50.00 <button style="padding:4px 12px;border:1px solid #bababa;border-radius:4px;background:#fff;font-size:12px;cursor:pointer;margin-left:8px;">Detail</button></div>
+                </div>
+
+                <div style="border-top:1px solid #f0f0f0;padding-top:16px;margin-top:16px;">
+                  <div style="font-size:12px;color:#838383;margin-bottom:8px;">AUG 15, 2025</div>
+                  <div style="margin-bottom:4px;"><span style="font-size:14px;font-weight:600;color:#222;">Claim</span><span style="float:right;font-size:12px;color:#838383;background:#f0f0f0;padding:2px 8px;border-radius:4px;">Pending</span></div>
+                  <div style="font-size:12px;color:#838383;">CLM-96541 &bull; Jack Johnson (Spouse) &bull; Dr. Guy Smith</div>
+                  <div style="font-size:14px;color:#5d5d5d;margin-top:8px;">Billed Amount: $145.00</div>
+                  <div style="font-size:16px;font-weight:600;color:#222;margin-top:2px;">Member Pays: Pending <button style="padding:4px 12px;border:1px solid #bababa;border-radius:4px;background:#fff;font-size:12px;cursor:pointer;margin-left:8px;">Detail</button></div>
+                </div>
+
+                <div style="border-top:1px solid #f0f0f0;padding-top:16px;margin-top:16px;">
+                  <div style="font-size:12px;color:#838383;margin-bottom:8px;">MAY 02, 2025</div>
+                  <div style="margin-bottom:4px;"><span style="font-size:14px;font-weight:600;color:#222;">Claim</span><span style="float:right;font-size:12px;color:#838383;background:#f0f0f0;padding:2px 8px;border-radius:4px;">Processed</span></div>
+                  <div style="font-size:12px;color:#838383;">CLM-96541 &bull; Jimmy Johnson (Dependent)</div>
+                  <div style="font-size:14px;color:#5d5d5d;margin-top:8px;">Billed Amount: $160.00</div>
+                  <div style="font-size:16px;font-weight:600;color:#222;margin-top:2px;">Member Pays: $80.00 <button style="padding:4px 12px;border:1px solid #bababa;border-radius:4px;background:#fff;font-size:12px;cursor:pointer;margin-left:8px;">Detail</button></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flow-arrow"><svg viewBox="0 0 32 32" fill="none"><path d="M6 16h20M20 10l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+
+        <div class="screen-card">
+          <div class="screen-label"><span class="screen-number">4</span><span class="screen-name">Claims Expanded</span></div>
+          <div class="phone-frame" style="background:#fff;">
+            <div style="font-family:'Source Sans Pro',sans-serif;padding:0;">
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:16px;border-bottom:1px solid #f0f0f0;">
+                <svg width="18" height="18" viewBox="0 0 18 20" fill="none"><line x1="0" y1="4" x2="18" y2="4" stroke="#222" stroke-width="2" stroke-linecap="round"/><line x1="0" y1="10" x2="18" y2="10" stroke="#222" stroke-width="2" stroke-linecap="round"/><line x1="0" y1="16" x2="18" y2="16" stroke="#222" stroke-width="2" stroke-linecap="round"/></svg>
+                <span style="font-size:16px;font-weight:600;color:#105fa8;">Benefits Hub</span>
+                <div style="width:32px;height:32px;border-radius:50%;background:#f0f0f0;"></div>
+              </div>
+              <div style="padding:20px;">
+                <h1 style="font-size:24px;color:#003a70;font-weight:400;margin-bottom:16px;">Claims</h1>
+                <div style="border:1px solid #f0f0f0;border-radius:8px;padding:16px;margin-bottom:16px;">
+                  <div style="font-size:12px;color:#838383;margin-bottom:4px;">FEB 23, 2026</div>
+                  <div style="font-size:14px;font-weight:600;color:#222;margin-bottom:4px;">Claim <span style="float:right;font-size:12px;font-weight:400;color:#838383;background:#f0f0f0;padding:2px 8px;border-radius:4px;">Processed</span></div>
+                  <div style="font-size:12px;color:#838383;margin-bottom:8px;">CLM-98234 &bull; Sarah Johnson</div>
+                  <div style="font-size:14px;color:#5d5d5d;">Billed: $250.00</div>
+                  <div style="font-size:16px;font-weight:600;color:#222;">Member Pays: $50.00</div>
+                  <div style="margin-top:12px;border-top:1px solid #f0f0f0;padding-top:12px;">
+                    <div style="display:flex;justify-content:space-between;font-size:12px;color:#838383;margin-bottom:6px;"><span>Date: Feb 23, 2025</span><span>Code: D1110</span></div>
+                    <div style="font-size:13px;color:#5d5d5d;">Periodic Oral Evaluation</div>
+                    <div style="font-size:12px;color:#838383;">Plan Pays: $100.00 &bull; You Pay: $0.00</div>
+                    <div style="border-top:1px dashed #f0f0f0;margin:8px 0;"></div>
+                    <div style="font-size:13px;color:#5d5d5d;">Routine Cleaning</div>
+                    <div style="font-size:12px;color:#838383;">Plan Pays: $100.00 &bull; You Pay: $0.00</div>
+                    <div style="border-top:1px dashed #f0f0f0;margin:8px 0;"></div>
+                    <div style="font-size:13px;color:#5d5d5d;">X-Rays</div>
+                    <div style="font-size:12px;color:#838383;">Plan Pays: $0.00 &bull; You Pay: $50.00</div>
+                    <div style="border-top:1px solid #f0f0f0;margin-top:12px;padding-top:8px;font-size:13px;font-weight:600;color:#222;">Total: Plan Pays $200.00 &bull; You Pay $50.00</div>
+                  </div>
+                  <a href="#" style="display:block;margin-top:12px;font-size:13px;color:#105fa8;text-decoration:underline;">View Claim Details &rsaquo;</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flow-arrow"><svg viewBox="0 0 32 32" fill="none"><path d="M6 16h20M20 10l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+
+        <div class="screen-card">
+          <div class="screen-label"><span class="screen-number">5</span><span class="screen-name">Claim Detail / EOB</span></div>
+          <div class="phone-frame" style="background:#fff;">
+            <div style="font-family:'Source Sans Pro',sans-serif;padding:0;">
+              <div style="display:flex;align-items:center;gap:8px;padding:16px;border-bottom:1px solid #f0f0f0;">
+                <svg width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M7 1L1 7l6 6" stroke="#105fa8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span style="font-size:14px;color:#105fa8;">Back to Claims</span>
+              </div>
+              <div style="padding:20px;">
+                <div style="font-size:14px;color:#838383;margin-bottom:4px;">FEB 23, 2026</div>
+                <div style="background:#e8f5e9;border-radius:6px;padding:10px 12px;font-size:13px;color:#1c9e3b;margin-bottom:16px;">You saved $150.00 by visiting an in-network provider</div>
+                <div style="font-size:32px;font-weight:400;color:#003a70;margin-bottom:4px;">$50.00</div>
+                <div style="font-size:14px;color:#838383;margin-bottom:20px;">Out of pocket expenses</div>
+                <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px;"><span style="color:#838383;">Total Claim Amount</span><span style="color:#222;">$250.00</span></div>
+                <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:12px;"><span style="color:#838383;">Provider</span><span style="color:#222;">Dr. Guy Smith</span></div>
+                <button style="width:100%;padding:10px;background:#105fa8;color:#fff;border:none;border-radius:6px;font-family:'Source Sans Pro',sans-serif;font-size:14px;font-weight:600;cursor:pointer;margin-bottom:20px;">View Explanation of Benefits</button>
+
+                <h3 style="font-size:16px;color:#003a70;margin-bottom:12px;">Summary of Costs</h3>
+                <div style="background:#fafafa;border-radius:8px;padding:16px;">
+                  <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px;"><span style="color:#5d5d5d;">Provider charged</span><span style="color:#222;">$250.00</span></div>
+                  <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px;"><span style="color:#5d5d5d;">Plan paid</span><span style="color:#222;">$200.00</span></div>
+                  <div style="border-top:1px solid #f0f0f0;margin:8px 0;padding-top:8px;display:flex;justify-content:space-between;font-size:14px;font-weight:600;"><span style="color:#003a70;">You owe</span><span style="color:#003a70;">$50.00</span></div>
+                </div>
+
+                <h3 style="font-size:16px;color:#003a70;margin:20px 0 12px;">Cost Breakdown</h3>
+                <div style="font-size:13px;color:#5d5d5d;border-bottom:1px solid #f0f0f0;padding-bottom:8px;margin-bottom:8px;">Periodic Oral Evaluation<br><span style="color:#838383;font-size:12px;">Plan Pays: $100.00 &bull; You Pay: $0.00</span></div>
+                <div style="font-size:13px;color:#5d5d5d;border-bottom:1px solid #f0f0f0;padding-bottom:8px;margin-bottom:8px;">Routine Cleaning<br><span style="color:#838383;font-size:12px;">Plan Pays: $100.00 &bull; You Pay: $0.00</span></div>
+                <div style="font-size:13px;color:#5d5d5d;">X-Rays<br><span style="color:#838383;font-size:12px;">Plan Pays: $0.00 &bull; You Pay: $50.00</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flow-arrow"><svg viewBox="0 0 32 32" fill="none"><path d="M6 16h20M20 10l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+
+        <div class="screen-card">
+          <div class="screen-label"><span class="screen-number">6</span><span class="screen-name">Benefits Summary</span></div>
+          <div class="phone-frame" style="background:#fff;">
+            <div style="font-family:'Source Sans Pro',sans-serif;padding:0;">
+              <div style="display:flex;align-items:center;gap:8px;padding:16px;border-bottom:1px solid #f0f0f0;">
+                <svg width="8" height="14" viewBox="0 0 8 14" fill="none"><path d="M7 1L1 7l6 6" stroke="#105fa8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span style="font-size:14px;color:#105fa8;">Back to My Dental Coverage</span>
+              </div>
+              <div style="padding:20px;">
+                <h2 style="font-size:16px;color:#003a70;margin-bottom:12px;">In-Network Coverage</h2>
+                <div style="background:#fafafa;border:1px solid #f0f0f0;border-radius:8px;padding:16px;margin-bottom:20px;">
+                  <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px;"><span style="color:#5d5d5d;">Preventive Procedures</span><span style="font-weight:600;color:#222;">100%</span></div>
+                  <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px;"><span style="color:#5d5d5d;">Basic Procedures</span><span style="font-weight:600;color:#222;">80%</span></div>
+                  <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px;"><span style="color:#5d5d5d;">Major Procedures</span><span style="font-weight:600;color:#222;">50%</span></div>
+                  <div style="display:flex;justify-content:space-between;font-size:13px;"><span style="color:#5d5d5d;">Orthodontia</span><span style="font-weight:600;color:#222;">50%</span></div>
+                </div>
+
+                <h2 style="font-size:16px;color:#003a70;margin-bottom:8px;">What's Covered</h2>
+                <p style="font-size:12px;color:#838383;margin-bottom:16px;">Your plan covers different types of dental care at different levels.</p>
+
+                <div style="margin-bottom:16px;">
+                  <div style="font-size:14px;font-weight:600;color:#003a70;margin-bottom:4px;">Preventive Procedures</div>
+                  <div style="font-size:12px;color:#5d5d5d;margin-bottom:8px;">Fully paid by your dental insurance. No deductible. Payments for these services do not count toward your annual maximum.</div>
+                  <div style="font-size:12px;color:#838383;">Includes: Dental Exams, X-Rays, Fluoride Treatments, Sealants, Routine Cleanings, Brush Biopsy</div>
+                </div>
+
+                <div style="margin-bottom:16px;">
+                  <div style="font-size:14px;font-weight:600;color:#003a70;margin-bottom:4px;">Basic Procedures</div>
+                  <div style="font-size:12px;color:#5d5d5d;margin-bottom:8px;">Partially covered after deductible. Plan pays 80%.</div>
+                  <div style="font-size:12px;color:#838383;">Includes: Fillings, Extractions, Root Canals, Periodontal Treatment</div>
+                </div>
+
+                <div>
+                  <div style="font-size:14px;font-weight:600;color:#003a70;margin-bottom:4px;">Major Procedures</div>
+                  <div style="font-size:12px;color:#5d5d5d;margin-bottom:8px;">Partially covered after deductible. Plan pays 50%.</div>
+                  <div style="font-size:12px;color:#838383;">Includes: Crowns, Bridges, Dentures, Implants</div>
+                </div>
+
+                <button style="width:100%;padding:10px;background:#105fa8;color:#fff;border:none;border-radius:6px;font-family:'Source Sans Pro',sans-serif;font-size:14px;font-weight:600;cursor:pointer;margin-top:20px;">View Benefits Summary PDF</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flow-arrow"><svg viewBox="0 0 32 32" fill="none"><path d="M6 16h20M20 10l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+
+        <div class="screen-card">
+          <div class="screen-label"><span class="screen-number">7</span><span class="screen-name">Find a Procedure</span></div>
+          <div class="phone-frame" style="background:#fff;">
+            <div style="font-family:'Source Sans Pro',sans-serif;padding:0;">
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:16px;border-bottom:1px solid #f0f0f0;">
+                <svg width="18" height="18" viewBox="0 0 18 20" fill="none"><line x1="0" y1="4" x2="18" y2="4" stroke="#222" stroke-width="2" stroke-linecap="round"/><line x1="0" y1="10" x2="18" y2="10" stroke="#222" stroke-width="2" stroke-linecap="round"/><line x1="0" y1="16" x2="18" y2="16" stroke="#222" stroke-width="2" stroke-linecap="round"/></svg>
+                <div style="display:flex;align-items:center;gap:12px;">
+                  <div style="width:32px;height:32px;border-radius:50%;background:#f0f0f0;"></div>
+                </div>
+              </div>
+              <div style="padding:20px;">
+                <h1 style="font-size:24px;color:#003a70;font-weight:400;margin-bottom:20px;">Find a Dental Procedure</h1>
+                <div style="background:#fff;border:1px solid #f0f0f0;border-radius:12px;padding:20px;box-shadow:0 1px 2px rgba(0,0,0,0.05);">
+                  <div style="display:flex;gap:8px;margin-bottom:12px;">
+                    <select style="padding:8px 12px;border:1px solid #f0f0f0;border-radius:6px;font-family:'Source Sans Pro',sans-serif;font-size:13px;color:#444;">
+                      <option>Search by</option>
+                      <option>ADA Code</option>
+                      <option>Procedure</option>
+                    </select>
+                    <input type="text" placeholder="Search" style="flex:1;padding:8px 12px;border:1px solid #f0f0f0;border-radius:6px;font-family:'Source Sans Pro',sans-serif;font-size:13px;">
+                  </div>
+                  <button style="width:100%;padding:10px;background:#105fa8;color:#fff;border:none;border-radius:6px;font-family:'Source Sans Pro',sans-serif;font-size:14px;font-weight:600;cursor:pointer;">Search</button>
+                </div>
+                <div style="background:#fff;border:1px solid #f0f0f0;border-radius:12px;padding:20px;margin-top:16px;box-shadow:0 1px 2px rgba(0,0,0,0.05);">
+                  <h3 style="font-size:16px;color:#003a70;margin-bottom:8px;">What is an ADA Code?</h3>
+                  <p style="font-size:13px;color:#5d5d5d;line-height:20px;">ADA codes are standard procedure codes dentists use to show what treatment was done. They help your dental plan know exactly what was performed so your insurance benefits can be applied correctly. Search for specific procedures by name or ADA code to learn more about the care, category, and how it is covered.</p>
+                </div>
+              </div>
+              <div style="margin-top:auto;padding:20px;text-align:center;border-top:1px solid #f0f0f0;">
+                <p style="font-size:12px;color:#838383;">&copy; 2025 DentalCare Insurance. All rights reserved.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Tab navigation
+    const btns = document.querySelectorAll('.flow-nav-btn');
+    const allView = document.getElementById('allView');
+    const cards = document.querySelectorAll('.screen-card');
+
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        btns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const screen = btn.dataset.screen;
+        if (screen === 'all') {
+          allView.classList.remove('hidden');
+        } else {
+          allView.classList.remove('hidden');
+          const idx = parseInt(screen);
+          cards[idx].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

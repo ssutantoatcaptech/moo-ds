@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Components - MoO Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    .component-card {
+      display: flex; flex-direction: column; text-decoration: none; color: inherit;
+      transition: box-shadow 0.2s, transform 0.2s; cursor: pointer;
+    }
+    .component-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.12); transform: translateY(-2px); }
+    .component-card h3 { display: flex; align-items: center; justify-content: space-between; }
+    .component-card .arrow { font-size: 18px; color: #105fa8; }
+    .component-card.hidden { display: none; }
+
+    /* Search + Filter Bar */
+    .toolbar { display: flex; flex-direction: column; gap: 16px; margin-bottom: 32px; }
+    .search-wrap {
+      position: relative; max-width: 400px;
+    }
+    .search-wrap input {
+      width: 100%; padding: 10px 16px 10px 40px; font-size: 14px; font-family: 'Source Sans Pro', sans-serif;
+      border: 1px solid #bababa; border-radius: 8px; outline: none; color: #222;
+      transition: border-color 0.15s;
+    }
+    .search-wrap input:focus { border-color: #105fa8; box-shadow: 0 0 0 3px rgba(16,95,168,0.12); }
+    .search-wrap input::placeholder { color: #bababa; }
+    .search-icon {
+      position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+      color: #838383; font-size: 14px; pointer-events: none;
+    }
+    .filter-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+    .filter-chip {
+      padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600;
+      font-family: 'Source Sans Pro', sans-serif;
+      border: 1px solid #bababa; background: #fff; color: #444; cursor: pointer;
+      transition: all 0.15s; user-select: none;
+    }
+    .filter-chip:hover { border-color: #105fa8; color: #105fa8; }
+    .filter-chip.active { background: #105fa8; color: #fff; border-color: #105fa8; }
+    .result-count { font-size: 13px; color: #838383; margin-left: 4px; }
+    .no-results {
+      grid-column: 1 / -1; text-align: center; padding: 48px 20px;
+      font-size: 16px; color: #838383;
+    }
+  </style>
+  <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+  <script src="figma-toolbar.js" defer></script>
+</head>
+<body>
+  <nav class="ds-nav">
+    <div class="ds-nav-left">
+      <span class="ds-brand">MoO Design System</span>
+      <div class="ds-tabs">
+        <a href="index.html" class="ds-tab">Overview</a>
+        <a href="tokens.html" class="ds-tab">Design Tokens</a>
+        <a href="iconography.html" class="ds-tab">Iconography</a>
+        <a href="components.html" class="ds-tab active">Components</a>
+        <a href="dashboard.html" class="ds-tab">Dashboard Preview</a>
+        <a href="mobile-dashboard.html" class="ds-tab">Mobile Dashboard</a>
+        <a href="login-registration.html" class="ds-tab">Login &amp; Registration</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <h1>Components</h1>
+    <p>20 components in the MoO Design System.</p>
+  </section>
+
+  <div class="page-content">
+    <!-- Search + Filter Toolbar -->
+    <div class="toolbar">
+      <div class="search-wrap">
+        <svg class="search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M16 16l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <input type="text" id="comp-search" placeholder="Search components..." autocomplete="off">
+      </div>
+      <div class="filter-row">
+        <button class="filter-chip active" data-filter="all">All</button>
+        <button class="filter-chip" data-filter="navigation">Navigation</button>
+        <button class="filter-chip" data-filter="forms">Forms</button>
+        <button class="filter-chip" data-filter="feedback">Feedback</button>
+        <button class="filter-chip" data-filter="data-display">Data Display</button>
+        <button class="filter-chip" data-filter="layout">Layout</button>
+        <button class="filter-chip" data-filter="branding">Branding</button>
+        <span class="result-count" id="result-count"></span>
+      </div>
+    </div>
+
+    <div class="component-grid" id="comp-grid">
+      <a href="component-activityrow.html" class="component-card" data-category="data-display">
+        <h3>Activity Row <span class="arrow">&rarr;</span></h3>
+        <div class="file">ActivityRow.tsx</div>
+        <div class="desc">Activity feed row with 4 status variants: Information, Pending, Success, and Needs Attention.</div>
+      </a>
+      <a href="component-calloutcard.html" class="component-card" data-category="data-display">
+        <h3>Callout Card <span class="arrow">&rarr;</span></h3>
+        <div class="file">CalloutCard.tsx</div>
+        <div class="desc">Callout card with gradient icon, title, body text, and CTA buttons. Default and Quick Actions variants.</div>
+      </a>
+      <a href="component-plancard.html" class="component-card" data-category="data-display">
+        <h3>Benefits Card <span class="arrow">&rarr;</span></h3>
+        <div class="file">PlanCard.tsx</div>
+        <div class="desc">Insurance plan and benefits card with icon, progress bar, and detail rows.</div>
+      </a>
+      <a href="component-brandheader.html" class="component-card" data-category="branding">
+        <h3>Brand Banner <span class="arrow">&rarr;</span></h3>
+        <div class="file">BrandHeader.tsx</div>
+        <div class="desc">Brand banner header with Default and Co-Branded variants.</div>
+      </a>
+      <a href="component-button.html" class="component-card" data-category="forms">
+        <h3>Buttons <span class="arrow">&rarr;</span></h3>
+        <div class="file">Button.tsx</div>
+        <div class="desc">Primary, secondary, outline, and subtle button variants with size options and loading states.</div>
+      </a>
+      <a href="component-dropdownhover.html" class="component-card" data-category="forms">
+        <h3>Dropdowns <span class="arrow">&rarr;</span></h3>
+        <div class="file">DropdownHover.tsx, Select.tsx</div>
+        <div class="desc">Dropdown select and picklist components with focus ring, hover state, and chevron indicator.</div>
+      </a>
+      <a href="component-fieldlabel.html" class="component-card" data-category="forms">
+        <h3>Field Labels <span class="arrow">&rarr;</span></h3>
+        <div class="file">FieldLabel.tsx, FieldLabelError.tsx, InputLabel.tsx</div>
+        <div class="desc">Form field labels including standard, error, and uppercase input label variants with required and info icon options.</div>
+      </a>
+      <a href="component-footer.html" class="component-card" data-category="layout">
+        <h3>Footer <span class="arrow">&rarr;</span></h3>
+        <div class="file">Footer.tsx, MobileFooter.tsx</div>
+        <div class="desc">Desktop and mobile footer with link columns, assistance section, legal links, and responsive stacked layout.</div>
+      </a>
+      <a href="component-input.html" class="component-card" data-category="forms">
+        <h3>Form Fields <span class="arrow">&rarr;</span></h3>
+        <div class="file">Input.tsx, Checkbox.tsx, Toggle.tsx</div>
+        <div class="desc">Composite form field patterns combining inputs, labels, validation, and helper text into form layouts.</div>
+      </a>
+      <a href="component-input.html" class="component-card" data-category="forms">
+        <h3>Inputs <span class="arrow">&rarr;</span></h3>
+        <div class="file">Input.tsx</div>
+        <div class="desc">Form text inputs with label, placeholder, validation states, and error messaging.</div>
+      </a>
+      <a href="component-inlinemessage.html" class="component-card" data-category="feedback">
+        <h3>Inline Message <span class="arrow">&rarr;</span></h3>
+        <div class="file">InlineMessage.tsx, MessageBar.tsx</div>
+        <div class="desc">Inline notifications with colored status stripe, icon, body text, and close button. Success, Error, Warning, and Information variants.</div>
+      </a>
+      <a href="component-insurancecard.html" class="component-card" data-category="data-display">
+        <h3>Insurance Card <span class="arrow">&rarr;</span></h3>
+        <div class="file">InsuranceCard.tsx</div>
+        <div class="desc">Insurance ID card with Front and Back variants showing member details.</div>
+      </a>
+      <a href="component-mutualofomahalogo.html" class="component-card" data-category="branding">
+        <h3>Logo <span class="arrow">&rarr;</span></h3>
+        <div class="file">MutualOfOmahaLogo.tsx, LogoStacked.tsx, MyMutualLogo.tsx</div>
+        <div class="desc">Mutual of Omaha and MyMutual logos in horizontal, stacked, black, blue, white, and 2-color variants.</div>
+      </a>
+      <a href="component-globalnavigation.html" class="component-card" data-category="navigation">
+        <h3>Navigation <span class="arrow">&rarr;</span></h3>
+        <div class="file">GlobalNavigation.tsx, Sidebar.tsx, Avatar.tsx</div>
+        <div class="desc">Top-level navigation bar, vertical sidebar, and user avatar with brand tabs, utility links, and collapsible sections.</div>
+      </a>
+      <a href="component-badge.html" class="component-card" data-category="data-display">
+        <h3>Pills <span class="arrow">&rarr;</span></h3>
+        <div class="file">Badge.tsx, Tag.tsx</div>
+        <div class="desc">Status badges, labels, and tags for categorization, filtering, and status indication.</div>
+      </a>
+      <a href="component-datatable.html" class="component-card" data-category="data-display">
+        <h3>Recent Activity <span class="arrow">&rarr;</span></h3>
+        <div class="file">DataTable.tsx</div>
+        <div class="desc">Recent activity feed and data table with sortable headers, row styling, and timeline display.</div>
+      </a>
+      <a href="component-checkbox.html" class="component-card" data-category="forms">
+        <h3>Selection <span class="arrow">&rarr;</span></h3>
+        <div class="file">Checkbox.tsx, Toggle.tsx</div>
+        <div class="desc">Selection controls including checkboxes and toggle switches with checked/unchecked states.</div>
+      </a>
+      <a href="component-sidebarcard.html" class="component-card" data-category="navigation">
+        <h3>Sidebar Card <span class="arrow">&rarr;</span></h3>
+        <div class="file">SidebarCard.tsx</div>
+        <div class="desc">Sidebar navigation card with active item highlighting.</div>
+      </a>
+      <a href="component-statcard.html" class="component-card" data-category="data-display">
+        <h3>Stats Card <span class="arrow">&rarr;</span></h3>
+        <div class="file">StatCard.tsx, ProgressBar.tsx</div>
+        <div class="desc">Dashboard statistic card displaying metrics with labels and progress bar indicators.</div>
+      </a>
+      <a href="component-tabs.html" class="component-card" data-category="navigation">
+        <h3>Tabs <span class="arrow">&rarr;</span></h3>
+        <div class="file">Tabs.tsx</div>
+        <div class="desc">Navigation tab links with active state styling.</div>
+      </a>
+
+      <div class="no-results" id="no-results" style="display:none;">No components match your search.</div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      var searchInput = document.getElementById('comp-search');
+      var cards = document.querySelectorAll('.component-card');
+      var chips = document.querySelectorAll('.filter-chip');
+      var countEl = document.getElementById('result-count');
+      var noResults = document.getElementById('no-results');
+      var activeFilter = 'all';
+
+      function applyFilters() {
+        var query = searchInput.value.toLowerCase().trim();
+        var visible = 0;
+
+        cards.forEach(function(card) {
+          var name = card.querySelector('h3').textContent.toLowerCase();
+          var desc = card.querySelector('.desc').textContent.toLowerCase();
+          var file = card.querySelector('.file').textContent.toLowerCase();
+          var cat = card.getAttribute('data-category');
+
+          var matchesSearch = !query || name.includes(query) || desc.includes(query) || file.includes(query);
+          var matchesFilter = activeFilter === 'all' || cat === activeFilter;
+
+          if (matchesSearch && matchesFilter) {
+            card.classList.remove('hidden');
+            visible++;
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+
+        noResults.style.display = visible === 0 ? 'block' : 'none';
+
+        if (query || activeFilter !== 'all') {
+          countEl.textContent = visible + ' of ' + cards.length + ' components';
+        } else {
+          countEl.textContent = '';
+        }
+      }
+
+      searchInput.addEventListener('input', applyFilters);
+
+      chips.forEach(function(chip) {
+        chip.addEventListener('click', function() {
+          chips.forEach(function(c) { c.classList.remove('active'); });
+          chip.classList.add('active');
+          activeFilter = chip.getAttribute('data-filter');
+          applyFilters();
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

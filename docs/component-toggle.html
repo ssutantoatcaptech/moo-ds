@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toggle - MoO Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    .toggle-track {
+      position: relative;
+      width: 44px;
+      height: 22px;
+      background: #8a8886;
+      border-radius: 22px;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background 0.2s;
+    }
+    .toggle-thumb {
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 18px;
+      height: 18px;
+      background: #fff;
+      border-radius: 50%;
+      transition: transform 0.2s;
+    }
+    .toggle-input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .toggle-input:checked + .toggle-track {
+      background: #105fa8;
+    }
+    .toggle-input:checked + .toggle-track .toggle-thumb {
+      transform: translateX(22px);
+    }
+  </style>
+</head>
+<body>
+  <nav class="ds-nav">
+    <div class="ds-nav-left">
+      <span class="ds-brand">MoO Design System</span>
+      <div class="ds-tabs">
+        <a href="index.html" class="ds-tab">Overview</a>
+        <a href="tokens.html" class="ds-tab">Design Tokens</a>
+        <a href="iconography.html" class="ds-tab">Iconography</a>
+        <a href="components.html" class="ds-tab active">Components</a>
+        <a href="dashboard.html" class="ds-tab">Dashboard Preview</a>
+        <a href="mobile-dashboard.html" class="ds-tab">Mobile Dashboard</a>
+        <a href="login-registration.html" class="ds-tab">Login &amp; Registration</a>
+      </div>
+    </div>
+  </nav>
+
+  <div style="max-width: 960px; margin: 0 auto; padding: 40px 60px;">
+    <a href="components.html" style="font-size: 14px; color: #105fa8; text-decoration: none; display: flex; align-items: center; gap: 6px; margin-bottom: 24px;">&larr; Back to Components</a>
+
+    <h1 style="font-size: 32px; color: #003a70; margin-bottom: 4px;">Toggle</h1>
+    <div style="font-size: 13px; color: #105fa8; font-family: 'SF Mono', 'Courier New', monospace; margin-bottom: 8px;">Toggle.tsx</div>
+    <p style="font-size: 16px; color: #5d5d5d; margin-bottom: 32px;">Toggle switch for enabling or disabling a setting.</p>
+    <a href="https://github.com/ssutantoatcaptech/moo-ds/blob/main/src/components/Toggle.tsx" style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: #105fa8; text-decoration: none; font-weight: 600; margin-bottom: 32px;">View on GitHub &rarr;</a>
+
+    <!-- States -->
+    <h2 style="font-size: 20px; color: #003a70; margin-bottom: 16px;">States</h2>
+    <div style="background: #f9fafb; border: 1px solid #f0f0f0; border-radius: 8px; padding: 32px; margin-bottom: 32px;">
+      <div style="display: flex; flex-direction: column; gap: 24px;">
+        <!-- Off -->
+        <label style="display: flex; align-items: center; gap: 12px; cursor: pointer;">
+          <input type="checkbox" class="toggle-input">
+          <div class="toggle-track"><div class="toggle-thumb"></div></div>
+          <span style="font-size: 16px; color: #222;">Off state</span>
+        </label>
+
+        <!-- On -->
+        <label style="display: flex; align-items: center; gap: 12px; cursor: pointer;">
+          <input type="checkbox" checked class="toggle-input">
+          <div class="toggle-track"><div class="toggle-thumb"></div></div>
+          <span style="font-size: 16px; color: #222;">On state</span>
+        </label>
+
+        <!-- With labels -->
+        <label style="display: flex; align-items: center; gap: 12px; cursor: pointer;">
+          <input type="checkbox" checked class="toggle-input">
+          <div class="toggle-track"><div class="toggle-thumb"></div></div>
+          <span style="font-size: 16px; color: #222;">Email Notifications</span>
+        </label>
+
+        <!-- Disabled -->
+        <label style="display: flex; align-items: center; gap: 12px; opacity: 0.4; cursor: not-allowed;">
+          <input type="checkbox" disabled class="toggle-input">
+          <div class="toggle-track" style="cursor: not-allowed;"><div class="toggle-thumb"></div></div>
+          <span style="font-size: 16px; color: #222;">Disabled toggle</span>
+        </label>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
