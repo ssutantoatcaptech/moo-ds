@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Utility Links - MoO Design System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    .page-content { max-width: 1060px; margin: 0 auto; padding: 40px 60px; }
+    .back-link { font-size: 14px; color: #105fa8; text-decoration: none; display: flex; align-items: center; gap: 6px; margin-bottom: 24px; }
+    .back-link:hover { text-decoration: underline; }
+    h1 { font-size: 32px; color: #003a70; margin-bottom: 4px; }
+    .file-name { font-size: 13px; color: #105fa8; font-family: 'SF Mono', 'Courier New', monospace; margin-bottom: 8px; }
+    .description { font-size: 16px; color: #5d5d5d; margin-bottom: 32px; }
+    .gh-link, .figma-link { display: block; margin-bottom: 8px; font-size: 13px; color: #105fa8; text-decoration: none; font-weight: 600; }
+    .gh-link:hover, .figma-link:hover { text-decoration: underline; }
+    .links-group { margin-bottom: 32px; }
+    .section-title { font-size: 20px; color: #003a70; margin-bottom: 16px; margin-top: 8px; }
+    .preview-box { background: #f9fafb; border: 1px solid #f0f0f0; border-radius: 8px; padding: 32px; margin-bottom: 32px; }
+    .state-label { font-size: 11px; font-weight: 700; color: #838383; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+    .props-table { width: 100%; border-collapse: collapse; font-family: 'Source Sans Pro', sans-serif; font-size: 14px; margin-bottom: 32px; }
+    .props-table th { text-align: left; padding: 10px 12px; background: #f0f5fa; color: #003a70; font-weight: 700; border-bottom: 2px solid #d0dce8; }
+    .props-table td { padding: 10px 12px; border-bottom: 1px solid #f0f0f0; color: #444; }
+    .props-table code { background: #f0f0f0; padding: 2px 6px; border-radius: 3px; font-size: 13px; }
+
+    .util-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 12px; border-radius: 4px;
+      font-family: 'Source Sans Pro', sans-serif; font-size: 14px; font-weight: 600;
+      color: #222; cursor: pointer; text-decoration: none;
+      transition: background 0.15s;
+    }
+    .util-link:hover, .util-link.hover { background: #ebf3fa; }
+    .util-link .util-icon { font-size: 16px; color: #222; }
+    .util-link.sign-in { color: #105fa8; }
+    .util-link.sign-in .util-icon { color: #105fa8; }
+    .util-link.profile { color: #105fa8; gap: 12px; }
+    .avatar-circle {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: #002547; border: 2px solid #dcebf9;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Source Sans Pro', sans-serif; font-size: 14px; font-weight: 600;
+      color: #fff; text-transform: uppercase; flex-shrink: 0;
+    }
+    .notif-wrap { position: relative; display: inline-flex; align-items: center; padding: 8px 12px; cursor: pointer; }
+    .notif-dot {
+      position: absolute; top: 8px; right: 8px;
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #c12506;
+    }
+  </style>
+  <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+  <script src="figma-toolbar.js" defer></script>
+</head>
+<body>
+  <nav class="ds-nav">
+    <div class="ds-nav-left">
+      <span class="ds-brand">MoO Design System</span>
+      <div class="ds-tabs">
+        <a href="index.html" class="ds-tab">Overview</a>
+        <a href="tokens.html" class="ds-tab">Design Tokens</a>
+        <a href="iconography.html" class="ds-tab">Iconography</a>
+        <a href="components.html" class="ds-tab active">Components</a>
+        <a href="dashboard.html" class="ds-tab">Dashboard Preview</a>
+        <a href="mobile-dashboard.html" class="ds-tab">Mobile Dashboard</a>
+        <a href="login-registration.html" class="ds-tab">Login &amp; Registration</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-content">
+    <a href="components.html" class="back-link">&larr; All Components</a>
+    <h1>Utility Links</h1>
+    <div class="file-name">UtilityLinks.tsx</div>
+    <p class="description">Right-side utility actions in the navigation bar. Includes Find ID Card, Messages, Profile with avatar, Sign In, and Notification bell with optional badge dot.</p>
+
+    <div class="links-group">
+      <a href="https://github.com/ssutantoatcaptech/moo-ds/blob/main/src/components/GlobalNavigation.tsx" class="gh-link" target="_blank">View on GitHub &rarr;</a>
+      <a href="https://www.figma.com/design/IE52Pd1nEcinhqOlSy4efj/Member-Experience-Design-System?node-id=8011-7564&m=dev" class="figma-link" target="_blank">View in Figma &rarr;</a>
+    </div>
+
+    <h2 class="section-title">States</h2>
+    <div class="preview-box">
+      <div style="display: flex; gap: 32px; align-items: center; flex-wrap: wrap;">
+        <div>
+          <div class="state-label">Default</div>
+          <a class="util-link"><i class="far fa-id-card util-icon"></i> Find ID Card</a>
+        </div>
+        <div>
+          <div class="state-label">Hover</div>
+          <a class="util-link hover"><i class="far fa-id-card util-icon"></i> Find ID Card</a>
+        </div>
+        <div>
+          <div class="state-label">Profile</div>
+          <a class="util-link profile">
+            <span class="avatar-circle">AB</span>
+            Name Here
+          </a>
+        </div>
+        <div>
+          <div class="state-label">Sign In</div>
+          <a class="util-link sign-in"><i class="far fa-user-circle util-icon"></i> Sign In</a>
+        </div>
+        <div>
+          <div class="state-label">Notification</div>
+          <span class="notif-wrap">
+            <i class="far fa-bell" style="font-size: 18px; color: #222;"></i>
+            <span class="notif-dot"></span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title">Notification Without Badge</h2>
+    <div class="preview-box">
+      <span class="notif-wrap">
+        <i class="far fa-bell" style="font-size: 18px; color: #222;"></i>
+      </span>
+    </div>
+
+    <h2 class="section-title">Props</h2>
+    <table class="props-table">
+      <thead><tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td><code>property1</code></td><td><code>"Default" | "Hover" | "Profile" | "Sign In" | "Notification"</code></td><td><code>"Default"</code></td><td>Visual variant of the utility link</td></tr>
+        <tr><td><code>notification</code></td><td><code>boolean</code></td><td><code>true</code></td><td>Show red notification dot on bell icon</td></tr>
+      </tbody>
+    </table>
+
+    <h2 class="section-title">Design Tokens Used</h2>
+    <div class="preview-box" style="display: flex; flex-direction: column; gap: 8px; align-items: flex-start;">
+      <div><strong>Text color:</strong> <code>--foundation-grays-gray-darkest</code> (#222)</div>
+      <div><strong>Hover bg:</strong> <code>--foundation-blue-50</code> (#ebf3fa)</div>
+      <div><strong>Sign In / Profile text:</strong> <code>--foundation-primary-blue</code> (#105fa8)</div>
+      <div><strong>Avatar bg:</strong> <code>--foundation-dark-blue-800</code> (#002547)</div>
+      <div><strong>Avatar border:</strong> <code>--foundation-dark-blue-100</code> (#dcebf9)</div>
+      <div><strong>Notification dot:</strong> <code>--semantics-solids-error</code> (#c12506)</div>
+      <div><strong>Typography:</strong> <code>--font-family-title</code> (Source Sans Pro Semibold, 14px / 20px)</div>
+      <div><strong>Icon size:</strong> 24px with 2px padding</div>
+    </div>
+  </div>
+</body>
+</html>
