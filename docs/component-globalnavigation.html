@@ -3,21 +3,120 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GlobalNavigation - MoO Design System</title>
+  <title>Navigation - MoO Design System</title>
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="stylesheet" href="shared.css">
   <style>
-    .page-content { max-width: 960px; margin: 0 auto; padding: 40px 60px; }
+    .page-content { max-width: 1100px; margin: 0 auto; padding: 40px 60px; }
     .back-link { font-size: 14px; color: #105fa8; text-decoration: none; display: flex; align-items: center; gap: 6px; margin-bottom: 24px; }
     .back-link:hover { text-decoration: underline; }
     h1 { font-size: 32px; color: #003a70; margin-bottom: 4px; }
     .file-name { font-size: 13px; color: #105fa8; font-family: 'SF Mono', 'Courier New', monospace; margin-bottom: 8px; }
     .description { font-size: 16px; color: #5d5d5d; margin-bottom: 32px; }
-    .gh-link { display: block; margin-bottom: 32px; font-size: 13px; color: #105fa8; text-decoration: none; font-weight: 600; }
-    .gh-link:hover { text-decoration: underline; }
-    .section-title { font-size: 20px; color: #003a70; margin-bottom: 16px; }
-    .preview-box { background: #f9fafb; border: 1px solid #f0f0f0; border-radius: 8px; padding: 0; margin-bottom: 32px; overflow: hidden; }
+    .gh-link, .figma-link { display: block; margin-bottom: 8px; font-size: 13px; color: #105fa8; text-decoration: none; font-weight: 600; }
+    .gh-link:hover, .figma-link:hover { text-decoration: underline; }
+    .links-group { margin-bottom: 32px; }
+    .section-title { font-size: 20px; color: #003a70; margin-bottom: 16px; margin-top: 8px; }
+    .subsection { font-size: 14px; color: #5d5d5d; margin-bottom: 12px; font-weight: 600; }
+    .preview-box { background: #f9fafb; border: 1px solid #f0f0f0; border-radius: 8px; padding: 32px; margin-bottom: 32px; }
+    .preview-box.flush { padding: 0; overflow: hidden; }
+    .state-label { font-size: 11px; font-weight: 700; color: #838383; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+
+    /* ── Navigation Tabs ── */
+    .nav-tab {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 12px; border-radius: 4px;
+      font-family: 'Source Sans Pro', sans-serif; font-size: 14px; font-weight: 600;
+      color: #222; cursor: pointer; text-decoration: none;
+      transition: background 0.15s;
+    }
+    .nav-tab:hover, .nav-tab.hover { background: #e9f3fb; }
+    .nav-tab.selected { background: #e9f3fb; }
+    .nav-tab .chevron { font-size: 10px; color: #105fa8; }
+
+    /* ── Utility Links ── */
+    .util-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 12px; border-radius: 4px;
+      font-family: 'Source Sans Pro', sans-serif; font-size: 14px; font-weight: 600;
+      color: #222; cursor: pointer; text-decoration: none;
+      transition: background 0.15s;
+    }
+    .util-link:hover, .util-link.hover { background: #ebf3fa; }
+    .util-link .util-icon { font-size: 16px; color: #222; }
+    .util-link.sign-in { color: #105fa8; }
+    .util-link.sign-in .util-icon { color: #105fa8; }
+    .util-link.profile { color: #105fa8; gap: 12px; }
+
+    .avatar-circle {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: #002547; border: 2px solid #dcebf9;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Source Sans Pro', sans-serif; font-size: 14px; font-weight: 600;
+      color: #fff; text-transform: uppercase; flex-shrink: 0;
+    }
+
+    .notif-wrap { position: relative; display: inline-flex; align-items: center; padding: 8px 12px; cursor: pointer; }
+    .notif-dot {
+      position: absolute; top: 8px; right: 8px;
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #c12506;
+    }
+
+    /* ── Secondary Nav Tabs ── */
+    .sec-tab {
+      display: inline-flex; align-items: center;
+      padding: 12px; position: relative;
+      font-family: 'Source Sans Pro', sans-serif; font-size: 14px; font-weight: 600;
+      color: #5d5d5d; cursor: pointer; text-decoration: none;
+      transition: background 0.15s;
+    }
+    .sec-tab:hover, .sec-tab.hover { background: #e9f3fb; }
+    .sec-tab.selected { color: #5d5d5d; padding: 12px 12px 15px; border-bottom: 3px solid #105fa8; }
+
+    /* ── Main Navigation Bar ── */
+    .main-nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 24px; background: #fff;
+      border-bottom: 1px solid #f0f0f0;
+      font-family: 'Source Sans Pro', sans-serif;
+    }
+    .main-nav-left { display: flex; align-items: center; gap: 32px; }
+    .main-nav-tabs { display: flex; gap: 0; }
+    .main-nav-right { display: flex; align-items: center; gap: 4px; }
+
+    .my-mutual-logo { font-size: 20px; font-weight: 400; color: #222; letter-spacing: -0.5px; white-space: nowrap; }
+    .my-mutual-logo em { font-style: italic; color: #105fa8; font-weight: 700; }
+
+    /* ── Secondary Navigation Bar ── */
+    .sec-nav {
+      display: flex; align-items: center; gap: 0;
+      padding: 0 24px; background: #fff;
+      border-bottom: 1px solid #f0f0f0;
+      font-family: 'Source Sans Pro', sans-serif;
+    }
+
+    /* ── Global Navigation (combined) ── */
+    .global-nav-variant { margin-bottom: 16px; }
+    .global-nav-variant:last-child { margin-bottom: 0; }
+    .variant-label {
+      font-family: 'Source Sans Pro', sans-serif; font-size: 12px; font-weight: 700;
+      color: #838383; text-transform: uppercase; letter-spacing: 0.5px;
+      padding: 8px 24px; background: #f5f5f5; border-bottom: 1px solid #f0f0f0;
+    }
+
+    /* Active tab highlight */
+    .nav-tab.active-tab { background: #e9f3fb; }
+
+    /* Props table */
+    .props-table { width: 100%; border-collapse: collapse; font-family: 'Source Sans Pro', sans-serif; font-size: 14px; margin-bottom: 32px; }
+    .props-table th { text-align: left; padding: 10px 12px; background: #f0f5fa; color: #003a70; font-weight: 700; border-bottom: 2px solid #d0dce8; }
+    .props-table td { padding: 10px 12px; border-bottom: 1px solid #f0f0f0; color: #444; }
+    .props-table code { background: #f0f0f0; padding: 2px 6px; border-radius: 3px; font-size: 13px; }
   </style>
+  <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+  <script src="figma-toolbar.js" defer></script>
 </head>
 <body>
   <nav class="ds-nav">
@@ -36,39 +135,349 @@
   </nav>
 
   <div class="page-content">
-    <a href="components.html" class="back-link">&larr; Back to Components</a>
-    <h1>GlobalNavigation</h1>
-    <div class="file-name">GlobalNavigation.tsx</div>
-    <p class="description">Top-level navigation bar with brand, main tabs, utility links, and user profile.</p>
-    <a href="https://github.com/ssutantoatcaptech/moo-ds/blob/main/src/components/GlobalNavigation.tsx" class="gh-link">View on GitHub &rarr;</a>
+    <a href="components.html" class="back-link">&larr; All Components</a>
+    <h1>Navigation</h1>
+    <div class="file-name">GlobalNavigation.tsx, Sidebar.tsx, Avatar.tsx</div>
+    <p class="description">Complete navigation system including main navigation bar, navigation tabs, secondary nav tabs, utility links, and assembled global navigation with page-specific variants.</p>
 
-    <h2 class="section-title">Default</h2>
+    <div class="links-group">
+      <a href="https://github.com/ssutantoatcaptech/moo-ds/blob/main/src/components/GlobalNavigation.tsx" class="gh-link" target="_blank">View on GitHub &rarr;</a>
+      <a href="https://www.figma.com/design/IE52Pd1nEcinhqOlSy4efj/Member-Experience-Design-System?node-id=8012-9508&m=dev" class="figma-link" target="_blank">View in Figma &rarr;</a>
+    </div>
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- 1. Navigation Tabs (6008-11552) -->
+    <!-- ════════════════════════════════════════ -->
+    <h2 class="section-title">Navigation Tabs</h2>
+    <p class="subsection">Primary nav tab items with dropdown chevron. 3 states: Default, Hover, Selected.</p>
     <div class="preview-box">
-      <div style="display: flex; align-items: center; justify-content: space-between; padding: 16px 24px; background: white; border-bottom: 1px solid #f0f0f0; font-family: 'Source Sans Pro', sans-serif;">
-        <!-- Left side -->
-        <div style="display: flex; align-items: center; gap: 32px;">
-          <span style="font-size: 18px; font-weight: 600; color: #105fa8;">MyBenefits Hub</span>
-          <div style="display: flex; gap: 4px;">
-            <a href="#" style="padding: 8px 12px; border-radius: 4px; font-size: 14px; color: #222; text-decoration: none; background: #eceff2; font-weight: 600;">Dashboard</a>
-            <a href="#" style="padding: 8px 12px; border-radius: 4px; font-size: 14px; color: #222; text-decoration: none;">My Coverages</a>
-            <a href="#" style="padding: 8px 12px; border-radius: 4px; font-size: 14px; color: #222; text-decoration: none;">Claims</a>
-            <a href="#" style="padding: 8px 12px; border-radius: 4px; font-size: 14px; color: #222; text-decoration: none;">Leave</a>
-            <a href="#" style="padding: 8px 12px; border-radius: 4px; font-size: 14px; color: #222; text-decoration: none;">Support</a>
-          </div>
+      <div style="display: flex; gap: 24px; align-items: center;">
+        <div>
+          <div class="state-label">Default</div>
+          <a class="nav-tab">Support <i class="fas fa-chevron-down chevron"></i></a>
         </div>
-        <!-- Right side -->
-        <div style="display: flex; align-items: center; gap: 24px;">
-          <a href="#" style="font-size: 14px; color: #444; text-decoration: none;">Find ID Card</a>
-          <a href="#" style="font-size: 14px; color: #444; text-decoration: none;">Messages</a>
-          <div style="width: 44px; height: 44px; border-radius: 9999px; background: #f0f0f0; display: flex; align-items: center; justify-content: center; cursor: pointer;">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-          </div>
-          <div style="display: flex; align-items: center; gap: 8px;">
-            <div style="width: 34px; height: 34px; border-radius: 9999px; background: #105fa8; color: white; font-weight: 600; font-size: 13px; display: flex; align-items: center; justify-content: center;">SJ</div>
-            <span style="font-size: 14px; color: #105fa8; font-weight: 600;">Sarah Johnson</span>
-          </div>
+        <div>
+          <div class="state-label">Hover</div>
+          <a class="nav-tab hover">Support <i class="fas fa-chevron-down chevron"></i></a>
+        </div>
+        <div>
+          <div class="state-label">Selected</div>
+          <a class="nav-tab selected">Support <i class="fas fa-chevron-down chevron"></i></a>
         </div>
       </div>
+    </div>
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- 2. Utility Links (8011-7564) -->
+    <!-- ════════════════════════════════════════ -->
+    <h2 class="section-title">Utility Links</h2>
+    <p class="subsection">Right-side utility actions. 5 states: Default, Hover, Profile, Sign In, Notification.</p>
+    <div class="preview-box">
+      <div style="display: flex; gap: 24px; align-items: center; flex-wrap: wrap;">
+        <div>
+          <div class="state-label">Default</div>
+          <a class="util-link"><i class="far fa-id-card util-icon"></i> Find ID Card</a>
+        </div>
+        <div>
+          <div class="state-label">Hover</div>
+          <a class="util-link hover"><i class="far fa-id-card util-icon"></i> Find ID Card</a>
+        </div>
+        <div>
+          <div class="state-label">Profile</div>
+          <a class="util-link profile">
+            <span class="avatar-circle">AB</span>
+            Name Here
+          </a>
+        </div>
+        <div>
+          <div class="state-label">Sign In</div>
+          <a class="util-link sign-in"><i class="far fa-user-circle util-icon"></i> Sign In</a>
+        </div>
+        <div>
+          <div class="state-label">Notification</div>
+          <span class="notif-wrap">
+            <i class="far fa-bell" style="font-size: 18px; color: #222;"></i>
+            <span class="notif-dot"></span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- 3. Secondary Nav Tabs (6009-2743) -->
+    <!-- ════════════════════════════════════════ -->
+    <h2 class="section-title">Secondary Nav Tabs</h2>
+    <p class="subsection">Sub-navigation tabs with bottom border indicator. 3 states: Default, Hover, Selected.</p>
+    <div class="preview-box">
+      <div style="display: flex; gap: 24px; align-items: flex-end;">
+        <div>
+          <div class="state-label">Default</div>
+          <a class="sec-tab">Claims and Estimates</a>
+        </div>
+        <div>
+          <div class="state-label">Hover</div>
+          <a class="sec-tab hover">Claims and Estimates</a>
+        </div>
+        <div>
+          <div class="state-label">Selected</div>
+          <a class="sec-tab selected">Claims and Estimates</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- 4. Main Navigation (6009-2717) -->
+    <!-- ════════════════════════════════════════ -->
+    <h2 class="section-title">Main Navigation</h2>
+    <p class="subsection">Full-width primary navigation bar with logo, main tabs, and utility links.</p>
+    <div class="preview-box flush">
+      <div class="main-nav">
+        <div class="main-nav-left">
+          <span class="my-mutual-logo">my<em>Mutual</em></span>
+          <div class="main-nav-tabs">
+            <a class="nav-tab">Dashboard</a>
+            <a class="nav-tab">My Coverages <i class="fas fa-chevron-down chevron"></i></a>
+            <a class="nav-tab">Claims</a>
+            <a class="nav-tab">Leave</a>
+            <a class="nav-tab">Support</a>
+          </div>
+        </div>
+        <div class="main-nav-right">
+          <a class="util-link"><i class="far fa-id-card util-icon"></i> Find ID Card</a>
+          <a class="util-link"><i class="far fa-envelope util-icon"></i> Messages</a>
+          <span class="notif-wrap">
+            <i class="far fa-bell" style="font-size: 18px; color: #222;"></i>
+            <span class="notif-dot"></span>
+          </span>
+          <a class="util-link sign-in"><i class="far fa-user-circle util-icon"></i> Sign In</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- 5. Secondary Navigation (6009-2811) -->
+    <!-- ════════════════════════════════════════ -->
+    <h2 class="section-title">Secondary Navigation</h2>
+    <p class="subsection">Horizontal sub-navigation bar with link items.</p>
+    <div class="preview-box flush">
+      <div class="sec-nav">
+        <a class="sec-tab">Link 1</a>
+        <a class="sec-tab">Link 2</a>
+        <a class="sec-tab">Link 3</a>
+        <a class="sec-tab">Link 4</a>
+        <a class="sec-tab">Link 5</a>
+        <a class="sec-tab">Link 6</a>
+        <a class="sec-tab">Link 7</a>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════ -->
+    <!-- 6. Global Navigation — Assembled (8012-9508) -->
+    <!-- ════════════════════════════════════════ -->
+    <h2 class="section-title">Global Navigation (Assembled)</h2>
+    <p class="subsection">Complete navigation component combining main nav + secondary nav. 7 page variants.</p>
+
+    <!-- Default -->
+    <div class="preview-box flush">
+      <div class="variant-label">Default</div>
+      <div class="main-nav">
+        <div class="main-nav-left">
+          <span class="my-mutual-logo">my<em>Mutual</em></span>
+          <div class="main-nav-tabs">
+            <a class="nav-tab">Dashboard</a>
+            <a class="nav-tab">My Coverages <i class="fas fa-chevron-down chevron"></i></a>
+            <a class="nav-tab">Claims</a>
+            <a class="nav-tab">Leave</a>
+            <a class="nav-tab">Support</a>
+          </div>
+        </div>
+        <div class="main-nav-right">
+          <a class="util-link"><i class="far fa-id-card util-icon"></i> Find ID Card</a>
+          <a class="util-link"><i class="far fa-envelope util-icon"></i> Messages</a>
+          <span class="notif-wrap"><i class="far fa-bell" style="font-size: 18px; color: #222;"></i><span class="notif-dot"></span></span>
+          <a class="util-link profile"><span class="avatar-circle">AB</span> Name Here</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Claims -->
+    <div class="preview-box flush">
+      <div class="variant-label">Claims</div>
+      <div class="main-nav">
+        <div class="main-nav-left">
+          <span class="my-mutual-logo">my<em>Mutual</em></span>
+          <div class="main-nav-tabs">
+            <a class="nav-tab">Dashboard</a>
+            <a class="nav-tab">My Coverages <i class="fas fa-chevron-down chevron"></i></a>
+            <a class="nav-tab active-tab">Claims</a>
+            <a class="nav-tab">Leave</a>
+            <a class="nav-tab">Support</a>
+          </div>
+        </div>
+        <div class="main-nav-right">
+          <a class="util-link"><i class="far fa-id-card util-icon"></i> Find ID Card</a>
+          <a class="util-link"><i class="far fa-envelope util-icon"></i> Messages</a>
+          <span class="notif-wrap"><i class="far fa-bell" style="font-size: 18px; color: #222;"></i><span class="notif-dot"></span></span>
+          <a class="util-link profile"><span class="avatar-circle">AB</span> Name Here</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Support -->
+    <div class="preview-box flush">
+      <div class="variant-label">Support</div>
+      <div class="main-nav">
+        <div class="main-nav-left">
+          <span class="my-mutual-logo">my<em>Mutual</em></span>
+          <div class="main-nav-tabs">
+            <a class="nav-tab">Dashboard</a>
+            <a class="nav-tab">My Coverages <i class="fas fa-chevron-down chevron"></i></a>
+            <a class="nav-tab">Claims</a>
+            <a class="nav-tab">Leave</a>
+            <a class="nav-tab active-tab">Support</a>
+          </div>
+        </div>
+        <div class="main-nav-right">
+          <a class="util-link"><i class="far fa-id-card util-icon"></i> Find ID Card</a>
+          <a class="util-link"><i class="far fa-envelope util-icon"></i> Messages</a>
+          <span class="notif-wrap"><i class="far fa-bell" style="font-size: 18px; color: #222;"></i><span class="notif-dot"></span></span>
+          <a class="util-link profile"><span class="avatar-circle">AB</span> Name Here</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Coverages -->
+    <div class="preview-box flush">
+      <div class="variant-label">Coverages</div>
+      <div class="main-nav">
+        <div class="main-nav-left">
+          <span class="my-mutual-logo">my<em>Mutual</em></span>
+          <div class="main-nav-tabs">
+            <a class="nav-tab">Dashboard</a>
+            <a class="nav-tab active-tab">My Coverages <i class="fas fa-chevron-down chevron"></i></a>
+            <a class="nav-tab">Claims</a>
+            <a class="nav-tab">Leave</a>
+            <a class="nav-tab">Support</a>
+          </div>
+        </div>
+        <div class="main-nav-right">
+          <a class="util-link"><i class="far fa-id-card util-icon"></i> Find ID Card</a>
+          <a class="util-link"><i class="far fa-envelope util-icon"></i> Messages</a>
+          <span class="notif-wrap"><i class="far fa-bell" style="font-size: 18px; color: #222;"></i><span class="notif-dot"></span></span>
+          <a class="util-link profile"><span class="avatar-circle">AB</span> Name Here</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Coverages Hover (with dropdown) -->
+    <div class="preview-box flush">
+      <div class="variant-label">Coverages Hover</div>
+      <div class="main-nav">
+        <div class="main-nav-left">
+          <span class="my-mutual-logo">my<em>Mutual</em></span>
+          <div class="main-nav-tabs">
+            <a class="nav-tab">Dashboard</a>
+            <a class="nav-tab selected" style="position: relative;">My Coverages <i class="fas fa-chevron-down chevron"></i>
+              <!-- Dropdown -->
+              <div style="position: absolute; top: 100%; left: 0; margin-top: 4px; background: #fff; border: 1px solid #f0f0f0; border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); min-width: 200px; z-index: 10; padding: 8px 0;">
+                <a style="display: block; padding: 8px 16px; font-size: 14px; color: #222; text-decoration: none; font-weight: 400;">All</a>
+                <a style="display: block; padding: 8px 16px; font-size: 14px; color: #222; text-decoration: none; font-weight: 400;">Dental</a>
+                <a style="display: block; padding: 8px 16px; font-size: 14px; color: #222; text-decoration: none; font-weight: 400;">Vision</a>
+                <a style="display: block; padding: 8px 16px; font-size: 14px; color: #222; text-decoration: none; font-weight: 400;">Short Term Disability</a>
+                <a style="display: block; padding: 8px 16px; font-size: 14px; color: #222; text-decoration: none; font-weight: 400;">Long Term Disability</a>
+                <a style="display: block; padding: 8px 16px; font-size: 14px; color: #222; text-decoration: none; font-weight: 400;">Link 6</a>
+                <a style="display: block; padding: 8px 16px; font-size: 14px; color: #222; text-decoration: none; font-weight: 400;">Link 7</a>
+                <a style="display: block; padding: 8px 16px; font-size: 14px; color: #222; text-decoration: none; font-weight: 400;">Link 8</a>
+              </div>
+            </a>
+            <a class="nav-tab">Claims</a>
+            <a class="nav-tab">Leave</a>
+            <a class="nav-tab">Support</a>
+          </div>
+        </div>
+        <div class="main-nav-right">
+          <a class="util-link"><i class="far fa-id-card util-icon"></i> Find ID Card</a>
+          <a class="util-link"><i class="far fa-envelope util-icon"></i> Messages</a>
+          <span class="notif-wrap"><i class="far fa-bell" style="font-size: 18px; color: #222;"></i><span class="notif-dot"></span></span>
+          <a class="util-link profile"><span class="avatar-circle">AB</span> Name Here</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dental (with secondary nav) -->
+    <div class="preview-box flush">
+      <div class="variant-label">Dental</div>
+      <div class="main-nav">
+        <div class="main-nav-left">
+          <span class="my-mutual-logo">my<em>Mutual</em></span>
+          <div class="main-nav-tabs">
+            <a class="nav-tab">Dashboard</a>
+            <a class="nav-tab active-tab">My Coverages <i class="fas fa-chevron-down chevron"></i></a>
+            <a class="nav-tab">Claims</a>
+            <a class="nav-tab">Leave</a>
+            <a class="nav-tab">Support</a>
+          </div>
+        </div>
+        <div class="main-nav-right">
+          <a class="util-link"><i class="far fa-id-card util-icon"></i> Find ID Card</a>
+          <a class="util-link"><i class="far fa-envelope util-icon"></i> Messages</a>
+          <span class="notif-wrap"><i class="far fa-bell" style="font-size: 18px; color: #222;"></i><span class="notif-dot"></span></span>
+          <a class="util-link profile"><span class="avatar-circle">AB</span> Name Here</a>
+        </div>
+      </div>
+      <div class="sec-nav">
+        <a class="sec-tab">Dental Coverage</a>
+        <a class="sec-tab">Claims &amp; Estimates</a>
+        <a class="sec-tab">Find a Dentist</a>
+        <a class="sec-tab">Documents</a>
+      </div>
+    </div>
+
+    <!-- Leave (with secondary nav) -->
+    <div class="preview-box flush">
+      <div class="variant-label">Leave</div>
+      <div class="main-nav">
+        <div class="main-nav-left">
+          <span class="my-mutual-logo">my<em>Mutual</em></span>
+          <div class="main-nav-tabs">
+            <a class="nav-tab">Dashboard</a>
+            <a class="nav-tab">My Coverages <i class="fas fa-chevron-down chevron"></i></a>
+            <a class="nav-tab">Claims</a>
+            <a class="nav-tab active-tab">Leave</a>
+            <a class="nav-tab">Support</a>
+          </div>
+        </div>
+        <div class="main-nav-right">
+          <a class="util-link"><i class="far fa-id-card util-icon"></i> Find ID Card</a>
+          <a class="util-link"><i class="far fa-envelope util-icon"></i> Messages</a>
+          <span class="notif-wrap"><i class="far fa-bell" style="font-size: 18px; color: #222;"></i><span class="notif-dot"></span></span>
+          <a class="util-link profile"><span class="avatar-circle">AB</span> Name Here</a>
+        </div>
+      </div>
+      <div class="sec-nav">
+        <a class="sec-tab">Overview</a>
+        <a class="sec-tab">Request New Leave</a>
+        <a class="sec-tab">My Leaves</a>
+        <a class="sec-tab">Documents &amp; Payments</a>
+        <a class="sec-tab">Resources</a>
+      </div>
+    </div>
+
+    <!-- Design Tokens -->
+    <h2 class="section-title">Design Tokens Used</h2>
+    <div class="preview-box" style="display: flex; flex-direction: column; gap: 8px; align-items: flex-start;">
+      <div><strong>Background:</strong> <code>--foundation-primary-white</code> (white)</div>
+      <div><strong>Border:</strong> <code>--foundation-grays-gray-lighter</code> (#f0f0f0)</div>
+      <div><strong>Tab text:</strong> <code>--foundation-grays-gray-darkest</code> (#222)</div>
+      <div><strong>Secondary tab text:</strong> <code>--foundation-grays-gray-dark</code> (#5d5d5d)</div>
+      <div><strong>Hover/Selected bg:</strong> <code>--foundation-dark-blue-50</code> (#e9f3fb)</div>
+      <div><strong>Active border:</strong> <code>--foundation-primary-blue</code> (#105fa8)</div>
+      <div><strong>Sign In / Profile:</strong> <code>--foundation-primary-blue</code> (#105fa8)</div>
+      <div><strong>Avatar bg:</strong> <code>--foundation-dark-blue-800</code> (#002547)</div>
+      <div><strong>Avatar border:</strong> <code>--foundation-dark-blue-100</code> (#dcebf9)</div>
+      <div><strong>Notification dot:</strong> <code>--semantics-solids-error</code> (#c12506)</div>
+      <div><strong>Typography:</strong> <code>--font-family-title</code> (Source Sans Pro Semibold, 14px / 20px)</div>
+      <div><strong>Spacing:</strong> Main nav padding 16px 24px, tabs gap 8px, utility gap 4px</div>
     </div>
   </div>
 </body>
