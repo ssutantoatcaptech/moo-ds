@@ -27,10 +27,11 @@
       --foundation-grays-light: #bababa;
       --foundation-grays-lighter: #f0f0f0;
       /* Semantics */
-      --semantics-success: #1c9e3b;
+      --semantics-success: #1fa668;
       --semantics-pending: #fcbc0b;
       --semantics-warning: #df6903;
       --semantics-info: #067ac1;
+      --semantics-needs-attention: #c12506;
       /* Text */
       --text-default: #222222;
       --text-link: #105fa8;
@@ -73,7 +74,7 @@
     }
 
     /* ============================================
-       Dashboard Container (no phone frame)
+       Dashboard Container
        ============================================ */
     .dashboard { display: block; max-width: 375px; background: var(--foundation-primary-white); border: 1px solid var(--foundation-grays-lighter); border-radius: var(--radius-lg); box-shadow: var(--shadow-card); overflow: hidden; }
     .dashboards-row { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; }
@@ -81,25 +82,37 @@
     .dashboard-label { font-size: var(--font-size-xs); font-weight: var(--font-weight-semibold); color: var(--foundation-grays-darker); }
 
     /* ============================================
-       Mobile Header
+       Mobile Header — MobileNavigation (default)
+       Matches: hamburger | ID Cards btn + bell + avatar
        ============================================ */
     .m-header {
       background: var(--foundation-primary-white);
       border-bottom: 1px solid var(--foundation-grays-lighter);
       display: flex; align-items: center; justify-content: space-between;
       padding: var(--spacing-lg);
+      box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.08);
     }
-    .m-header-right { display: flex; align-items: center; gap: var(--spacing-lg); }
+    .m-header-hamburger { width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+    .m-header-right { display: flex; align-items: center; gap: 15px; }
+    .m-id-cards-btn {
+      display: flex; align-items: center; gap: 8px;
+      padding: 8px 12px; border: 1px solid var(--foundation-primary-blue); border-radius: var(--radius-sm);
+      color: var(--foundation-primary-blue); font-size: var(--font-size-xs); font-weight: var(--font-weight-semibold);
+      font-family: var(--font-family); background: var(--foundation-primary-white); cursor: pointer;
+      transition: background 0.15s;
+    }
+    .m-id-cards-btn:hover { background: var(--supporting-alert-info-bg); }
     .m-notif { position: relative; cursor: pointer; }
     .m-notif-dot { position: absolute; top: -2px; right: -2px; width: 8px; height: 8px; background: var(--semantics-warning); border: 1px solid var(--foundation-primary-white); border-radius: 50%; }
     .m-avatar {
-      width: 32px; height: 32px; background: var(--supporting-content-bg); border: 1px solid var(--foundation-grays-light);
+      width: 40px; height: 40px; background: #002547; border: 2px solid #dcebf9;
       border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      font-size: 11px; color: var(--foundation-grays-dark); cursor: pointer; font-weight: var(--font-weight-semibold);
+      font-size: 12px; color: var(--text-white); cursor: pointer; font-weight: var(--font-weight-semibold);
+      text-transform: uppercase;
     }
 
     /* ============================================
-       Banner — MoO gradient
+       Banner
        ============================================ */
     .m-banner { background: var(--gradient-dk-blue-and-blue); padding: 36px var(--spacing-lg); }
     .m-banner h1 { font-size: var(--font-size-xl); font-weight: var(--font-weight-semibold); color: var(--text-white); }
@@ -107,7 +120,7 @@
     /* ============================================
        Main Content Area
        ============================================ */
-    .m-main { padding: var(--spacing-2xl) var(--spacing-lg) 80px; display: flex; flex-direction: column; gap: var(--spacing-2xl); background: #f5f7fa; }
+    .m-main { padding: var(--spacing-2xl) var(--spacing-lg) 0; display: flex; flex-direction: column; gap: var(--spacing-2xl); background: #f5f7fa; }
 
     /* ============================================
        Card
@@ -119,7 +132,7 @@
     .m-link:hover { text-decoration: underline; }
 
     /* ============================================
-       Buttons — MoO branded
+       Buttons
        ============================================ */
     .m-btn-primary {
       width: 100%; background: var(--foundation-primary-blue); color: var(--text-white);
@@ -137,16 +150,26 @@
     .m-btn-outline:hover { background: var(--supporting-alert-info-bg); }
 
     /* ============================================
-       Quick Action Rows
+       Quick Actions — MobileQuickActions style
+       Blue top border, SidebarRow rows with circle icons
        ============================================ */
+    .qa-widget { background: var(--foundation-primary-white); border-radius: var(--radius-md); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1); overflow: hidden; }
+    .qa-header { border-top: 12px solid var(--foundation-primary-blue); padding: 12px 16px; }
+    .qa-header h3 { font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); color: var(--foundation-primary-blue-dark); }
     .qa-row {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 13px 17px; border: 1px solid var(--foundation-grays-lighter); border-radius: var(--radius-md); cursor: pointer;
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 20px; border-bottom: 1px solid #e0e0e0; cursor: pointer;
       transition: background 0.15s;
     }
-    .qa-row:hover { background: var(--foundation-grays-lighter); }
-    .qa-row-left { display: flex; align-items: center; gap: var(--spacing-md); }
-    .qa-row-left span { font-size: var(--font-size-xs); color: var(--foundation-grays-darker); }
+    .qa-row:last-child { border-bottom: none; }
+    .qa-row:hover { background: #f5f5f5; }
+    .qa-circle {
+      width: 32px; height: 32px; border-radius: 50%; background: #e8f0fe;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .qa-circle-inner { width: 12px; height: 12px; border-radius: 50%; background: var(--foundation-primary-blue); }
+    .qa-label { flex: 1; font-size: var(--font-size-xs); color: #333333; }
+    .qa-chevron { color: var(--foundation-grays-dark); flex-shrink: 0; }
 
     /* ============================================
        Checklist
@@ -173,26 +196,57 @@
     .ring-label { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 10px; color: var(--foundation-primary-blue); font-weight: 600; }
 
     /* ============================================
-       Action Cards (High Utilizer)
+       InlineMessage — matches InlineMessage.tsx
+       Left color stripe (40px) + tinted bg + border
+       Variants: warning (#df6903/#fef8eb), error (#c12506/#fdf4f2),
+                 info (#067ac1/#f2f8fe), success (#1fa668/#edf8f3)
        ============================================ */
-    .action-card { background: var(--foundation-primary-white); border: 1px solid var(--foundation-grays-lighter); border-radius: var(--radius-md); overflow: hidden; position: relative; }
-    .action-card .accent { position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: var(--foundation-primary-blue); }
-    .action-card-inner { padding: 14px 14px 14px var(--spacing-xl); }
-    .action-title-row { display: flex; align-items: start; justify-content: space-between; gap: var(--spacing-sm); }
-    .action-title-left { display: flex; align-items: start; gap: var(--spacing-sm); }
-    .action-title { font-size: var(--font-size-sm); color: var(--text-default); }
-    .action-desc { font-size: var(--font-size-2xs); color: var(--foundation-grays-gray); margin-top: var(--spacing-xs); margin-left: var(--spacing-2xl); }
-    .action-link { font-size: var(--font-size-2xs); color: var(--text-link); font-weight: var(--font-weight-semibold); text-align: right; margin-top: var(--spacing-md); cursor: pointer; }
+    .inline-msg { display: flex; border-radius: var(--radius-lg); overflow: hidden; }
+    .inline-msg-stripe {
+      width: 40px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+      color: var(--text-white); font-size: 18px; font-weight: 700;
+    }
+    .inline-msg-stripe.warning { background: #df6903; }
+    .inline-msg-stripe.error { background: #c12506; }
+    .inline-msg-stripe.info { background: #067ac1; }
+    .inline-msg-stripe.success { background: #1fa668; }
+    .inline-msg-body {
+      flex: 1; padding: 16px; border: 1px solid; border-left: none;
+      border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+    }
+    .inline-msg-body.warning { background: #fef8eb; border-color: #df6903; }
+    .inline-msg-body.error { background: #fdf4f2; border-color: #c12506; }
+    .inline-msg-body.info { background: #f2f8fe; border-color: #067ac1; }
+    .inline-msg-body.success { background: #edf8f3; border-color: #1fa668; }
+    .inline-msg-header { display: flex; align-items: start; justify-content: space-between; gap: 12px; }
+    .inline-msg-title { font-size: var(--font-size-xs); font-weight: var(--font-weight-semibold); color: var(--foundation-grays-darker); line-height: 20px; }
+    .inline-msg-desc { font-size: var(--font-size-xs); color: var(--foundation-grays-darker); line-height: 20px; margin-top: 4px; }
+    .inline-msg-dismiss { color: var(--foundation-grays-darker); opacity: 0.6; font-size: 16px; cursor: pointer; background: none; border: none; line-height: 1; flex-shrink: 0; }
+    .inline-msg-dismiss:hover { opacity: 1; }
+    .inline-msg-link { font-size: var(--font-size-2xs); color: var(--text-link); font-weight: var(--font-weight-semibold); text-decoration: none; margin-top: var(--spacing-sm); display: inline-flex; align-items: center; gap: 4px; }
+    .inline-msg-link:hover { text-decoration: underline; }
 
     /* ============================================
-       Activity Rows
+       Activity Rows — MobileActivityRow style
+       36px colored status circles
        ============================================ */
-    .act-row { display: flex; align-items: center; gap: var(--spacing-md); padding: var(--spacing-md) var(--spacing-lg); border-bottom: 1px solid var(--foundation-grays-lighter); }
-    .act-icon { width: 40px; height: 40px; background: var(--supporting-content-bg); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .act-row { display: flex; align-items: center; gap: 12px; padding: 17px 16px; border-bottom: 1px solid var(--foundation-grays-lighter); cursor: pointer; transition: background 0.15s; }
+    .act-row:hover { background: #f5f5f5; }
+    .act-row:last-child { border-bottom: none; }
+    .act-icon {
+      width: 36px; height: 36px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      color: var(--text-white); font-size: 14px;
+    }
+    .act-icon.info { background: var(--semantics-info); }
+    .act-icon.success { background: var(--semantics-success); }
+    .act-icon.pending { background: var(--semantics-pending); }
+    .act-icon.needs-attention { background: var(--semantics-needs-attention); }
     .act-content { flex: 1; min-width: 0; }
-    .act-title { font-size: var(--font-size-xs); color: var(--text-default); line-height: var(--spacing-xl); }
-    .act-desc { font-size: var(--font-size-2xs); color: var(--foundation-grays-gray); line-height: 16px; }
-    .act-date { font-size: 10px; color: var(--foundation-grays-light); line-height: 15px; margin-top: 2px; }
+    .act-title { font-size: var(--font-size-sm); font-weight: var(--font-weight-semibold); color: var(--text-default); line-height: 24px; }
+    .act-desc { font-size: var(--font-size-xs); color: var(--text-default); line-height: 20px; }
+    .act-date { font-size: var(--font-size-xs); color: var(--foundation-grays-gray); line-height: 20px; }
+    .act-chevron { color: var(--foundation-grays-dark); flex-shrink: 0; }
 
     /* ============================================
        Benefit Cards
@@ -226,19 +280,41 @@
     .tl-label.muted { color: var(--foundation-grays-light); }
 
     /* ============================================
-       Empty & Missing States
+       Empty States — MobileCalloutCard style
+       Centered gradient icon badge, border-2
+       ============================================ */
+    .callout-card {
+      position: relative; width: 100%; border-radius: var(--radius-lg); border: 2px solid var(--foundation-grays-light);
+      background: var(--foundation-primary-white); padding: 42px 18px 18px; text-align: center;
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+    }
+    .callout-badge {
+      position: absolute; left: 50%; transform: translateX(-50%); top: -24px;
+      width: 48px; height: 48px; border-radius: 50%; border: 6px solid var(--foundation-primary-white);
+      background: var(--gradient-dk-blue-and-blue);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .callout-badge i { font-size: 18px; color: var(--text-white); }
+    .callout-title { font-size: var(--font-size-sm); font-weight: var(--font-weight-semibold); color: var(--text-default); line-height: 24px; }
+    .callout-desc { font-size: var(--font-size-xs); color: var(--foundation-grays-darker); line-height: 20px; }
+    .callout-btn {
+      margin-top: 16px; width: 100%; height: 32px; border-radius: var(--radius-sm);
+      background: var(--foundation-primary-blue); color: var(--text-white);
+      font-size: var(--font-size-xs); font-weight: var(--font-weight-semibold); font-family: var(--font-family);
+      border: none; cursor: pointer; transition: background 0.15s;
+    }
+    .callout-btn:hover { background: var(--foundation-primary-blue-dark); }
+
+    /* ============================================
+       Empty State (simple, no callout)
        ============================================ */
     .empty-state { display: flex; flex-direction: column; align-items: center; gap: var(--spacing-md); padding: var(--spacing-3xl); text-align: center; }
     .empty-icon { width: 56px; height: 56px; background: var(--foundation-grays-lighter); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
     .empty-title { font-size: var(--font-size-xs); font-weight: 500; color: var(--text-default); }
     .empty-desc { font-size: var(--font-size-xs); color: var(--foundation-grays-gray); line-height: var(--spacing-xl); }
-    .missing-wrap { background: var(--supporting-content-bg); border-radius: var(--radius-lg); padding: var(--spacing-xl); display: flex; flex-direction: column; align-items: center; gap: var(--spacing-lg); text-align: center; }
-    .missing-icon { width: 64px; height: 64px; background: var(--foundation-primary-white); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-    .missing-title { font-size: var(--font-size-sm); font-weight: 500; color: var(--text-default); }
-    .missing-desc { font-size: var(--font-size-xs); color: var(--foundation-grays-dark); line-height: var(--spacing-xl); }
 
     /* ============================================
-       Welcome Card — MoO brand gradient
+       Welcome Card
        ============================================ */
     .welcome-card { background: var(--gradient-dk-blue-and-blue); border-radius: var(--radius-md); padding: var(--spacing-xl); color: var(--text-white); }
     .welcome-card h2 { font-size: var(--font-size-lg); font-weight: var(--font-weight-regular); line-height: 28px; }
@@ -257,7 +333,7 @@
     }
 
     /* ============================================
-       Info Card (Low Utilizer — All Caught Up)
+       Info Card (All Caught Up)
        ============================================ */
     .info-card { background: var(--supporting-alert-info-bg); border: 1px solid #c5ddf5; border-radius: var(--radius-md); box-shadow: var(--shadow-card-sm); padding: 17px; position: relative; }
     .info-card-inner { display: flex; gap: var(--spacing-md); padding-right: var(--spacing-3xl); }
@@ -267,7 +343,7 @@
     .info-close { position: absolute; top: var(--spacing-md); right: var(--spacing-md); background: none; border: none; cursor: pointer; color: var(--foundation-grays-gray); }
 
     /* ============================================
-       Badge — MoO semantic
+       Badge
        ============================================ */
     .m-badge { font-size: 10px; padding: 2px var(--spacing-sm); border-radius: var(--radius-sm); font-weight: var(--font-weight-semibold); }
     .m-badge.ip { background: var(--supporting-alert-info-bg); color: var(--semantics-info); }
@@ -285,36 +361,58 @@
     .m-section-label { font-size: var(--font-size-2xs); color: var(--foundation-grays-gray); text-transform: uppercase; letter-spacing: 0.5px; }
 
     /* ============================================
+       Mobile Footer — MobileFooter style
+       ============================================ */
+    .m-footer { border-top: 4px solid var(--foundation-primary-blue); background: var(--foundation-primary-white); }
+    .m-footer-logo { padding: 20px 16px; }
+    .m-footer-logo svg text { font-family: var(--font-family); }
+    .m-footer-section { padding: 0 16px 16px; }
+    .m-footer-section h4 { font-size: var(--font-size-sm); font-weight: var(--font-weight-semibold); color: var(--text-default); margin-bottom: 8px; }
+    .m-footer-section a.chat-link { font-size: var(--font-size-xs); color: var(--foundation-primary-blue); text-decoration: underline; }
+    .m-footer-phones { padding: 0 16px 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .m-footer-phone-label { font-size: 10px; line-height: 14px; color: var(--foundation-grays-dark); text-transform: uppercase; letter-spacing: 0.5px; }
+    .m-footer-phone-num { font-size: var(--font-size-xs); font-weight: var(--font-weight-semibold); color: var(--foundation-primary-blue-dark); }
+    .m-footer-legal { padding: 0 16px 12px; display: flex; flex-direction: column; gap: 8px; }
+    .m-footer-legal-row { display: flex; gap: 16px; }
+    .m-footer-legal a { font-size: var(--font-size-xs); color: var(--foundation-grays-darker); text-decoration: none; }
+    .m-footer-legal a:hover { text-decoration: underline; }
+    .m-footer-copyright { padding: 0 16px 20px; font-size: 10px; line-height: 14px; color: var(--foundation-grays-dark); }
+
+    /* ============================================
        Font Awesome Icon Sizing
        ============================================ */
     .m-header .fa-bars { font-size: 18px; color: var(--text-default); }
-    .m-header .fa-bell { font-size: 18px; color: var(--text-default); }
-    .m-notif .fa-bell { font-size: 18px; }
-    .qa-icon { font-size: 14px; color: var(--foundation-grays-darker); width: 18px; text-align: center; }
-    .qa-chevron { font-size: 12px; color: var(--foundation-grays-gray); }
-    .act-icon i { font-size: 16px; color: var(--foundation-primary-blue); }
-    .act-icon .fa-check-circle { color: var(--semantics-success); }
+    .m-notif .fa-bell { font-size: 18px; color: var(--text-default); }
+    .act-icon i { font-size: 14px; color: var(--text-white); }
     .ben-icon i { font-size: 16px; color: var(--foundation-primary-blue); }
-    .empty-icon i { font-size: 22px; color: var(--foundation-grays-gray); }
-    .missing-icon i { font-size: 24px; color: var(--foundation-grays-gray); }
     .info-icon i { font-size: 16px; color: var(--semantics-success); }
-    .action-icon { font-size: 14px; color: var(--semantics-warning); }
-    .action-icon.location { color: var(--foundation-grays-darker); }
-    .action-close { font-size: 12px; color: var(--foundation-grays-gray); cursor: pointer; flex-shrink: 0; }
     .welcome-close { color: rgba(255,255,255,0.7); cursor: pointer; flex-shrink: 0; margin-top: 4px; }
     .tl-circle i { font-size: 14px; }
     .section-icon { font-size: 16px; color: var(--foundation-primary-blue); }
     .cl-step i { font-size: 10px; }
 
     /* ============================================
-       Figma Source Link
+       Source Links (Figma + GitHub)
        ============================================ */
-    .figma-source {
+    .source-link {
       display: inline-flex; align-items: center; gap: 6px;
-      font-size: 13px; color: var(--text-link); text-decoration: none; font-weight: var(--font-weight-semibold);
+      font-size: 13px; text-decoration: none; font-weight: var(--font-weight-semibold);
       margin-top: var(--spacing-lg);
     }
-    .figma-source:hover { text-decoration: underline; }
+    .source-link:hover { text-decoration: underline; }
+    .source-link.figma { color: var(--text-link); }
+    .source-link.github { color: #24292f; }
+
+    /* ============================================
+       Component Reference Table
+       ============================================ */
+    .component-ref { margin-top: 32px; max-width: 800px; margin-left: auto; margin-right: auto; }
+    .component-ref h3 { font-size: var(--font-size-md); color: var(--foundation-primary-blue-dark); margin-bottom: 12px; }
+    .component-ref table { width: 100%; border-collapse: collapse; font-size: var(--font-size-xs); }
+    .component-ref th { text-align: left; padding: 8px 12px; background: var(--foundation-grays-lighter); color: var(--text-default); font-weight: var(--font-weight-semibold); }
+    .component-ref td { padding: 8px 12px; border-bottom: 1px solid var(--foundation-grays-lighter); color: var(--foundation-grays-darker); }
+    .component-ref a { color: var(--text-link); text-decoration: none; }
+    .component-ref a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
@@ -336,17 +434,26 @@
   <div class="page-content">
     <div class="dashboards-row">
 
-    <!-- ===================== WELCOME ===================== -->
+    <!-- ===================== WELCOME (New User) ===================== -->
     <div class="dashboard-col">
       <div class="dashboard-label">Welcome (New User)</div>
       <div id="tab-welcome" class="dashboard">
+
+      <!-- Header — MobileNavigation default -->
       <div class="m-header">
-        <i class="fas fa-bars"></i>
+        <div class="m-header-hamburger">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 5h14M3 10h14M3 15h14" stroke="#222222" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
         <div class="m-header-right">
-          <div class="m-notif"><i class="fas fa-bell"></i><div class="m-notif-dot"></div></div>
+          <button class="m-id-cards-btn">ID Cards</button>
+          <div class="m-notif">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2a5 5 0 00-5 5v3l-1 2h12l-1-2V7a5 5 0 00-5-5zM8.5 17a1.5 1.5 0 003 0" stroke="#222222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div class="m-notif-dot"></div>
+          </div>
           <div class="m-avatar">SJ</div>
         </div>
       </div>
+
       <div class="m-banner"><h1>Welcome Back, Sarah</h1></div>
       <div class="m-main">
         <!-- Welcome Card -->
@@ -362,14 +469,12 @@
           </div>
         </div>
 
-        <!-- Quick Actions -->
-        <div class="m-card">
-          <div style="padding:20px;display:flex;flex-direction:column;gap:12px;">
-            <div style="font-size:20px;color:var(--text-default);">Quick Actions</div>
-            <div style="display:flex;flex-direction:column;gap:8px;">
-              <div class="qa-row"><div class="qa-row-left"><i class="fas fa-sliders-h qa-icon"></i><span>Manage Preferences</span></div><i class="fas fa-chevron-right qa-chevron"></i></div>
-              <div class="qa-row"><div class="qa-row-left"><i class="fas fa-headphones qa-icon"></i><span>Contact Support</span></div><i class="fas fa-chevron-right qa-chevron"></i></div>
-            </div>
+        <!-- Quick Actions — MobileQuickActions -->
+        <div class="qa-widget">
+          <div class="qa-header"><h3>Quick Actions</h3></div>
+          <div>
+            <div class="qa-row"><div class="qa-circle"><div class="qa-circle-inner"></div></div><span class="qa-label">Manage Preferences</span><svg class="qa-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M8 5l5 5-5 5" stroke="#5d5d5d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="qa-row"><div class="qa-circle"><div class="qa-circle-inner"></div></div><span class="qa-label">Contact Support</span><svg class="qa-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M8 5l5 5-5 5" stroke="#5d5d5d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           </div>
         </div>
 
@@ -409,39 +514,72 @@
         <div class="m-card">
           <div class="m-card-header"><h3>Recent Activity</h3><a href="#" class="m-link">View All &#x203A;</a></div>
           <div class="empty-state">
-            <div class="empty-icon"><i class="far fa-calendar-alt"></i></div>
+            <div class="empty-icon"><i class="far fa-calendar-alt" style="font-size:22px;color:var(--foundation-grays-gray);"></i></div>
             <div class="empty-title">No Recent Activity</div>
             <div class="empty-desc">You have no recent updates right now.<br>New account activity will appear here.</div>
             <button class="m-btn-primary" style="margin-top:12px;">View your benefits</button>
           </div>
         </div>
 
-        <!-- Active Benefits Empty -->
+        <!-- Active Benefits Empty — MobileCalloutCard -->
         <div class="m-card">
           <div class="m-card-header"><h3>Active Benefits</h3></div>
-          <div class="empty-state">
-            <div class="empty-icon"><i class="fas fa-heartbeat"></i></div>
-            <div class="empty-title">Missing a Benefit?</div>
-            <div class="empty-desc">We're still setting up your benefits information with your employer.<br>Some coverages may take a little longer to appear.</div>
-            <button class="m-btn-primary" style="margin-top:12px;">Explore Coverage</button>
+          <div style="padding:40px 24px 24px;display:flex;justify-content:center;">
+            <div class="callout-card">
+              <div class="callout-badge"><i class="fas fa-heartbeat"></i></div>
+              <div class="callout-title">Missing a Benefit?</div>
+              <div class="callout-desc">We're still setting up your benefits information with your employer. Some coverages may take a little longer to appear.</div>
+              <button class="callout-btn">Explore Coverage</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
+      <!-- Footer — MobileFooter -->
+      <div class="m-footer">
+        <div class="m-footer-logo">
+          <svg viewBox="0 0 300 50" width="140" height="24"><text x="0" y="36" font-family="'Source Sans Pro', sans-serif" font-weight="700" font-size="36" fill="#003a70">My</text><text x="58" y="36" font-family="'Source Sans Pro', sans-serif" font-weight="700" font-size="36" fill="#105fa8">Mutual</text></svg>
+        </div>
+        <div class="m-footer-section">
+          <h4>Get Assistance</h4>
+          <a href="#" class="chat-link" style="font-size:14px;color:#105fa8;text-decoration:underline;">Chat with support</a>
+        </div>
+        <div class="m-footer-phones">
+          <div><div class="m-footer-phone-label">General Support</div><div class="m-footer-phone-num">1-800-775-6000</div></div>
+          <div><div class="m-footer-phone-label">Dental Support</div><div class="m-footer-phone-num">1-800-775-6000</div></div>
+          <div><div class="m-footer-phone-label">Vision Support</div><div class="m-footer-phone-num">1-800-775-6000</div></div>
+          <div><div class="m-footer-phone-label">Absence Support</div><div class="m-footer-phone-num">1-800-775-6000</div></div>
+        </div>
+        <div class="m-footer-legal">
+          <div class="m-footer-legal-row"><a href="#">Terms of Use</a><a href="#">Privacy Policy</a><a href="#">Accessibility</a></div>
+          <div class="m-footer-legal-row"><a href="#">Report Fraud</a><a href="#">Disclosures</a></div>
+        </div>
+        <div class="m-footer-copyright">&copy; 2026 Mutual of Omaha Insurance Company. All rights reserved.</div>
+      </div>
+
+    </div>
     </div>
 
     <!-- ===================== HIGH UTILIZER ===================== -->
     <div class="dashboard-col">
       <div class="dashboard-label">High Utilizer</div>
       <div id="tab-high" class="dashboard">
+
+      <!-- Header — MobileNavigation default -->
       <div class="m-header">
-        <i class="fas fa-bars"></i>
+        <div class="m-header-hamburger">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 5h14M3 10h14M3 15h14" stroke="#222222" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
         <div class="m-header-right">
-          <div class="m-notif"><i class="fas fa-bell"></i><div class="m-notif-dot"></div></div>
+          <button class="m-id-cards-btn">ID Cards</button>
+          <div class="m-notif">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2a5 5 0 00-5 5v3l-1 2h12l-1-2V7a5 5 0 00-5-5zM8.5 17a1.5 1.5 0 003 0" stroke="#222222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div class="m-notif-dot"></div>
+          </div>
           <div class="m-avatar">SJ</div>
         </div>
       </div>
+
       <div class="m-banner"><h1>Welcome Back, Sarah</h1></div>
       <div class="m-main">
         <!-- Items Requiring Action -->
@@ -451,35 +589,71 @@
             <a href="#" style="font-size:14px;color:var(--text-link);text-decoration:none;display:flex;align-items:center;gap:4px;font-weight:600;">View All <i class="fas fa-chevron-right" style="font-size:10px;"></i></a>
           </div>
           <div style="display:flex;flex-direction:column;gap:12px;">
-            <div class="action-card"><div class="accent"></div><div class="action-card-inner"><div class="action-title-row"><div class="action-title-left"><i class="fas fa-exclamation-circle action-icon"></i><span class="action-title">Upload Missing Document</span></div><i class="fas fa-times action-close"></i></div><div class="action-desc">Upload documents required to support your leave request.</div><div class="action-link">Upload Documents <i class="fas fa-arrow-right" style="font-size:10px;"></i></div></div></div>
-            <div class="action-card"><div class="accent"></div><div class="action-card-inner"><div class="action-title-row"><div class="action-title-left"><i class="fas fa-tooth action-icon location"></i><span class="action-title">Schedule Dental Exam</span></div><i class="fas fa-times action-close"></i></div><div class="action-desc">Last cleaning: 8 months ago</div><div class="action-link">Go to My Providers <i class="fas fa-arrow-right" style="font-size:10px;"></i></div></div></div>
-          </div>
-        </div>
-
-        <!-- Quick Actions -->
-        <div class="m-card">
-          <div style="padding:17px;display:flex;flex-direction:column;gap:16px;">
-            <div style="font-size:16px;color:var(--text-default);font-weight:600;">Quick Actions</div>
-            <div style="display:flex;flex-direction:column;gap:8px;">
-              <div class="qa-row" style="border-color:var(--foundation-grays-light);"><div class="qa-row-left"><i class="fas fa-file-alt qa-icon"></i><span>Submit New Claim</span></div><i class="fas fa-chevron-right qa-chevron"></i></div>
-              <div class="qa-row" style="border-color:var(--foundation-grays-light);"><div class="qa-row-left"><i class="fas fa-calendar-alt qa-icon"></i><span>Request Leave</span></div><i class="fas fa-chevron-right qa-chevron"></i></div>
-              <div class="qa-row" style="border-color:var(--foundation-grays-light);"><div class="qa-row-left"><i class="fas fa-id-card qa-icon"></i><span>View ID Cards</span></div><i class="fas fa-chevron-right qa-chevron"></i></div>
-              <div class="qa-row" style="border-color:var(--foundation-grays-light);"><div class="qa-row-left"><i class="fas fa-sliders-h qa-icon"></i><span>Manage Preferences</span></div><i class="fas fa-chevron-right qa-chevron"></i></div>
-              <div class="qa-row" style="border-color:var(--foundation-grays-light);"><div class="qa-row-left"><i class="fas fa-headphones qa-icon"></i><span>Contact Support</span></div><i class="fas fa-chevron-right qa-chevron"></i></div>
+            <!-- InlineMessage: Warning variant -->
+            <div class="inline-msg">
+              <div class="inline-msg-stripe warning">&#x26A0;</div>
+              <div class="inline-msg-body warning">
+                <div class="inline-msg-header">
+                  <div>
+                    <div class="inline-msg-title">Upload Missing Document</div>
+                    <div class="inline-msg-desc">Upload documents required to support your leave request.</div>
+                    <a href="#" class="inline-msg-link">Upload Documents <i class="fas fa-arrow-right" style="font-size:10px;"></i></a>
+                  </div>
+                  <button class="inline-msg-dismiss">&times;</button>
+                </div>
+              </div>
+            </div>
+            <!-- InlineMessage: Information variant -->
+            <div class="inline-msg">
+              <div class="inline-msg-stripe info">&#x2139;</div>
+              <div class="inline-msg-body info">
+                <div class="inline-msg-header">
+                  <div>
+                    <div class="inline-msg-title">Schedule Dental Exam</div>
+                    <div class="inline-msg-desc">Last cleaning: 8 months ago</div>
+                    <a href="#" class="inline-msg-link">Go to My Providers <i class="fas fa-arrow-right" style="font-size:10px;"></i></a>
+                  </div>
+                  <button class="inline-msg-dismiss">&times;</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Recent Activity -->
+        <!-- Quick Actions — MobileQuickActions -->
+        <div class="qa-widget">
+          <div class="qa-header"><h3>Quick Actions</h3></div>
+          <div>
+            <div class="qa-row"><div class="qa-circle"><div class="qa-circle-inner"></div></div><span class="qa-label">Submit New Claim</span><svg class="qa-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M8 5l5 5-5 5" stroke="#5d5d5d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="qa-row"><div class="qa-circle"><div class="qa-circle-inner"></div></div><span class="qa-label">Request Leave</span><svg class="qa-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M8 5l5 5-5 5" stroke="#5d5d5d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="qa-row"><div class="qa-circle"><div class="qa-circle-inner"></div></div><span class="qa-label">View ID Cards</span><svg class="qa-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M8 5l5 5-5 5" stroke="#5d5d5d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="qa-row"><div class="qa-circle"><div class="qa-circle-inner"></div></div><span class="qa-label">Manage Preferences</span><svg class="qa-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M8 5l5 5-5 5" stroke="#5d5d5d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="qa-row"><div class="qa-circle"><div class="qa-circle-inner"></div></div><span class="qa-label">Contact Support</span><svg class="qa-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M8 5l5 5-5 5" stroke="#5d5d5d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </div>
+        </div>
+
+        <!-- Recent Activity — MobileActivityRow -->
         <div class="m-card">
           <div style="border-bottom:1px solid var(--foundation-grays-lighter);padding:12px 16px;display:flex;flex-direction:column;gap:12px;">
             <div style="display:flex;align-items:center;justify-content:space-between;"><h3 style="font-size:16px;color:var(--text-default);">Recent Activity</h3><a href="#" class="m-link">View All &#x203A;</a></div>
             <div><div class="m-section-label" style="margin-bottom:8px;">Select Member Name</div><div class="m-select">Sarah Johnson (Primary) <i class="fas fa-chevron-down" style="font-size:10px;"></i></div></div>
           </div>
           <div>
-            <div class="act-row"><div class="act-icon"><i class="fas fa-file-alt"></i></div><div class="act-content"><div class="act-title">Dental EOB Available</div><div class="act-desc">Your dental Explanation of Benefits from Dec 10, 2024 is now available.</div><div class="act-date">Jan 20, 2025</div></div><i class="fas fa-chevron-right qa-chevron"></i></div>
-            <div class="act-row"><div class="act-icon"><i class="fas fa-check-circle"></i></div><div class="act-content"><div class="act-title">Claim Processed</div><div class="act-desc">Dental claim #VC-2025-4412</div><div class="act-date">Jan 18, 2025</div></div><i class="fas fa-chevron-right qa-chevron"></i></div>
-            <div class="act-row" style="border-bottom:none;"><div class="act-icon"><i class="fas fa-calendar-check"></i></div><div class="act-content"><div class="act-title">Leave Request Approved</div><div class="act-desc">Leave from 2/2/25 through 2-10-25</div><div class="act-date">Jan 15, 2025</div></div><i class="fas fa-chevron-right qa-chevron"></i></div>
+            <div class="act-row">
+              <div class="act-icon info"><i class="fas fa-info"></i></div>
+              <div class="act-content"><div class="act-title">Dental EOB Available</div><div class="act-desc">Your dental Explanation of Benefits from Dec 10, 2024 is now available.</div><div class="act-date">Jan 20, 2025</div></div>
+              <svg class="act-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7.5 4l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="act-row">
+              <div class="act-icon success"><i class="fas fa-check"></i></div>
+              <div class="act-content"><div class="act-title">Claim Processed</div><div class="act-desc">Dental claim #VC-2025-4412</div><div class="act-date">Jan 18, 2025</div></div>
+              <svg class="act-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7.5 4l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="act-row">
+              <div class="act-icon success"><i class="fas fa-check"></i></div>
+              <div class="act-content"><div class="act-title">Leave Request Approved</div><div class="act-desc">Leave from 2/2/25 through 2-10-25</div><div class="act-date">Jan 15, 2025</div></div>
+              <svg class="act-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7.5 4l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
           </div>
         </div>
 
@@ -517,51 +691,82 @@
           </div>
         </div>
       </div>
-    </div>
 
+      <!-- Footer — MobileFooter -->
+      <div class="m-footer">
+        <div class="m-footer-logo">
+          <svg viewBox="0 0 300 50" width="140" height="24"><text x="0" y="36" font-family="'Source Sans Pro', sans-serif" font-weight="700" font-size="36" fill="#003a70">My</text><text x="58" y="36" font-family="'Source Sans Pro', sans-serif" font-weight="700" font-size="36" fill="#105fa8">Mutual</text></svg>
+        </div>
+        <div class="m-footer-section">
+          <h4>Get Assistance</h4>
+          <a href="#" class="chat-link" style="font-size:14px;color:#105fa8;text-decoration:underline;">Chat with support</a>
+        </div>
+        <div class="m-footer-phones">
+          <div><div class="m-footer-phone-label">General Support</div><div class="m-footer-phone-num">1-800-775-6000</div></div>
+          <div><div class="m-footer-phone-label">Dental Support</div><div class="m-footer-phone-num">1-800-775-6000</div></div>
+          <div><div class="m-footer-phone-label">Vision Support</div><div class="m-footer-phone-num">1-800-775-6000</div></div>
+          <div><div class="m-footer-phone-label">Absence Support</div><div class="m-footer-phone-num">1-800-775-6000</div></div>
+        </div>
+        <div class="m-footer-legal">
+          <div class="m-footer-legal-row"><a href="#">Terms of Use</a><a href="#">Privacy Policy</a><a href="#">Accessibility</a></div>
+          <div class="m-footer-legal-row"><a href="#">Report Fraud</a><a href="#">Disclosures</a></div>
+        </div>
+        <div class="m-footer-copyright">&copy; 2026 Mutual of Omaha Insurance Company. All rights reserved.</div>
+      </div>
+
+    </div>
     </div>
 
     <!-- ===================== LOW UTILIZER ===================== -->
     <div class="dashboard-col">
       <div class="dashboard-label">Low Utilizer</div>
       <div id="tab-low" class="dashboard">
+
+      <!-- Header — MobileNavigation default -->
       <div class="m-header">
-        <i class="fas fa-bars"></i>
+        <div class="m-header-hamburger">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 5h14M3 10h14M3 15h14" stroke="#222222" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
         <div class="m-header-right">
-          <div class="m-notif"><i class="fas fa-bell"></i><div class="m-notif-dot"></div></div>
+          <button class="m-id-cards-btn">ID Cards</button>
+          <div class="m-notif">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2a5 5 0 00-5 5v3l-1 2h12l-1-2V7a5 5 0 00-5-5zM8.5 17a1.5 1.5 0 003 0" stroke="#222222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div class="m-notif-dot"></div>
+          </div>
           <div class="m-avatar">SJ</div>
         </div>
       </div>
+
       <div class="m-banner"><h1>Welcome Back, Sarah</h1></div>
       <div class="m-main">
         <!-- All Caught Up -->
         <div class="info-card">
           <div class="info-card-inner">
-            <div class="info-icon"><i class="fas fa-check"></i></div>
+            <div class="info-icon"><i class="fas fa-check" style="color:var(--semantics-success);"></i></div>
             <div><div class="info-title">You're All Caught Up</div><div class="info-desc">No pending actions required at this time. All claims and leave requests are up to date.</div></div>
           </div>
           <button class="info-close"><i class="fas fa-times"></i></button>
         </div>
 
-        <!-- Quick Actions -->
-        <div class="m-card">
-          <div style="padding:17px;display:flex;flex-direction:column;gap:16px;">
-            <div style="font-size:16px;color:var(--text-default);font-weight:600;">Quick Actions</div>
-            <div style="display:flex;flex-direction:column;gap:8px;">
-              <div class="qa-row" style="border-color:var(--foundation-grays-light);"><div class="qa-row-left"><i class="fas fa-sliders-h qa-icon"></i><span>Manage Preferences</span></div><i class="fas fa-chevron-right qa-chevron"></i></div>
-              <div class="qa-row" style="border-color:var(--foundation-grays-light);"><div class="qa-row-left"><i class="fas fa-headphones qa-icon"></i><span>Contact Support</span></div><i class="fas fa-chevron-right qa-chevron"></i></div>
-            </div>
+        <!-- Quick Actions — MobileQuickActions -->
+        <div class="qa-widget">
+          <div class="qa-header"><h3>Quick Actions</h3></div>
+          <div>
+            <div class="qa-row"><div class="qa-circle"><div class="qa-circle-inner"></div></div><span class="qa-label">Manage Preferences</span><svg class="qa-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M8 5l5 5-5 5" stroke="#5d5d5d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="qa-row"><div class="qa-circle"><div class="qa-circle-inner"></div></div><span class="qa-label">Contact Support</span><svg class="qa-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M8 5l5 5-5 5" stroke="#5d5d5d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           </div>
         </div>
 
-        <!-- Active Benefits Empty -->
+        <!-- Active Benefits Empty — MobileCalloutCard -->
         <div class="m-card">
           <div class="m-card-header"><h3>Active Benefits</h3></div>
-          <div class="empty-state">
-            <div class="empty-icon"><i class="fas fa-heartbeat"></i></div>
-            <div class="empty-title">Missing a Benefit?</div>
-            <div class="empty-desc">We're still setting up your benefits information with your employer.<br>Some coverages may take a little longer to appear.</div>
-            <button class="m-btn-primary" style="margin-top:12px;">Explore Coverage</button>
+          <div style="padding:40px 24px 24px;display:flex;justify-content:center;">
+            <div class="callout-card">
+              <div class="callout-badge"><i class="fas fa-heartbeat"></i></div>
+              <div class="callout-title">Missing a Benefit?</div>
+              <div class="callout-desc">We're still setting up your benefits information with your employer. Some coverages may take a little longer to appear.</div>
+              <button class="callout-btn">Explore Coverage</button>
+            </div>
           </div>
         </div>
 
@@ -569,22 +774,67 @@
         <div class="m-card">
           <div class="m-card-header"><h3>Recent Activity</h3><a href="#" class="m-link">View All &#x203A;</a></div>
           <div class="empty-state">
-            <div class="empty-icon"><i class="far fa-calendar-alt"></i></div>
+            <div class="empty-icon"><i class="far fa-calendar-alt" style="font-size:22px;color:var(--foundation-grays-gray);"></i></div>
             <div class="empty-title">No Recent Activity</div>
             <div class="empty-desc">You have no recent updates right now.<br>New account activity will appear here.</div>
             <button class="m-btn-primary" style="margin-top:12px;">View your benefits</button>
           </div>
         </div>
       </div>
+
+      <!-- Footer — MobileFooter -->
+      <div class="m-footer">
+        <div class="m-footer-logo">
+          <svg viewBox="0 0 300 50" width="140" height="24"><text x="0" y="36" font-family="'Source Sans Pro', sans-serif" font-weight="700" font-size="36" fill="#003a70">My</text><text x="58" y="36" font-family="'Source Sans Pro', sans-serif" font-weight="700" font-size="36" fill="#105fa8">Mutual</text></svg>
+        </div>
+        <div class="m-footer-section">
+          <h4>Get Assistance</h4>
+          <a href="#" class="chat-link" style="font-size:14px;color:#105fa8;text-decoration:underline;">Chat with support</a>
+        </div>
+        <div class="m-footer-phones">
+          <div><div class="m-footer-phone-label">General Support</div><div class="m-footer-phone-num">1-800-775-6000</div></div>
+          <div><div class="m-footer-phone-label">Dental Support</div><div class="m-footer-phone-num">1-800-775-6000</div></div>
+          <div><div class="m-footer-phone-label">Vision Support</div><div class="m-footer-phone-num">1-800-775-6000</div></div>
+          <div><div class="m-footer-phone-label">Absence Support</div><div class="m-footer-phone-num">1-800-775-6000</div></div>
+        </div>
+        <div class="m-footer-legal">
+          <div class="m-footer-legal-row"><a href="#">Terms of Use</a><a href="#">Privacy Policy</a><a href="#">Accessibility</a></div>
+          <div class="m-footer-legal-row"><a href="#">Report Fraud</a><a href="#">Disclosures</a></div>
+        </div>
+        <div class="m-footer-copyright">&copy; 2026 Mutual of Omaha Insurance Company. All rights reserved.</div>
+      </div>
+
+    </div>
     </div>
 
     </div><!-- /dashboards-row -->
 
-    <!-- Figma source links -->
+    <!-- Source links -->
     <div style="margin-top:32px;display:flex;gap:24px;flex-wrap:wrap;justify-content:center;">
-      <a href="https://www.figma.com/design/IE52Pd1nEcinhqOlSy4efj/Member-Experience-Design-System?node-id=8037-8025&m=dev" class="figma-source" target="_blank">Figma: Welcome &#x2192;</a>
-      <a href="https://www.figma.com/design/IE52Pd1nEcinhqOlSy4efj/Member-Experience-Design-System?node-id=8037-7532&m=dev" class="figma-source" target="_blank">Figma: High Utilizer &#x2192;</a>
-      <a href="https://www.figma.com/design/IE52Pd1nEcinhqOlSy4efj/Member-Experience-Design-System?node-id=8037-7888&m=dev" class="figma-source" target="_blank">Figma: Low Utilizer &#x2192;</a>
+      <a href="https://www.figma.com/design/IE52Pd1nEcinhqOlSy4efj/Member-Experience-Design-System?node-id=8037-8025&m=dev" class="source-link figma" target="_blank">Figma: Welcome &#x2192;</a>
+      <a href="https://www.figma.com/design/IE52Pd1nEcinhqOlSy4efj/Member-Experience-Design-System?node-id=8037-7532&m=dev" class="source-link figma" target="_blank">Figma: High Utilizer &#x2192;</a>
+      <a href="https://www.figma.com/design/IE52Pd1nEcinhqOlSy4efj/Member-Experience-Design-System?node-id=8037-7888&m=dev" class="source-link figma" target="_blank">Figma: Low Utilizer &#x2192;</a>
+    </div>
+
+    <!-- Component Reference -->
+    <div class="component-ref">
+      <h3>Components Used</h3>
+      <table>
+        <thead><tr><th>Component</th><th>Source</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td>InlineMessage</td><td><a href="https://github.com/ssutantoatcaptech/moo-ds/blob/main/src/components/InlineMessage.tsx" target="_blank">GitHub</a></td><td>Dismissible alert with colored left stripe (Success/Error/Warning/Information)</td></tr>
+          <tr><td>MobileNavigation</td><td><a href="https://github.com/ssutantoatcaptech/moo-ds/blob/main/src/components/MobileNavigation.tsx" target="_blank">GitHub</a></td><td>Header bar with hamburger, ID Cards button, bell notification, avatar</td></tr>
+          <tr><td>MobileQuickActions</td><td><a href="https://github.com/ssutantoatcaptech/moo-ds/blob/main/src/components/MobileQuickActions.tsx" target="_blank">GitHub</a></td><td>Quick actions widget with blue top border and SidebarRow items</td></tr>
+          <tr><td>SidebarRow</td><td><a href="https://github.com/ssutantoatcaptech/moo-ds/blob/main/src/components/SidebarRow.tsx" target="_blank">GitHub</a></td><td>Row with circle icon, label, and chevron</td></tr>
+          <tr><td>MobileActivityRow</td><td><a href="https://github.com/ssutantoatcaptech/moo-ds/blob/main/src/components/MobileActivityRow.tsx" target="_blank">GitHub</a></td><td>Activity row with colored status circle (info/success/pending/needsAttention)</td></tr>
+          <tr><td>MobileCalloutCard</td><td><a href="https://github.com/ssutantoatcaptech/moo-ds/blob/main/src/components/MobileCalloutCard.tsx" target="_blank">GitHub</a></td><td>Callout card with gradient icon badge, centered content, CTA button</td></tr>
+          <tr><td>MobileFooter</td><td><a href="https://github.com/ssutantoatcaptech/moo-ds/blob/main/src/components/MobileFooter.tsx" target="_blank">GitHub</a></td><td>Footer with logo, assistance, phone grid, legal links, copyright</td></tr>
+          <tr><td>MobileHeaderClose</td><td><a href="https://github.com/ssutantoatcaptech/moo-ds/blob/main/src/components/MobileHeaderClose.tsx" target="_blank">GitHub</a></td><td>Close button header with drop shadow</td></tr>
+          <tr><td>MobilePrimaryNav</td><td><a href="https://github.com/ssutantoatcaptech/moo-ds/blob/main/src/components/MobilePrimaryNav.tsx" target="_blank">GitHub</a></td><td>Primary nav row with label and chevron toggle</td></tr>
+          <tr><td>MobileSecondaryNav</td><td><a href="https://github.com/ssutantoatcaptech/moo-ds/blob/main/src/components/MobileSecondaryNav.tsx" target="_blank">GitHub</a></td><td>Secondary nav row for sub-items</td></tr>
+          <tr><td>MobileNavigationBack</td><td><a href="https://github.com/ssutantoatcaptech/moo-ds/blob/main/src/components/MobileNavigationBack.tsx" target="_blank">GitHub</a></td><td>Back navigation button with chevron left</td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </body>
