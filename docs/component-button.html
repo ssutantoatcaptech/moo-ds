@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Button - MoO Design System</title>
+  <title>Buttons - MoO Design System</title>
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="stylesheet" href="shared.css">
   <style>
-    .page-content { max-width: 960px; margin: 0 auto; padding: 40px 60px; }
+    .page-content { max-width: 1060px; margin: 0 auto; padding: 40px 60px; }
     .back-link { font-size: 14px; color: #105fa8; text-decoration: none; display: flex; align-items: center; gap: 6px; margin-bottom: 24px; }
     .back-link:hover { text-decoration: underline; }
     h1 { font-size: 32px; color: #003a70; margin-bottom: 4px; }
@@ -15,9 +16,73 @@
     .description { font-size: 16px; color: #5d5d5d; margin-bottom: 32px; }
     .gh-link { display: block; margin-bottom: 32px; font-size: 13px; color: #105fa8; text-decoration: none; font-weight: 600; }
     .gh-link:hover { text-decoration: underline; }
-    .section-title { font-size: 20px; color: #003a70; margin-bottom: 16px; }
+    .figma-link { display: block; margin-bottom: 32px; font-size: 13px; color: #105fa8; text-decoration: none; font-weight: 600; }
+    .figma-link:hover { text-decoration: underline; }
+    .section-title { font-size: 20px; color: #003a70; margin-bottom: 16px; margin-top: 8px; }
     .preview-box { background: #f9fafb; border: 1px solid #f0f0f0; border-radius: 8px; padding: 32px; margin-bottom: 32px; }
+    .preview-box.inverse { background: #003a70; }
+
+    /* Button Matrix */
+    .btn-matrix { display: grid; grid-template-columns: 120px repeat(5, 1fr); gap: 0; }
+    .btn-matrix .col-header {
+      font-family: 'Source Sans Pro', sans-serif; font-size: 12px; font-weight: 700;
+      color: #838383; text-transform: uppercase; letter-spacing: 0.5px;
+      padding: 0 8px 12px; text-align: center;
+    }
+    .btn-matrix .col-header:first-child { text-align: left; }
+    .btn-matrix .row-label {
+      font-family: 'Source Sans Pro', sans-serif; font-size: 13px; font-weight: 600;
+      color: #5d5d5d; display: flex; align-items: center; padding: 10px 8px;
+    }
+    .btn-matrix .btn-cell { display: flex; align-items: center; justify-content: center; padding: 10px 8px; }
+
+    /* Shared button styles */
+    .ds-btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      font-family: 'Source Sans Pro', sans-serif; font-size: 14px; font-weight: 600;
+      line-height: 20px; padding: 6px 24px; height: 32px;
+      border-radius: 4px; border: none; cursor: pointer;
+      white-space: nowrap; text-decoration: none;
+      transition: all 0.15s ease;
+    }
+    .ds-btn .btn-icon { font-size: 12px; }
+
+    /* Primary */
+    .ds-btn.primary-default { background: #105fa8; color: #fff; }
+    .ds-btn.primary-default:hover { background: #003a70; }
+    .ds-btn.primary-focus { background: #003a70; color: #fff; box-shadow: 0 0 4px 0 #105fa8; }
+    .ds-btn.primary-error { background: #c12506; color: #fff; }
+    .ds-btn.primary-disabled { background: #bababa; color: #fff; cursor: not-allowed; }
+
+    /* Secondary */
+    .ds-btn.secondary-default { background: transparent; color: #105fa8; border: 1px solid #105fa8; }
+    .ds-btn.secondary-default:hover { color: #003a70; border-color: #003a70; }
+    .ds-btn.secondary-focus { background: transparent; color: #003a70; border: 1px solid #003a70; box-shadow: 0 0 4px 0 #105fa8; }
+    .ds-btn.secondary-error { background: transparent; color: #c12506; border: 1px solid #c12506; }
+    .ds-btn.secondary-disabled { background: transparent; color: #bababa; border: 1px solid #bababa; cursor: not-allowed; }
+
+    /* Tertiary */
+    .ds-btn.tertiary-default { background: transparent; color: #105fa8; border: none; padding: 6px 0; }
+    .ds-btn.tertiary-default:hover { text-decoration: underline; }
+    .ds-btn.tertiary-hover { background: transparent; color: #105fa8; border: none; padding: 6px 0; text-decoration: underline; }
+    .ds-btn.tertiary-disabled { background: transparent; color: #bababa; border: none; padding: 6px 0; cursor: not-allowed; }
+
+    /* Inverse variants */
+    .ds-btn.primary-inverse-default { background: #fff; color: #105fa8; }
+    .ds-btn.primary-inverse-focus { background: #fff; color: #105fa8; box-shadow: 0 0 4px 0 #105fa8; }
+    .ds-btn.primary-inverse-disabled { background: #fff; color: #bababa; cursor: not-allowed; }
+    .ds-btn.secondary-inverse-default { background: transparent; color: #fff; border: 1px solid #fff; }
+    .ds-btn.secondary-inverse-focus { background: transparent; color: #fff; border: 1px solid #fff; box-shadow: 0 0 4px 0 #105fa8; }
+    .ds-btn.secondary-inverse-disabled { background: #f0f0f0; color: #bababa; border: 1px solid #bababa; cursor: not-allowed; }
+
+    /* Props table */
+    .props-table { width: 100%; border-collapse: collapse; font-family: 'Source Sans Pro', sans-serif; font-size: 14px; margin-bottom: 32px; }
+    .props-table th { text-align: left; padding: 10px 12px; background: #f0f5fa; color: #003a70; font-weight: 700; border-bottom: 2px solid #d0dce8; }
+    .props-table td { padding: 10px 12px; border-bottom: 1px solid #f0f0f0; color: #444; }
+    .props-table code { background: #f0f0f0; padding: 2px 6px; border-radius: 3px; font-size: 13px; }
   </style>
+  <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+  <script src="figma-toolbar.js" defer></script>
 </head>
 <body>
   <nav class="ds-nav">
@@ -36,38 +101,155 @@
   </nav>
 
   <div class="page-content">
-    <a href="components.html" class="back-link">&larr; Back to Components</a>
-    <h1>Button</h1>
+    <a href="components.html" class="back-link">&larr; All Components</a>
+    <h1>Buttons</h1>
     <div class="file-name">Button.tsx</div>
-    <p class="description">Primary, secondary, outline, and subtle button variants with size options.</p>
-    <a href="https://github.com/ssutantoatcaptech/moo-ds/blob/main/src/components/Button.tsx" class="gh-link">View on GitHub &rarr;</a>
+    <p class="description">Button component with Primary, Secondary, and Tertiary variants across Default, Focus, Error, Disabled, Hover, and Inverse states. Supports optional left and right icons.</p>
+    <a href="https://github.com/ssutantoatcaptech/moo-ds/blob/main/src/components/Button.tsx" class="gh-link" target="_blank">View on GitHub &rarr;</a>
+    <a href="https://www.figma.com/design/IE52Pd1nEcinhqOlSy4efj/Member-Experience-Design-System?node-id=8035-6444&m=dev" class="figma-link" target="_blank">View in Figma &rarr;</a>
 
-    <h2 class="section-title">Variants</h2>
+    <!-- Primary Buttons -->
+    <h2 class="section-title">Primary</h2>
     <div class="preview-box">
-      <div style="display: flex; gap: 16px; align-items: center;">
-        <button style="background: #105fa8; color: white; font-family: 'Source Sans Pro', sans-serif; font-size: 16px; font-weight: 600; padding: 10px 24px; border-radius: 4px; border: none; min-height: 44px; cursor: pointer;">Primary</button>
-        <button style="background: white; color: #222; font-family: 'Source Sans Pro', sans-serif; font-size: 16px; font-weight: 600; padding: 10px 24px; border-radius: 4px; border: 1px solid #838383; min-height: 44px; cursor: pointer;">Default</button>
-        <button style="background: transparent; color: #105fa8; font-family: 'Source Sans Pro', sans-serif; font-size: 16px; font-weight: 600; padding: 10px 24px; border-radius: 4px; border: 1px solid #105fa8; min-height: 44px; cursor: pointer;">Outline</button>
-        <button style="background: transparent; color: #105fa8; font-family: 'Source Sans Pro', sans-serif; font-size: 16px; font-weight: 600; padding: 10px 24px; border-radius: 4px; border: none; min-height: 44px; cursor: pointer;" onmouseover="this.style.background='#f0f5fa'" onmouseout="this.style.background='transparent'">Subtle</button>
-        <button style="background: transparent; color: #105fa8; font-family: 'Source Sans Pro', sans-serif; font-size: 16px; font-weight: 600; padding: 10px 24px; border-radius: 4px; border: none; min-height: 44px; cursor: pointer; text-decoration: underline;">Transparent</button>
+      <div class="btn-matrix">
+        <div class="col-header"></div>
+        <div class="col-header">Default</div>
+        <div class="col-header">Focus</div>
+        <div class="col-header">Error</div>
+        <div class="col-header">Disabled</div>
+        <div class="col-header"></div>
+
+        <div class="row-label">With Icons</div>
+        <div class="btn-cell"><button class="ds-btn primary-default"><i class="fas fa-bolt btn-icon"></i> Label <i class="fas fa-bolt btn-icon"></i></button></div>
+        <div class="btn-cell"><button class="ds-btn primary-focus"><i class="fas fa-bolt btn-icon"></i> Label <i class="fas fa-bolt btn-icon"></i></button></div>
+        <div class="btn-cell"><button class="ds-btn primary-error"><i class="fas fa-bolt btn-icon"></i> Label <i class="fas fa-bolt btn-icon"></i></button></div>
+        <div class="btn-cell"><button class="ds-btn primary-disabled" disabled><i class="fas fa-bolt btn-icon"></i> Label <i class="fas fa-bolt btn-icon"></i></button></div>
+        <div class="btn-cell"></div>
+
+        <div class="row-label">No Icons</div>
+        <div class="btn-cell"><button class="ds-btn primary-default">Label</button></div>
+        <div class="btn-cell"><button class="ds-btn primary-focus">Label</button></div>
+        <div class="btn-cell"><button class="ds-btn primary-error">Label</button></div>
+        <div class="btn-cell"><button class="ds-btn primary-disabled" disabled>Label</button></div>
+        <div class="btn-cell"></div>
       </div>
     </div>
 
-    <h2 class="section-title">Sizes</h2>
+    <!-- Secondary Buttons -->
+    <h2 class="section-title">Secondary</h2>
     <div class="preview-box">
-      <div style="display: flex; gap: 16px; align-items: center;">
-        <button style="background: #105fa8; color: white; font-family: 'Source Sans Pro', sans-serif; font-size: 14px; font-weight: 600; padding: 6px 16px; border-radius: 4px; border: none; min-height: 32px; cursor: pointer;">Small</button>
-        <button style="background: #105fa8; color: white; font-family: 'Source Sans Pro', sans-serif; font-size: 16px; font-weight: 600; padding: 10px 24px; border-radius: 4px; border: none; min-height: 44px; cursor: pointer;">Medium</button>
-        <button style="background: #105fa8; color: white; font-family: 'Source Sans Pro', sans-serif; font-size: 18px; font-weight: 600; padding: 12px 32px; border-radius: 4px; border: none; min-height: 52px; cursor: pointer;">Large</button>
+      <div class="btn-matrix">
+        <div class="col-header"></div>
+        <div class="col-header">Default</div>
+        <div class="col-header">Focus</div>
+        <div class="col-header">Error</div>
+        <div class="col-header">Disabled</div>
+        <div class="col-header"></div>
+
+        <div class="row-label">With Icons</div>
+        <div class="btn-cell"><button class="ds-btn secondary-default"><i class="fas fa-bolt btn-icon"></i> Label <i class="fas fa-bolt btn-icon"></i></button></div>
+        <div class="btn-cell"><button class="ds-btn secondary-focus"><i class="fas fa-bolt btn-icon"></i> Label <i class="fas fa-bolt btn-icon"></i></button></div>
+        <div class="btn-cell"><button class="ds-btn secondary-error"><i class="fas fa-bolt btn-icon"></i> Label <i class="fas fa-bolt btn-icon"></i></button></div>
+        <div class="btn-cell"><button class="ds-btn secondary-disabled" disabled><i class="fas fa-bolt btn-icon"></i> Label <i class="fas fa-bolt btn-icon"></i></button></div>
+        <div class="btn-cell"></div>
+
+        <div class="row-label">No Icons</div>
+        <div class="btn-cell"><button class="ds-btn secondary-default">Label</button></div>
+        <div class="btn-cell"><button class="ds-btn secondary-focus">Label</button></div>
+        <div class="btn-cell"><button class="ds-btn secondary-error">Label</button></div>
+        <div class="btn-cell"><button class="ds-btn secondary-disabled" disabled>Label</button></div>
+        <div class="btn-cell"></div>
       </div>
     </div>
 
-    <h2 class="section-title">Disabled</h2>
+    <!-- Tertiary Buttons -->
+    <h2 class="section-title">Tertiary</h2>
     <div class="preview-box">
-      <div style="display: flex; gap: 16px; align-items: center;">
-        <button style="background: #105fa8; color: white; font-family: 'Source Sans Pro', sans-serif; font-size: 16px; font-weight: 600; padding: 10px 24px; border-radius: 4px; border: none; min-height: 44px; opacity: 0.4; cursor: not-allowed;" disabled>Primary</button>
-        <button style="background: white; color: #222; font-family: 'Source Sans Pro', sans-serif; font-size: 16px; font-weight: 600; padding: 10px 24px; border-radius: 4px; border: 1px solid #838383; min-height: 44px; opacity: 0.4; cursor: not-allowed;" disabled>Default</button>
+      <div class="btn-matrix" style="grid-template-columns: 120px repeat(3, 1fr);">
+        <div class="col-header"></div>
+        <div class="col-header">Default</div>
+        <div class="col-header">Hover</div>
+        <div class="col-header">Disabled</div>
+
+        <div class="row-label">With Icons</div>
+        <div class="btn-cell"><button class="ds-btn tertiary-default"><i class="fas fa-info-circle btn-icon"></i> Label <i class="fas fa-chevron-circle-right btn-icon"></i></button></div>
+        <div class="btn-cell"><button class="ds-btn tertiary-hover"><i class="fas fa-info-circle btn-icon"></i> Label <i class="fas fa-chevron-circle-right btn-icon"></i></button></div>
+        <div class="btn-cell"><button class="ds-btn tertiary-disabled" disabled><i class="fas fa-info-circle btn-icon"></i> Label <i class="fas fa-chevron-circle-right btn-icon"></i></button></div>
+
+        <div class="row-label">No Icons</div>
+        <div class="btn-cell"><button class="ds-btn tertiary-default">Label</button></div>
+        <div class="btn-cell"><button class="ds-btn tertiary-hover">Label</button></div>
+        <div class="btn-cell"><button class="ds-btn tertiary-disabled" disabled>Label</button></div>
       </div>
+    </div>
+
+    <!-- Inverse Buttons -->
+    <h2 class="section-title">Inverse (Primary)</h2>
+    <div class="preview-box inverse">
+      <div class="btn-matrix">
+        <div class="col-header" style="color: #a0b4cc;"></div>
+        <div class="col-header" style="color: #a0b4cc;">Default</div>
+        <div class="col-header" style="color: #a0b4cc;">Focus</div>
+        <div class="col-header" style="color: #a0b4cc;">Disabled</div>
+        <div class="col-header"></div>
+        <div class="col-header"></div>
+
+        <div class="row-label" style="color: #a0b4cc;">With Icons</div>
+        <div class="btn-cell"><button class="ds-btn primary-inverse-default"><i class="fas fa-bolt btn-icon"></i> Label <i class="fas fa-bolt btn-icon"></i></button></div>
+        <div class="btn-cell"><button class="ds-btn primary-inverse-focus"><i class="fas fa-bolt btn-icon"></i> Label <i class="fas fa-bolt btn-icon"></i></button></div>
+        <div class="btn-cell"><button class="ds-btn primary-inverse-disabled" disabled><i class="fas fa-bolt btn-icon"></i> Label <i class="fas fa-bolt btn-icon"></i></button></div>
+        <div class="btn-cell"></div>
+        <div class="btn-cell"></div>
+      </div>
+    </div>
+
+    <!-- Inverse Buttons (Secondary) -->
+    <h2 class="section-title">Inverse (Secondary)</h2>
+    <div class="preview-box inverse">
+      <div class="btn-matrix">
+        <div class="col-header" style="color: #a0b4cc;"></div>
+        <div class="col-header" style="color: #a0b4cc;">Default</div>
+        <div class="col-header" style="color: #a0b4cc;">Focus</div>
+        <div class="col-header" style="color: #a0b4cc;">Disabled</div>
+        <div class="col-header"></div>
+        <div class="col-header"></div>
+
+        <div class="row-label" style="color: #a0b4cc;">With Icons</div>
+        <div class="btn-cell"><button class="ds-btn secondary-inverse-default"><i class="fas fa-bolt btn-icon"></i> Label <i class="fas fa-bolt btn-icon"></i></button></div>
+        <div class="btn-cell"><button class="ds-btn secondary-inverse-focus"><i class="fas fa-bolt btn-icon"></i> Label <i class="fas fa-bolt btn-icon"></i></button></div>
+        <div class="btn-cell"><button class="ds-btn secondary-inverse-disabled" disabled><i class="fas fa-bolt btn-icon"></i> Label <i class="fas fa-bolt btn-icon"></i></button></div>
+        <div class="btn-cell"></div>
+        <div class="btn-cell"></div>
+      </div>
+    </div>
+
+    <!-- Props -->
+    <h2 class="section-title">Props</h2>
+    <table class="props-table">
+      <thead>
+        <tr><th>Prop</th><th>Type</th><th>Default</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>property1</code></td><td><code>"Primary" | "Secondary" | "Tertiary"</code></td><td><code>"Primary"</code></td><td>Button variant / visual style</td></tr>
+        <tr><td><code>property2</code></td><td><code>"Default" | "Disabled" | "Error" | "Focus" | "Hover" | "Inverse"</code></td><td><code>"Default"</code></td><td>Button state</td></tr>
+        <tr><td><code>property3</code></td><td><code>"Default" | "Disabled" | "Focus"</code></td><td>—</td><td>Sub-state for Inverse variant</td></tr>
+        <tr><td><code>leftIcon</code></td><td><code>boolean</code></td><td><code>true</code></td><td>Show left icon (bolt for Primary/Secondary, info-circle for Tertiary)</td></tr>
+        <tr><td><code>rightIcon</code></td><td><code>boolean</code></td><td><code>true</code></td><td>Show right icon (bolt for Primary/Secondary, chevron-circle-right for Tertiary)</td></tr>
+      </tbody>
+    </table>
+
+    <!-- Design Tokens -->
+    <h2 class="section-title">Design Tokens Used</h2>
+    <div class="preview-box" style="display: flex; flex-direction: column; gap: 8px; align-items: flex-start;">
+      <div><strong>Primary bg:</strong> <code>--foundation-primary-blue</code> (#105fa8)</div>
+      <div><strong>Primary focus bg:</strong> <code>--foundation-primary-blue-dark</code> (#003a70)</div>
+      <div><strong>Error bg/border:</strong> <code>--semantics-solids-error</code> (#c12506)</div>
+      <div><strong>Disabled bg/border:</strong> <code>--foundation-grays-gray-light</code> (#bababa)</div>
+      <div><strong>Focus shadow:</strong> <code>0 0 4px 0 #105fa8</code></div>
+      <div><strong>Border radius:</strong> <code>4px</code></div>
+      <div><strong>Typography:</strong> <code>--font-family-title</code> (Source Sans Pro Semibold, 14px / 20px)</div>
+      <div><strong>Icon size:</strong> 16px with 2px padding</div>
+      <div><strong>Button height:</strong> 32px, padding 8px 24px</div>
     </div>
   </div>
 </body>
