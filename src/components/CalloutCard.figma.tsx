@@ -6,15 +6,9 @@ import CalloutCard from "./CalloutCard"
 figma.connect(
   "https://www.figma.com/design/IE52Pd1nEcinhqOlSy4efj/Member-Experience-Design-System?node-id=8089-1607",
   {
-    props: {
-      variant: figma.enum("Variant", {
-        Default: "default",
-        "Quick Actions": "quickActions",
-      }),
-    },
-    example: (props) => (
+    props: {},
+    example: () => (
       <CalloutCard
-        variant={props.variant}
         title="Callout Title"
         description="Callout description text goes here."
       />
