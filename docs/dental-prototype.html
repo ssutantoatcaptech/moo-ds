@@ -13,12 +13,15 @@
     body { font-family: 'Source Sans Pro', sans-serif; background: #fafafa; }
 
     /* ============================================
-       Global Header
+       Global Header — matches Global Navigation component (Coverages variant)
        ============================================ */
     .global-header {
+      background: #fff; border-bottom: 1px solid #e5e5e5;
+      padding: 0 25px; position: sticky; top: 0; z-index: 100;
+    }
+    .global-header-inner {
+      max-width: 1376px; margin: 0 auto; height: 73px;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 25px; background: #fff; border-bottom: 1px solid #e5e5e5;
-      height: 75px; position: sticky; top: 0; z-index: 100;
     }
     .header-left { display: flex; align-items: center; gap: 32px; }
     .brand-name { font-size: 18px; line-height: 28px; color: #171717; }
@@ -29,17 +32,18 @@
     }
     .nav-link:hover { background: #f5f5f5; }
     .nav-link.active { background: #f5f5f5; color: #171717; display: flex; align-items: center; gap: 6px; }
-    .nav-link + .nav-link { margin-left: 8px; }
+    .nav-link.spaced { margin-left: 20px; }
     .header-right { display: flex; align-items: center; }
     .header-util {
       display: flex; align-items: center; gap: 8px; font-size: 14px; color: #525252;
-      text-decoration: none; cursor: pointer;
+      text-decoration: none; cursor: pointer; line-height: 20px;
     }
     .header-util:hover { color: #171717; }
     .header-util + .header-util { margin-left: 24px; }
     .header-bell { cursor: pointer; margin-left: 24px; display: flex; align-items: center; }
     .header-profile {
       display: flex; align-items: center; gap: 12px; margin-left: 24px; cursor: pointer;
+      padding: 3px 5px 3px 3px;
     }
     .header-avatar {
       width: 34px; height: 34px; border-radius: 9999px; border: 1px solid #e5e5e5;
@@ -160,38 +164,40 @@
 </head>
 <body>
 
-  <!-- ===================== Global Header ===================== -->
+  <!-- ===================== Global Header — Global Navigation / Coverages variant ===================== -->
   <div class="global-header">
-    <div class="header-left">
-      <span class="brand-name">Benefits Hub</span>
-      <div class="nav-links">
-        <a class="nav-link" href="#">Dashboard</a>
-        <a class="nav-link active" href="#">
-          Coverage
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 4.5l3 3 3-3" stroke="#171717" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <div class="global-header-inner">
+      <div class="header-left">
+        <span class="brand-name">Benefits Hub</span>
+        <nav class="nav-links">
+          <a class="nav-link" href="#">Dashboard</a>
+          <a class="nav-link active" href="#" style="margin-left:8px;">
+            Coverage
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 4.5l3 3 3-3" stroke="#171717" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="nav-link spaced" href="#">Claims</a>
+          <a class="nav-link spaced" href="#">Leave</a>
+          <a class="nav-link spaced" href="#">Support</a>
+        </nav>
+      </div>
+      <div class="header-right">
+        <a class="header-util" href="#">
+          <svg width="16" height="14" viewBox="0 0 16 14" fill="none"><rect x="1" y="1" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.2"/><circle cx="6" cy="5.5" r="2" stroke="currentColor" stroke-width="1"/><path d="M3 11c0-1.5 1.3-2.5 3-2.5s3 1 3 2.5" stroke="currentColor" stroke-width="1" stroke-linecap="round"/><path d="M11 4.5h2M11 7h2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
+          <span>ID Cards</span>
         </a>
-        <a class="nav-link" href="#">Claims</a>
-        <a class="nav-link" href="#">Leave</a>
-        <a class="nav-link" href="#">Support</a>
-      </div>
-    </div>
-    <div class="header-right">
-      <a class="header-util" href="#">
-        <svg width="16" height="14" viewBox="0 0 16 14" fill="none"><rect x="1" y="1" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.2"/><circle cx="6" cy="5.5" r="2" stroke="currentColor" stroke-width="1"/><path d="M3 11c0-1.5 1.3-2.5 3-2.5s3 1 3 2.5" stroke="currentColor" stroke-width="1" stroke-linecap="round"/><path d="M11 4.5h2M11 7h2" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
-        <span>ID Cards</span>
-      </a>
-      <a class="header-util" href="#">
-        <svg width="16" height="14" viewBox="0 0 16 14" fill="none"><path d="M1 3l7 5 7-5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="1" y="1" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.2"/></svg>
-        <span>Messages</span>
-      </a>
-      <div class="header-bell">
-        <svg width="16" height="18" viewBox="0 0 16 18" fill="none"><path d="M8 1a5 5 0 00-5 5v3l-1.5 2.5h13L13 9V6a5 5 0 00-5-5z" stroke="#525252" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 15.5a2 2 0 004 0" stroke="#525252" stroke-width="1.2" stroke-linecap="round"/></svg>
-      </div>
-      <div class="header-profile">
-        <div class="header-avatar">
-          <svg width="34" height="34" viewBox="0 0 34 34" fill="none"><circle cx="17" cy="17" r="16" fill="#e0e0e0" stroke="#e5e5e5" stroke-width="1"/><circle cx="17" cy="13" r="5" fill="#bbb"/><path d="M7 28c0-5.5 4.5-8 10-8s10 2.5 10 8" fill="#bbb"/></svg>
+        <a class="header-util" href="#">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 3l6 4.5L13 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="1" y="1" width="12" height="11" rx="2" stroke="currentColor" stroke-width="1.2"/></svg>
+          <span>Messages</span>
+        </a>
+        <div class="header-bell">
+          <svg width="14" height="16" viewBox="0 0 14 16" fill="none"><path d="M7 1a4.5 4.5 0 00-4.5 4.5v2.7L1 10.5h12l-1.5-2.3V5.5A4.5 4.5 0 007 1z" stroke="#525252" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5.5 14a1.5 1.5 0 003 0" stroke="#525252" stroke-width="1.2" stroke-linecap="round"/></svg>
         </div>
-        <span class="header-profile-name">Sarah Johnson</span>
+        <div class="header-profile">
+          <div class="header-avatar">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="16" fill="#e0e0e0"/><circle cx="16" cy="12" r="5" fill="#bbb"/><path d="M6 27c0-5 4.5-7.5 10-7.5s10 2.5 10 7.5" fill="#bbb"/></svg>
+          </div>
+          <span class="header-profile-name">Sarah Johnson</span>
+        </div>
       </div>
     </div>
   </div>
