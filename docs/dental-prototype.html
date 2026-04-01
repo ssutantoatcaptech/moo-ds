@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dental Desktop Prototype - MoO Design System</title>
   <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="stylesheet" href="shared.css">
   <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
   <script src="figma-toolbar.js" defer></script>
@@ -13,44 +14,46 @@
     body { font-family: 'Source Sans Pro', sans-serif; background: #fafafa; }
 
     /* ============================================
-       Global Header — matches Global Navigation component (Coverages variant)
+       Global Navigation — DS Component (Coverages variant)
+       Key: f91b91bf0a13b6eb143b2df64610ce130c1a59d5
        ============================================ */
-    .global-header {
-      background: #fff; border-bottom: 1px solid #e5e5e5;
-      padding: 0 25px; position: sticky; top: 0; z-index: 100;
-    }
-    .global-header-inner {
-      max-width: 1376px; margin: 0 auto; height: 73px;
+    .main-nav {
       display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 24px; background: #fff;
+      border-bottom: 1px solid #f0f0f0;
+      position: sticky; top: 0; z-index: 100;
     }
-    .header-left { display: flex; align-items: center; gap: 32px; }
-    .brand-name { font-size: 18px; line-height: 28px; color: #171717; }
-    .nav-links { display: flex; align-items: center; }
-    .nav-link {
-      padding: 8px 12px; border-radius: 6px; font-size: 14px; line-height: 20px;
-      color: #525252; text-decoration: none; cursor: pointer;
+    .main-nav-left { display: flex; align-items: center; gap: 32px; }
+    .main-nav-tabs { display: flex; gap: 0; }
+    .main-nav-right { display: flex; align-items: center; gap: 4px; }
+    .my-mutual-logo { font-size: 20px; font-weight: 400; color: #222; letter-spacing: -0.5px; white-space: nowrap; }
+    .my-mutual-logo em { font-style: italic; color: #105fa8; font-weight: 700; }
+    .nav-tab {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 12px; border-radius: 4px;
+      font-size: 14px; font-weight: 600;
+      color: #222; cursor: pointer; text-decoration: none; transition: background 0.15s;
     }
-    .nav-link:hover { background: #f5f5f5; }
-    .nav-link.active { background: #f5f5f5; color: #171717; display: flex; align-items: center; gap: 6px; }
-    .nav-link.spaced { margin-left: 20px; }
-    .header-right { display: flex; align-items: center; }
-    .header-util {
-      display: flex; align-items: center; gap: 8px; font-size: 14px; color: #525252;
-      text-decoration: none; cursor: pointer; line-height: 20px;
+    .nav-tab:hover { background: #e9f3fb; }
+    .nav-tab.active-tab { background: #e9f3fb; }
+    .nav-tab .chevron { font-size: 10px; color: #105fa8; }
+    .util-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 12px; border-radius: 4px;
+      font-size: 14px; font-weight: 600;
+      color: #222; cursor: pointer; text-decoration: none; transition: background 0.15s;
     }
-    .header-util:hover { color: #171717; }
-    .header-util + .header-util { margin-left: 24px; }
-    .header-bell { cursor: pointer; margin-left: 24px; display: flex; align-items: center; }
-    .header-profile {
-      display: flex; align-items: center; gap: 12px; margin-left: 24px; cursor: pointer;
-      padding: 3px 5px 3px 3px;
+    .util-link:hover { background: #ebf3fa; }
+    .util-link .util-icon { font-size: 16px; color: #222; }
+    .util-link.profile { color: #105fa8; gap: 12px; }
+    .avatar-circle {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: #002547; border: 2px solid #dcebf9;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: 600; color: #fff; text-transform: uppercase; flex-shrink: 0;
     }
-    .header-avatar {
-      width: 34px; height: 34px; border-radius: 9999px; border: 1px solid #e5e5e5;
-      overflow: hidden; background: #e0e0e0; display: flex; align-items: center; justify-content: center;
-    }
-    .header-avatar svg { display: block; }
-    .header-profile-name { font-size: 14px; color: #171717; line-height: 20px; }
+    .notif-wrap { position: relative; display: inline-flex; align-items: center; padding: 8px 12px; cursor: pointer; }
+    .notif-dot { position: absolute; top: 8px; right: 8px; width: 8px; height: 8px; border-radius: 50%; background: #c12506; }
 
     /* ============================================
        Page Container
@@ -164,42 +167,24 @@
 </head>
 <body>
 
-  <!-- ===================== Global Header — Global Navigation / Coverages variant ===================== -->
+  <!-- ===================== Global Navigation — DS Component / Coverages variant ===================== -->
   <!-- Component: Global Navigation | Key: f91b91bf0a13b6eb143b2df64610ce130c1a59d5 | Variant: Coverages -->
-  <div class="global-header">
-    <div class="global-header-inner">
-      <div class="header-left">
-        <span class="brand-name">Benefits Hub</span>
-        <nav class="nav-links">
-          <a class="nav-link" href="#">Dashboard</a>
-          <a class="nav-link active" href="#" style="margin-left:8px;">
-            Coverage
-            <img src="https://www.figma.com/api/mcp/asset/992bac9a-1078-456a-b67c-d068cd22c2fd" alt="" width="12" height="12">
-          </a>
-          <a class="nav-link spaced" href="#">Claims</a>
-          <a class="nav-link spaced" href="#">Leave</a>
-          <a class="nav-link spaced" href="#">Support</a>
-        </nav>
+  <div class="main-nav">
+    <div class="main-nav-left">
+      <span class="my-mutual-logo">my<em>Mutual</em></span>
+      <div class="main-nav-tabs">
+        <a class="nav-tab">Dashboard</a>
+        <a class="nav-tab active-tab">My Coverages <i class="fas fa-chevron-down chevron"></i></a>
+        <a class="nav-tab">Claims</a>
+        <a class="nav-tab">Leave</a>
+        <a class="nav-tab">Support</a>
       </div>
-      <div class="header-right">
-        <a class="header-util" href="#">
-          <img src="https://www.figma.com/api/mcp/asset/aed2466b-d677-4121-b552-99d116f0f655" alt="" width="16" height="14">
-          <span>ID Cards</span>
-        </a>
-        <a class="header-util" href="#">
-          <img src="https://www.figma.com/api/mcp/asset/80f6ba5c-8d0e-4d81-9e6f-d1cb4beb3e46" alt="" width="14" height="14">
-          <span>Messages</span>
-        </a>
-        <div class="header-bell">
-          <img src="https://www.figma.com/api/mcp/asset/54720c21-22db-4f29-960d-bf915297b8a3" alt="" width="14" height="16">
-        </div>
-        <div class="header-profile">
-          <div class="header-avatar">
-            <img src="https://www.figma.com/api/mcp/asset/66ea8e5e-3560-4f5a-8ba7-371c34c86891" alt="Sarah Johnson" width="32" height="32" style="border-radius:9999px;">
-          </div>
-          <span class="header-profile-name">Sarah Johnson</span>
-        </div>
-      </div>
+    </div>
+    <div class="main-nav-right">
+      <a class="util-link"><i class="far fa-id-card util-icon"></i> Find ID Card</a>
+      <a class="util-link"><i class="far fa-envelope util-icon"></i> Messages</a>
+      <span class="notif-wrap"><i class="far fa-bell" style="font-size: 18px; color: #222;"></i><span class="notif-dot"></span></span>
+      <a class="util-link profile"><span class="avatar-circle">SJ</span> Sarah Johnson</a>
     </div>
   </div>
 
